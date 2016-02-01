@@ -1,0 +1,84 @@
+#Filename: makefile2.txt
+#Author: Jordan Giacone
+#Email: Jmgv27@mst.edu
+#Student ID: 12400927
+#Class: CS 5201
+#Instructor: Clayton Price
+#Date: 1/26/16
+#Purpose: This is a description file to compile the code provided for part 2 of homework #1
+
+#Macros
+CXX = /usr/bin/g++
+FLAGS = -g -Wall -W -pedantic-errors
+
+OBJECTS = driver.o    \
+          parser.o    \
+          scanner.o   \
+          token.o     \
+          tokenlist.o \
+	  signal.o
+
+#Important Suffixes: .cpp
+.SUFFIXES: .cpp
+
+#Rule to turn .cpp -> .o
+.cpp.o: $<
+	${CXX} -c ${FLAGS} $< -o $@
+
+#Default target to be built if no parameters given
+default: all
+
+#The target that builds the whole project
+all: driver
+
+#How to compile the main driver object
+driver: ${OBJECTS}
+	${CXX} ${FLAGS} ${OBJECTS} -o $@
+
+#A clean target that will wipe out compiled files as well as core dumps	
+clean:
+	-@rm -f core > /dev/null 2>&1
+	-@rm -f driver > /dev/null 2>&1
+	-@rm -f ${OBJECTS} > /dev/null 2>&1
+
+#Class dependencies
+driver.o: driver.cpp  \
+          signal.h    \
+          parser.h    \
+          tokenlist.h \
+	  token.h     \
+          enTokens.h  \
+	  Amatrix.h   \
+	  Avector.h   \
+          scanner.h   \
+	  enChar.h
+
+parser.o: parser.cpp  \
+          parser.h    \
+          tokenlist.h \
+          token.h     \
+          enTokens.h  \
+          Amatrix.h   \
+          Avector.h   \
+          signal.h
+
+scanner.o: scanner.cpp \
+           scanner.h   \
+           enChar.h    \
+           tokenlist.h \
+           token.h     \
+           enTokens.h  \
+           signal.h
+
+token.o: token.cpp \
+         token.h   \
+         enTokens.h
+
+tokenlist.o: tokenlist.cpp \
+             tokenlist.h   \
+             token.h       \
+             enTokens.h    \
+             signal.h
+
+signal.o: signal.cpp \
+          signal.h
