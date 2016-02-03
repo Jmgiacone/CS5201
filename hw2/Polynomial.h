@@ -10,6 +10,9 @@ struct Term
   public:
     T coefficient;
     T exponent;
+
+    template <class U>
+    friend ostream& operator<<(ostream &out, const Term<U> &rhs);
 };
 
 template <class T>
@@ -18,6 +21,7 @@ class Polynomial
   private:
     int numTerms;
     Term<T>* data;
+    void copyArray(T* src, T* dest, int numTerms);
   
   public:
     Polynomial(); 
@@ -26,11 +30,11 @@ class Polynomial
     ~Polynomial();
 
     //Overloaded Operators
-    Polynomial<T>& operator+=(const Polynomial<T>& rhs) const;
+    Polynomial<T>& operator+=(const Polynomial<T>& rhs);
     Polynomial<T>& operator+(const Polynomial<T>& rhs) const;
     Polynomial<T>& operator-(const Polynomial<T>& rhs) const;
     Polynomial<T>& operator-() const;
-    Polynomial<T>& operator-=(const Polynomial<T>& rhs) const;
+    Polynomial<T>& operator-=(const Polynomial<T>& rhs);
     bool operator==(const Polynomial<T>& rhs) const;
     bool operator!=(const Polynomial<T>& rhs) const;
     Polynomial<T>& operator*(const float f) const;
