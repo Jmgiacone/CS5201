@@ -22,6 +22,18 @@ Polynomial<T>::Polynomial(const Polynomial<T> &src)
   copyArray(src.data, data, numTerms);
 }
 
+template <typename T>
+Polynomial<T>::Polynomial(Term<T>* terms, int n)
+{
+  data = new Term<T>[n];
+  numTerms = n;
+
+  for(int i = 0; i < numTerms; i++)
+  {
+    data[i] = terms[i];
+  }
+}
+
 template<typename T>
 Polynomial<T>::~Polynomial()
 {
@@ -81,7 +93,20 @@ Polynomial<T>& Polynomial<T>::operator*(const float f) const
 template <typename T>
 Polynomial<T>& Polynomial<T>::operator=(const Polynomial<T> &rhs)
 {
+  if(rhs.numTerms > 0)
+  {
+    if(data != NULL)
+    {
+      delete [] data;
+    }
+    numTerms = rhs.numTerms;
+    data = new Term<T>[numTerms];
 
+    for(int i = 0; i < numTerms; i++)
+    {
+      data[i] = rhs.data[i];
+    }
+  }
 }
 
 template <typename T>
