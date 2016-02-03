@@ -2,20 +2,9 @@
 #define POLYNOMIAL_H
 #include <iostream>
 #include <fstream>
-
+#include "Term.h"
 using namespace std;
 template<class T>
-struct Term
-{
-  public:
-    T coefficient;
-    T exponent;
-
-    template <class U>
-    friend ostream& operator<<(ostream &out, const Term<U> &rhs);
-};
-
-template <class T>
 class Polynomial
 {
   private:
@@ -26,7 +15,8 @@ class Polynomial
   public:
     Polynomial(); 
     Polynomial(const int n);
-    Polynomial(const Polynomial<T> &src); 
+    Polynomial(const Polynomial<T> &src);
+    Polynomial(Term<T>* terms, int numTerms);
     ~Polynomial();
 
     //Overloaded Operators
@@ -51,3 +41,33 @@ class Polynomial
 
 #include "Polynomial.hpp"
 #endif
+
+template <typename U>
+ostream &operator<<(ostream &out, const Polynomial<U> rhs)
+{
+  U* data = rhs.data;
+  U currentData;
+  int terms = rhs.numTerms;
+  for(int i = 0; i < terms; i++)
+  {
+    currentData = data[i];
+
+    //Know to put an extra space after the line
+    if(i < (terms - 1))
+    {
+      out << currentData << " ";
+
+      if(data[i + 1].coefficient > 0)
+      {
+        out << "+ ";
+      }
+    }
+    else
+    {
+      //Last term, don't check next one (because it doesn't exist)
+      out << currentData;
+    }
+  }
+
+  return out;
+}
