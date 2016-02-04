@@ -54,5 +54,7 @@ Polynomial<T>& Polynomial<T>::operator=(const Polynomial<T> &rhs)
   {
     data[i] = rhs.data[i];
   }
+
+  return *this;
 }
 
