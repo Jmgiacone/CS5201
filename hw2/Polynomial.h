@@ -15,11 +15,15 @@ class Polynomial
     Term<T>* data;
     int numTerms;
   public:
+    //Constructors
     Polynomial();
     Polynomial(const int n);
     Polynomial(const Term<T>& t);
     Polynomial(const Polynomial<T>& p);
     ~Polynomial();
+
+    //Overloaded Operators
+    Polynomial<T>&operator= (const Polynomial& rhs);
 
     friend std::ostream& operator<< <>(std::ostream& out, const Polynomial<T>& rhs);
 };

@@ -15,13 +15,9 @@ Polynomial<T>::Polynomial(const int n)
 template <class T>
 Polynomial<T>::Polynomial(const Polynomial<T> &p)
 {
-  numTerms = p.numTerms;
-  data = new Term<T>[numTerms];
-
-  for(int i = 0; i < numTerms; i++)
-  {
-    data[i] = p.data[i];
-  }
+  numTerms = 0;
+  data = NULL;
+  *this = p;
 }
 
 template <class T>
@@ -38,5 +34,25 @@ Polynomial<T>::~Polynomial()
   numTerms = 0;
   delete [] data;
   data = NULL;
+}
+
+template <class T>
+Polynomial<T>& Polynomial<T>::operator=(const Polynomial<T> &rhs)
+{
+  //Delete current data if there is any
+  if(data != NULL)
+  {
+    numTerms = 0;
+    delete [] data;
+    data = NULL;
+  }
+
+  numTerms = rhs.numTerms;
+  data = new Term<T>[numTerms];
+
+  for(int i = 0; i < numTerms; i++)
+  {
+    data[i] = rhs.data[i];
+  }
 }
 
