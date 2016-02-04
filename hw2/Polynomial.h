@@ -10,7 +10,8 @@ class Polynomial
   private:
     int numTerms;
     Term<T>* data;
-    void copyArray(T* src, T* dest, int numTerms);
+    void copyArray(Term<T>* src, Term<T>* dest, int numTerms);
+    void sort();
   
   public:
     Polynomial(); 
@@ -30,7 +31,7 @@ class Polynomial
     Polynomial<T>& operator*(const float f) const;
     Polynomial<T>& operator=(const Polynomial<T>& rhs);
     T& operator[](const int i) const;
-    float operator()(const int x) const;
+    T operator()(const int x) const;
     Polynomial<T>& operator~() const;
 
     template <class U> 
@@ -43,10 +44,10 @@ class Polynomial
 #endif
 
 template <typename U>
-ostream &operator<<(ostream &out, const Polynomial<U> rhs)
+ostream& operator<<(ostream &out, const Polynomial<U> rhs)
 {
-  U* data = rhs.data;
-  U currentData;
+  Term<U>* data = rhs.data;
+  Term<U> currentData;
   int terms = rhs.numTerms;
   for(int i = 0; i < terms; i++)
   {
