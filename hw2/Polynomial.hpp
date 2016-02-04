@@ -1,3 +1,5 @@
+#include <cmath>
+
 template <class T>
 Polynomial<T>::Polynomial()
 {
@@ -116,9 +118,15 @@ T& Polynomial<T>::operator[](const int i) const
 }
 
 template <typename T>
-float Polynomial<T>::operator()(const int x) const
+T Polynomial<T>::operator()(const int x) const
 {
+  T answer = 0;
+  for(int i = 0; i < numTerms; i++)
+  {
+    answer += data[i].coefficient * std::pow(x, data[i].exponent);
+  }
 
+  return answer;
 }
 
 template <typename T>
@@ -126,33 +134,8 @@ Polynomial<T>& Polynomial<T>::operator~() const
 {
 }
 
-/*template <typename U>
-ostream& operator<<(ostream& out, const Term<U> &rhs)
-{
-  string output = "";
-  int coefficient = rhs.coefficient;
-  int exponent = rhs.exponent;
-  if(coefficient == 0)
-  {
-    //Zero coefficient -> term is simply zero
-    return out;  
-  }
-  else if(exponent == 0)
-  {
-    //Zero exponent -> term is simply the coefficient
-    output = coefficient;
-  }
-  else
-  {
-    //Output coefficient in cx^e format
-    output = coefficient + "x^" + exponent;
-  }
-
-  out << output;
-  return out;
-}*/
 template <typename T>
-void Polynomial<T>::copyArray(T* src, T* dest, int numTerms)
+void Polynomial<T>::copyArray(Term<T>* src, Term<T>* dest, int numTerms)
 {
   for(int i = 0; i < numTerms; i++)
   {
