@@ -111,3 +111,16 @@ const Term<T>& Polynomial<T>::operator[] (const int i) const
   }
   //i is too small
 }
+
+template <class T>
+const Polynomial<T>& Polynomial<T>::operator* (const T& x) const
+{
+  Polynomial<T> temp(*this);
+
+  for(int i = 0; i < numTerms; i++)
+  {
+    temp.data[i].coefficient *= x;
+  }
+
+  return temp;
+}
