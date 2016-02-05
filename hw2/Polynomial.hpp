@@ -97,3 +97,17 @@ const T& Polynomial<T>::operator() (const T& x) const
   }
   return result;
 }
+
+template <class T>
+const Term<T>& Polynomial<T>::operator[] (const int i) const
+{
+  if(i > 0)
+  {
+    if(i < numTerms)
+    {
+      return data[i];
+    }
+    //i is too big
+  }
+  //i is too small
+}
