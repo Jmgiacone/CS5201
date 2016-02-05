@@ -58,3 +58,42 @@ Polynomial<T>& Polynomial<T>::operator=(const Polynomial<T> &rhs)
   return *this;
 }
 
+template <class T>
+bool Polynomial<T>::operator== (const Polynomial& rhs) const
+{
+  if(numTerms == rhs.numTerms)
+  {
+    for(int i = 0; i < numTerms; i++)
+    {
+      if(data[i] != rhs.data[i])
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  //Automatically not equal if they have different terms
+  return false;
+}
+
+template <class T>
+bool Polynomial<T>::operator!= (const Polynomial& rhs) const
+{
+  return !(*this == rhs);
+}
+
+template <class T>
+const T& Polynomial<T>::operator() (const T& x) const
+{
+  T result;
+  if(numTerms > 0)
+  {
+    result = data[0](x);
+    for (int i = 1; i < numTerms; i++)
+    {
+      result += data[i](x);
+    }
+  }
+  return result;
+}

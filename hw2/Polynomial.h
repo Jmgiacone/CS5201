@@ -26,6 +26,7 @@ class Polynomial
     Polynomial<T>&operator= (const Polynomial<T>& rhs);
     bool operator== (const Polynomial<T>& rhs) const;
     bool operator!= (const Polynomial<T>& rhs) const;
+    const T& operator() (const T& x) const;
 
     friend std::ostream& operator<< <>(std::ostream& out, const Polynomial<T>& rhs);
 };
