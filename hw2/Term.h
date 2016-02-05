@@ -15,7 +15,7 @@ struct Term
   T coefficient;
   T exponent;
   bool operator< (Term<T>& rhs) {return exponent < rhs.exponent;};
-  bool operator> (Term<T>& rhs) {return exponent > rhs.exponent};
+  bool operator> (Term<T>& rhs) {return exponent > rhs.exponent;};
   bool operator<= (Term<T>& rhs) {return exponent <= rhs.exponent;};
   bool operator>= (Term<T>& rhs) {return exponent >= rhs.exponent;};
   bool operator== (Term<T>& rhs) {return (coefficient == rhs.coefficient && exponent == rhs.exponent);};
