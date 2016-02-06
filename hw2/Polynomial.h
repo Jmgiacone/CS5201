@@ -12,8 +12,9 @@ template <class T>
 class Polynomial
 {
   private:
+    const int DEFAULT_MAX_TERMS = 5;
     Term<T>* data;
-    int numTerms;
+    int numTerms, maxTerms;
   public:
     //Constructors
     Polynomial();
@@ -28,7 +29,8 @@ class Polynomial
     bool operator!= (const Polynomial<T>& rhs) const;
     const T& operator() (const T& x) const;
     const Term<T>& operator[] (const int i) const;
-    const Polynomial<T>& operator* (const T& x) const;
+    const Polynomial<T> operator* (const T& x) const;
+    const Polynomial<T> operator+ (const Polynomial<T>& rhs) const;
 
     friend std::ostream& operator<< <>(std::ostream& out, const Polynomial<T>& rhs);
 };
