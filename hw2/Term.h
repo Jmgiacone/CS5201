@@ -14,13 +14,13 @@ struct Term
 {
   T coefficient;
   T exponent;
-  bool operator< (Term<T>& rhs) {return exponent < rhs.exponent;};
-  bool operator> (Term<T>& rhs) {return exponent > rhs.exponent;};
-  bool operator<= (Term<T>& rhs) {return exponent <= rhs.exponent;};
-  bool operator>= (Term<T>& rhs) {return exponent >= rhs.exponent;};
-  bool operator== (Term<T>& rhs) {return (coefficient == rhs.coefficient && exponent == rhs.exponent);};
-  bool operator!= (Term<T>& rhs) {return !(*this == rhs);};
-  const T& operator() (const T& x) {return coefficient * pow(x, exponent);};
+  bool operator< (const Term<T>& rhs) const {return exponent < rhs.exponent;};
+  bool operator> (const Term<T>& rhs) const {return exponent > rhs.exponent;};
+  bool operator<= (const Term<T>& rhs) const {return exponent <= rhs.exponent;};
+  bool operator>= (const Term<T>& rhs) const {return exponent >= rhs.exponent;};
+  bool operator== (const Term<T>& rhs) const {return (coefficient == rhs.coefficient && exponent == rhs.exponent);};
+  bool operator!= (const Term<T>& rhs) const {return !(*this == rhs);};
+  const T& operator() (const T& x) const {return coefficient * pow(x, exponent);};
     
   friend std::ostream& operator<< <>(std::ostream& out, const Term<T> &rhs);
 };
