@@ -3,7 +3,7 @@ Polynomial<T>::Polynomial()
 {
   numTerms = 0;
   maxTerms = DEFAULT_MAX_TERMS;
-  data = NULL;
+  data = new Term<T>[maxTerms];
 }
 
 template <class T>
@@ -12,11 +12,11 @@ Polynomial<T>::Polynomial(const int n)
   maxTerms = n;
   numTerms = 0;
 
-  if(maxTerms < 0)
+  if(maxTerms <= 0)
   {
     //throw an error
   }
-  data = (maxTerms == 0 ? NULL : new Term<T>[maxTerms]);
+  data = new Term<T>[maxTerms];
 }
 
 template <class T>
