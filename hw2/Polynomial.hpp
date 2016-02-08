@@ -172,3 +172,16 @@ const Polynomial<T> Polynomial<T>::operator~ () const
 
   return tmp;
 }
+
+template <class T>
+const Polynomial<T> Polynomial<T>::operator- () const
+{
+  Polynomial<T> tmp(*this);
+
+  for(int i = 0; i < numTerms; i++)
+  {
+    tmp.data[i].coefficient *= -1;
+  }
+
+  return tmp;
+}
