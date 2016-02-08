@@ -42,7 +42,11 @@ Polynomial<T>::~Polynomial()
 {
   numTerms = 0;
   maxTerms = 0;
-  delete [] data;
+  
+  if(data != NULL)
+  {
+    delete [] data;
+  }
   data = NULL;
 }
 
