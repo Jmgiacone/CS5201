@@ -14,6 +14,8 @@ struct Term
 {
   T coefficient;
   T exponent;
+  Term() {coefficient = 0; exponent = 0;};
+  Term(T c, T e) {coefficient = c; exponent = e;};
   bool operator< (const Term<T>& rhs) const {return exponent < rhs.exponent;};
   bool operator> (const Term<T>& rhs) const {return exponent > rhs.exponent;};
   bool operator<= (const Term<T>& rhs) const {return exponent <= rhs.exponent;};
@@ -40,6 +42,10 @@ std::ostream& operator<<(std::ostream& out, const Term<T>& rhs)
   else if(rhs.exponent == 1)
   {
     out << rhs.coefficient << "x";
+  }
+  else if(rhs.coefficient == 1)
+  {
+    out << "x^" << rhs.exponent;
   }
   else
   {
