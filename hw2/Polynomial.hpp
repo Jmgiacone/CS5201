@@ -82,6 +82,19 @@ Polynomial<T>& Polynomial<T>::operator=(const Polynomial<T> &rhs)
 template <class T>
 bool Polynomial<T>::operator== (const Polynomial<T>& rhs) const
 {
+  if(data == NULL && rhs.data == NULL)
+  {
+    //they're equally empty
+  }
+  else if(data == NULL)
+  {
+    return false;
+  }
+  else if(rhs.data == NULL)
+  {
+    return false;
+  }
+
   if(numTerms == rhs.numTerms)
   {
     for(int i = 0; i < numTerms; i++)
