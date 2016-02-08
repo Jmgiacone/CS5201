@@ -32,6 +32,7 @@ class Polynomial
     const Polynomial<T> operator* (const T& x) const;
     const Polynomial<T> operator+ (const Polynomial<T>& rhs) const;
     const Polynomial<T>& operator+= (const Polynomial<T>& rhs);
+    const Polynomial<T> operator~ () const;
 
     friend std::ostream& operator<< <>(std::ostream& out, const Polynomial<T>& rhs);
 };

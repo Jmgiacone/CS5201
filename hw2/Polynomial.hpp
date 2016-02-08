@@ -156,3 +156,19 @@ const Polynomial<T>& Polynomial<T>::operator+= (const Polynomial<T>& rhs)
 
   return *this;
 }
+
+template <class T>
+const Polynomial<T> Polynomial<T>::operator~ () const
+{
+  Polynomial<T> tmp(*this);
+
+  for(int i = 0; i < numTerms; i++)
+  {
+    if(tmp.data[i].coefficient > 0)
+    {
+      tmp.data[i].coefficient *= -1;
+    }
+  }
+
+  return tmp;
+}
