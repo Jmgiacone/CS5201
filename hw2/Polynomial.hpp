@@ -148,3 +148,11 @@ const Polynomial<T> Polynomial<T>::operator+ (const Polynomial<T>& rhs) const
   Polynomial<T> temp(15);
   return temp;
 }
+
+template <class T>
+const Polynomial<T>& Polynomial<T>::operator+= (const Polynomial<T>& rhs)
+{
+  *this = *this + rhs;
+
+  return *this;
+}
