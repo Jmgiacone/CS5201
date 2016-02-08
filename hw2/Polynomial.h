@@ -8,11 +8,11 @@ class Polynomial;
 template <class T>
 std::ostream& operator<< (std::ostream& out, const Polynomial<T>& rhs);
 
+const int DEFAULT_MAX_TERMS = 5;
 template <class T>
 class Polynomial
 {
   private:
-    const int DEFAULT_MAX_TERMS = 5;
     Term<T>* data;
     int numTerms, maxTerms;
   public:
