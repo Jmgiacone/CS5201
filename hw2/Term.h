@@ -43,6 +43,10 @@ std::ostream& operator<<(std::ostream& out, const Term<T>& rhs)
   {
     out << rhs.coefficient << "x";
   }
+  else if(rhs.coefficient == -1)
+  {
+    out << "-x^" << rhs.exponent;
+  }
   else if(rhs.coefficient == 1)
   {
     out << "x^" << rhs.exponent;

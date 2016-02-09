@@ -162,7 +162,72 @@ const Polynomial<T> Polynomial<T>::operator* (const T& x) const
 template <class T>
 const Polynomial<T> Polynomial<T>::operator+ (const Polynomial<T>& rhs) const
 {
-  Polynomial<T> temp(15);
+  Polynomial<T> temp(numTerms + rhs.numTerms);
+
+  int thisIndex = 0, rhsIndex = 0, tempIndex = 0;
+
+  while(thisIndex < numTerms && rhsIndex < rhs.numTerms)
+  {
+    if(data[thisIndex].exponent < rhs.data[rhsIndex].exponent)
+    {
+      temp.data[tempIndex] = rhs.data[rhsIndex];
+      temp.numTerms++;
+      rhsIndex++;
+      tempIndex++;
+    }
+    else if(data[thisIndex].exponent > rhs.data[rhsIndex].exponent)
+    {
+      temp.data[tempIndex] = data[thisIndex];
+      temp.numTerms++;
+      thisIndex++;
+      tempIndex++;
+    }
+    else
+    {
+      //Same exponents, add coefficients
+      T x = data[thisIndex].coefficient + rhs.data[rhsIndex].coefficient;
+      T exp = data[thisIndex].exponent;
+      rhsIndex++;
+      thisIndex++;
+      if(x == 0)
+      {
+        //Coefficients cancel out, skip this term
+      }
+      else
+      {
+        Term<T> t(x, exp);
+        temp.data[tempIndex] = t;
+        temp.numTerms++;
+        tempIndex++;
+      }
+    }
+  }
+
+  if(thisIndex < numTerms)
+  {
+    for(int i = thisIndex; i < numTerms; i++)
+    {
+      temp.data[tempIndex] = data[i];
+      tempIndex++;
+      temp.numTerms++;
+    }
+  }
+  else
+  {
+    for(int i = rhsIndex; i < rhs.numTerms; i++)
+    {
+      temp.data[tempIndex] = rhs.data[i];
+      tempIndex++;
+      temp.numTerms++;
+    }
+  }
+
+  //Complete cancellation check
+  if(temp.numTerms == 0)
+  {
+    delete [] temp.data;
+    temp.data = NULL;
+  }
   return temp;
 }
 
@@ -201,4 +266,20 @@ const Polynomial<T> Polynomial<T>::operator- () const
   }
 
   return tmp;
+}
+
+template <class T>
+const Polynomial<T> Polynomial<T>::operator- (const Polynomial<T>& rhs) const
+{
+  Polynomial<T> tmp(15);
+
+  return tmp;
+}
+
+template <class T>
+const Polynomial<T>& Polynomial<T>::operator-= (const Polynomial<T>& rhs)
+{
+  *this = *this - rhs;
+
+  return *this;
 }
