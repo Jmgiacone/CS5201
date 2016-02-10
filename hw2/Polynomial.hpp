@@ -287,7 +287,7 @@ const T Polynomial<T>::magnitude() const
   
   for(int i = 0; i < numTerms; i++)
   {
-    tmp += std::pow(data[i].coefficient, 2);
+    tmp += (data[i].coefficient * data[i].coefficient);
   }
 
   return std::sqrt(tmp);
