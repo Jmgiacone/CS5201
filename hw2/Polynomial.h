@@ -37,6 +37,9 @@ class Polynomial
     const Polynomial<T> operator~ () const;
     const Polynomial<T> operator- () const;
 
+    //Magnitude function
+    const T magnitude() const;
+
     friend std::ostream& operator<< <>(std::ostream& out, const Polynomial<T>& rhs);
 };
 #include "Polynomial.hpp"

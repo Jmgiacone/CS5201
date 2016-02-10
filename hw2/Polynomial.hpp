@@ -279,3 +279,16 @@ const Polynomial<T>& Polynomial<T>::operator-= (const Polynomial<T>& rhs)
 
   return *this;
 }
+
+template <class T>
+const T Polynomial<T>::magnitude() const
+{
+  T tmp = 0;
+  
+  for(int i = 0; i < numTerms; i++)
+  {
+    tmp += std::pow(data[i].coefficient, 2);
+  }
+
+  return std::sqrt(tmp);
+}
