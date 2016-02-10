@@ -31,30 +31,31 @@ struct Term
 template <class T>
 std::ostream& operator<<(std::ostream& out, const Term<T>& rhs)
 {
-  if(rhs.coefficient == 0)
+  if(rhs.coefficient == 0 || rhs.exponent == 0)
   {
     out << rhs.coefficient;
+    return out;
   }
-  else if(rhs.exponent == 0)
+
+  if(rhs.coefficient == -1)
   {
-    out << rhs.coefficient;
-  }
-  else if(rhs.exponent == 1)
-  {
-    out << rhs.coefficient << "x";
-  }
-  else if(rhs.coefficient == -1)
-  {
-    out << "-x^" << rhs.exponent;
+    out << "-";
   }
   else if(rhs.coefficient == 1)
   {
-    out << "x^" << rhs.exponent;
+    //unused
   }
   else
   {
-    out << rhs.coefficient << "x^" << rhs.exponent;
+    out << rhs.coefficient;
   }
 
+  out << "x";
+  
+  if(rhs.exponent != 1)
+  {
+    out << "^" << rhs.exponent;
+  }
+  
   return out;
 }
