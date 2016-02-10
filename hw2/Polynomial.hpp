@@ -115,7 +115,7 @@ bool Polynomial<T>::operator!= (const Polynomial& rhs) const
 }
 
 template <class T>
-const T& Polynomial<T>::operator() (const T& x) const
+const T Polynomial<T>::operator() (const T& x) const
 {
   T result;
   if(numTerms > 0)
@@ -224,6 +224,7 @@ const Polynomial<T> Polynomial<T>::operator+ (const Polynomial<T>& rhs) const
   {
     delete [] temp.data;
     temp.data = NULL;
+    temp.data = new Term<T>[DEFAULT_MAX_TERMS];
   }
   return temp;
 }
@@ -268,9 +269,7 @@ const Polynomial<T> Polynomial<T>::operator- () const
 template <class T>
 const Polynomial<T> Polynomial<T>::operator- (const Polynomial<T>& rhs) const
 {
-  Polynomial<T> tmp(15);
-
-  return tmp;
+  return (*this + (-rhs));
 }
 
 template <class T>
