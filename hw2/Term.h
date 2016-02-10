@@ -22,7 +22,7 @@ struct Term
   bool operator>= (const Term<T>& rhs) const {return exponent >= rhs.exponent;};
   bool operator== (const Term<T>& rhs) const {return (coefficient == rhs.coefficient && exponent == rhs.exponent);};
   bool operator!= (const Term<T>& rhs) const {return !(*this == rhs);};
-  const T& operator() (const T& x) const {return coefficient * pow(x, exponent);};
+  const T operator() (const T& x) const {return coefficient * pow(x, exponent);};
     
   friend std::ostream& operator<< <>(std::ostream& out, const Term<T> &rhs);
 };
