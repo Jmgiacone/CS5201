@@ -92,7 +92,7 @@ bool Polynomial<T>::operator== (const Polynomial<T>& rhs) const
     return false;
   }
   
-  if(numTerms == rhs.numTerms  
+  if(numTerms == rhs.numTerms)  
   {
     for(int i = 0; i < numTerms; i++)
     {

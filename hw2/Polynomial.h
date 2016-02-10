@@ -27,7 +27,7 @@ class Polynomial
     Polynomial<T>&operator= (const Polynomial<T>& rhs);
     bool operator== (const Polynomial<T>& rhs) const;
     bool operator!= (const Polynomial<T>& rhs) const;
-    const T& operator() (const T& x) const;
+    const T operator() (const T& x) const;
     const Term<T>& operator[] (const int i) const;
     const Polynomial<T> operator* (const T& x) const;
     const Polynomial<T> operator+ (const Polynomial<T>& rhs) const;
