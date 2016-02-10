@@ -85,17 +85,14 @@ bool Polynomial<T>::operator== (const Polynomial<T>& rhs) const
   if(data == NULL && rhs.data == NULL)
   {
     //they're equally empty
+    return true;
   }
-  else if(data == NULL)
+  else if(data == NULL || rhs.data == NULL)
   {
     return false;
   }
-  else if(rhs.data == NULL)
-  {
-    return false;
-  }
-
-  if(numTerms == rhs.numTerms)
+  
+  if(numTerms == rhs.numTerms  
   {
     for(int i = 0; i < numTerms; i++)
     {
