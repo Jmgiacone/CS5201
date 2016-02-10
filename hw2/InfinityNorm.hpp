@@ -8,10 +8,14 @@ const T InfinityNorm<T>::operator() (const std::vector<Polynomial<T>> &vect) con
   {
     temp = vect[i].magnitude();
 
-    if(temp > max)
+    if(i == 0)
     {
       max = temp;
-    }  
+    }
+    else if(temp > max)
+    {
+      max = temp;
+    }
   }
   return max;
 }
