@@ -55,11 +55,11 @@ std::ostream& operator<<(std::ostream& out, const Polynomial<T>& rhs)
     //Know to put an extra space after the line
     if(i < (terms - 1))
     {
-      out << currentData << " ";
+      out << currentData;
 
       if(data[i + 1].coefficient > 0 && data[i + 1].coefficient != 0)
       {
-        out << "+ ";
+        out << "+";
       }
     }
     else
