@@ -19,7 +19,7 @@ class Polynomial
     //Constructors
     Polynomial();
     Polynomial(const int n);
-    Polynomial(const Term<T>& t);
+    Polynomial(const T& c, const T& e);
     Polynomial(const Polynomial<T>& p);
     ~Polynomial();
 

@@ -20,21 +20,22 @@ Polynomial<T>::Polynomial(const int n)
 }
 
 template <class T>
+Polynomial<T>::Polynomial(const T& c, const T& e)
+{
+  numTerms = 1;
+  maxTerms = DEFAULT_MAX_TERMS;
+  data = new Term<T>[maxTerms];
+  Term<T> t(c, e);
+  data[0] = t;
+}
+
+template <class T>
 Polynomial<T>::Polynomial(const Polynomial<T> &p)
 {
   numTerms = 0;
   maxTerms = 0;
   data = NULL;
   *this = p;
-}
-
-template <class T>
-Polynomial<T>::Polynomial(const Term<T> &t)
-{
-  numTerms = 1;
-  maxTerms = DEFAULT_MAX_TERMS;
-  data = new Term<T>[maxTerms];
-  data[0] = t;
 }
 
 template <class T>
