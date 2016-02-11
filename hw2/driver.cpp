@@ -106,9 +106,8 @@ void readPoly(std::ifstream& fileIn, Polynomial<float>& poly, int totalTerms)
       exit(0);
     }
   
-    Term<float> t(coefficient, exponent);
     foundTerms++;
-    Polynomial<float> p(t);
+    Polynomial<float> p(coefficient, exponent);
     poly += p;
   }
   
