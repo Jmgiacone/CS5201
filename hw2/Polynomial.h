@@ -13,14 +13,62 @@ template <class T>
 class Polynomial
 {
   private:
+    //A pointer to an Array of Terms
     Term<T>* data;
+
+    //numTerms: The current number of terms in the Polynomial
+    //maxTerms: The maximum capacity the Polynomial can have
     int numTerms, maxTerms;
   public:
-    //Constructors
+    /**
+     * Purpose: A default constructor. 
+     * Pre: None
+     * Post: numTerms is initialized to 0
+             maxTerms is initialized to DEFAULT_MAX_TERMS
+             data is initialized to a new array of size maxTerms
+     */
     Polynomial();
+
+    /**
+     * Purpose: A constructor to initialize the object with a max number 
+     * of terms other than DEFAULT_MAX_TERMS
+     * Param: n - The size for the array to be allocated to
+     * Pre: None
+     * Post: numTerms is initialized to 0
+             maxTerms is initialized to n
+             data is initialized to a new array of size maxTerms
+     */
     Polynomial(const int n);
+
+    /**
+     * Purpose: A constructor to initialize the object to a monomial (A polynomial with 1 term)
+     * Pre: None
+     * Param: c - The coefficient for the monomial
+     * Param: e - The exponent for the monomial
+     * Post: numTerms is initialized to 1
+             maxTerms is initialized to DEFAULT_MAX_TERMS
+             data is initialized to a new array of size maxTerms
+             data[0] is initialized to a new Term<T> with parameters c and e 
+     */
     Polynomial(const T& c, const T& e);
+
+    /**
+     * Purpose: A copy constructor to make a deep copy of the passed-in object
+     * Param: p - The Polynomial to be copied
+     * Post: numTerms is initialized to numTerms in p
+             maxTerms is initialized to maxTerms in p
+             data from p is deeply copied in to data
+     */
     Polynomial(const Polynomial<T>& p);
+
+    /**
+     * Purpose: A destructor for Polynomial
+     * Pre: None
+     * Post: numTerms is set to 0
+             maxTerms is set to 0
+             any data stored in data is deleted
+             data is set to NULL
+     */
     ~Polynomial();
 
     //Overloaded Operators
