@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
         exit(0);
       }
 
-      //std::cout << "Displaying " << totalPolynomials << " Polynomials" << std::endl;
       for(int i = 0; (fileIn >> tmp) && i < totalPolynomials; i++)
       {
         try
@@ -52,7 +51,6 @@ int main(int argc, char *argv[])
 
         foundPolynomials++;
         
-        //std::cout << (i + 1) << ") " << poly << std::endl;
         vect.push_back(poly);
       }
     
