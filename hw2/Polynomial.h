@@ -40,6 +40,7 @@ class Polynomial
     //Magnitude function
     const T magnitude() const;
 
+    friend Polynomial<T> operator* (const T& x, const Polynomial<T>& rhs) {return rhs * x;};
     friend std::ostream& operator<< <>(std::ostream& out, const Polynomial<T>& rhs);
 };
 #include "Polynomial.hpp"
