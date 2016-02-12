@@ -108,8 +108,8 @@ int main(int argc, char *argv[])
 void readPoly(std::ifstream& fileIn, Polynomial<float>& poly, int totalTerms)
 {
   std::string str, tmp;
-  float coefficient, exponent;
-  int foundTerms = 0;;
+  float exponent;
+  int coefficient, foundTerms = 0;;
 
   std::getline(fileIn, str, '\n');
   std::istringstream iss(str);
@@ -120,7 +120,7 @@ void readPoly(std::ifstream& fileIn, Polynomial<float>& poly, int totalTerms)
     {
       coefficient = std::stof(tmp);
       iss >> tmp;
-      exponent = std::stof(tmp);
+      exponent = std::stoi(tmp);
     }
     catch(std::invalid_argument)
     {
