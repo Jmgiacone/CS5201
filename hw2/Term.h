@@ -14,8 +14,21 @@ struct Term
 {
   T coefficient;
   T exponent;
+  
+  /**
+   * Purpose: To construct a Term with both coefficients as zero
+   * Pre: Template type T must have the '=' operator defined
+   * Post: The object is created with both coefficiens as zero
+   */
   Term() {coefficient = 0; exponent = 0;};
+
+  /**
+   * Purpose: To construct a Term with given values for coefficient and exponent
+   * Pre: Template type T must have the '=' operater defined
+   * Post: The object is created with the given values
+   */
   Term(T c, T e) {coefficient = c; exponent = e;};
+
   bool operator< (const Term<T>& rhs) const {return exponent < rhs.exponent;};
   bool operator> (const Term<T>& rhs) const {return exponent > rhs.exponent;};
   bool operator<= (const Term<T>& rhs) const {return exponent <= rhs.exponent;};
