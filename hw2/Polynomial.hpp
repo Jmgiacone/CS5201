@@ -1,3 +1,6 @@
+#include "RangeError.h"
+#include "SizeError.h"
+
 template <class T>
 Polynomial<T>::Polynomial()
 {
@@ -14,7 +17,7 @@ Polynomial<T>::Polynomial(const int n)
 
   if(maxTerms <= 0)
   {
-    //throw an error
+    throw SizeError("Attempted to create an array of zero or negative size");
   }
   data = new Term<T>[maxTerms];
 }
@@ -139,9 +142,11 @@ const Term<T>& Polynomial<T>::operator[] (const int i) const
     {
       return data[i];
     }
+    throw RangeError("Index is too large");
     //i is too big
   }
   //i is too small
+  throw RangeError("Index is negative");
 }
 
 template <class T>
