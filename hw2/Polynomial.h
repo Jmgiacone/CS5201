@@ -1,5 +1,8 @@
 /**
  * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 2
  * Student ID: 12400927
  * Login: Jmgv27
  * Date: 2/11/2016

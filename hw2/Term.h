@@ -1,12 +1,14 @@
 /**
  * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 2
  * Student ID: 12400927
  * Login: Jmgv27
  * Date: 2/11/2016
  * Filename: Term.h
  * Description: This is the header file for the templated Term class
  */
-
 
 #ifndef CS5201_HW2_TERM_H
 #define CS5201_HW2_TERM_H
