@@ -1,3 +1,12 @@
+/**
+ * Programmer: Jordan Giacone
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/11/2016
+ * Filename: Polynomial.h
+ * Description: This is the header file for the templated Polynomial class.
+ */
+
 #ifndef POLYNOMIAL_H
 #define POLYNOMIAL_H
 #include <iostream>

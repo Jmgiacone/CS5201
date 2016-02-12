@@ -1,3 +1,12 @@
+/**
+ * Programmer: Jordan Giacone
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/11/2016
+ * Filename: driver.cpp
+ * Description: This is the main driver for the Polynomial project
+ */
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
