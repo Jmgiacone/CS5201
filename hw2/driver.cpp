@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
   {
     filename = argv[1];
     std::ifstream fileIn(filename);
+    std::cout << "--------------------------------------------" << std::endl;
     std::cout << "Attempting to open file " << filename << std::endl;    
  
     //File Exists
@@ -45,6 +46,7 @@ int main(int argc, char *argv[])
         catch(std::invalid_argument)
         {
           std::cerr << "Error: Term token Mismatch! Token " << tmp << " is not a valid integer type. Terminating" << std::endl;
+          exit(0);
         }  
 
         Polynomial<float> poly;
@@ -60,9 +62,15 @@ int main(int argc, char *argv[])
         std::cerr << "Error: Polynomial Mismatch! Expected " << totalPolynomials << " Polynomials, but only encountered " << foundPolynomials << std::endl;
         exit(0);
       }
-
+      std::cout << "--------------------------------------------" << std::endl;
       std::cout << "Read " << vect.size() << " Polynomials successfully" << std::endl;
-      std::cout << "\nRESULTS\n-------------------------------------------" << std::endl;
+       
+      std::cout << "The first two Polynomials are: " << std::endl;
+      std::cout << "1) " << vect[0] << std::endl;
+      std::cout << "2) " << vect[1] << std::endl;
+      std::cout << "--------------------------------------------" << std::endl;
+
+      std::cout << "RESULTS\n--------------------------------------------" << std::endl;
 
       std::cout << "Performing p1 += p2" << std::endl;
 
@@ -72,7 +80,9 @@ int main(int argc, char *argv[])
       std::cout << "p1(-1) = " << (vect[0](-1)) << std::endl;
       std::cout << "4*p3 = " << (4 * vect[2]) << std::endl;
       std::cout << "~p4(2) = " << ((~vect[3])(2)) << std::endl;
-      std::cout << "The infinity norm for this set of " << vect.size() << " Polynomials is: " << norm(vect) << std::endl;
+      std::cout << "--------------------------------------------" << std::endl;
+      std::cout << "The Infinity Norm for this set of " << vect.size() << " Polynomials is: " << norm(vect) << std::endl;
+      std::cout << "--------------------------------------------" << std::endl;
     }
     else
     {
