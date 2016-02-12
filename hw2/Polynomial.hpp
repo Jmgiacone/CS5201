@@ -4,7 +4,7 @@
  * Login: Jmgv27
  * Date: 2/11/2016
  * Filename: Polynomial.hpp
- * Description: This is the file where all the templated function definitions go
+ * Description: This is the implementation file for the Polynomial class
  */
 
 #include "RangeError.h"

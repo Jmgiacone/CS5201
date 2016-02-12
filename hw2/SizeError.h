@@ -1,3 +1,13 @@
+/**
+ * Programmer: Jordan Giacone
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/11/2016
+ * Filename: SizeError.h
+ * Description: This is the header file for the SizeError class
+ */
+
+
 #ifndef SIZE_ERROR_H
 #define SIZE_ERROR_H
 class SizeError

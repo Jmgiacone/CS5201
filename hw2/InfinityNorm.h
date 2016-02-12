@@ -1,3 +1,13 @@
+/**
+ * Programmer: Jordan Giacone
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/11/2016
+ * Filename: InfinityNorm.h
+ * Description: This is the header file for the templated InfinityNorm class
+ */
+
+
 #ifndef INFINITYNORM_H
 #define INFINITYNORM_H
 template<class T>
