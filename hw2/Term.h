@@ -29,14 +29,89 @@ struct Term
    */
   Term(T c, T e) {coefficient = c; exponent = e;};
 
+  /**
+   * Purpose: To check if the calling object's exponent is less than the 
+              exponent of the parameter
+   * Pre: Template type T must have the '<' operator defined
+   * Param: rhs - The Term to be compared with the calling object
+   * Post: None
+   * Return: If the calling object's exponent is less than the exponent of
+             the parameter, true. Otherwise, false
+   */
   bool operator< (const Term<T>& rhs) const {return exponent < rhs.exponent;};
+   
+  /**
+   * Purpose: To check if the calling object's exponent is greater than the 
+              exponent of the parameter
+   * Pre: Template type T must have the '>' operator defined
+   * Param: rhs - The Term to be compared with the calling object
+   * Post: None
+   * Return: If the calling object's exponent is greater than the exponent of
+             the parameter, true. Otherwise, false
+   */
   bool operator> (const Term<T>& rhs) const {return exponent > rhs.exponent;};
+
+  /**
+   * Purpose: To check if the calling object's exponent is less than or equal 
+              to the exponent of the parameter
+   * Pre: Template type T must have the '<=' operator defined
+   * Param: rhs - The Term to be compared with the calling object
+   * Post: None
+   * Return: If the calling object's exponent is less than or equal to the 
+             exponent of the parameter, true. Otherwise, false
+   */
   bool operator<= (const Term<T>& rhs) const {return exponent <= rhs.exponent;};
+
+  /**
+   * Purpose: To check if the calling object's exponent is greater than or equal
+               to the exponent of the parameter
+   * Pre: Template type T must have the '>=' operator defined
+   * Param: rhs - The Term to be compared with the calling object
+   * Post: None
+   * Return: If the calling object's exponent is greater than or equal to the
+             exponent of the parameter, true. Otherwise, false
+   */
   bool operator>= (const Term<T>& rhs) const {return exponent >= rhs.exponent;};
+
+  /**
+   * Purpose: To check if the calling object is equal to the parameter
+   * Pre: Template type T must have the '==' operator defined
+   * Param: rhs - The Term to be compared with the calling object
+   * Post: None
+   * Return: True if the calling object is equal to the parameter, 
+             false otherwise
+   */
   bool operator== (const Term<T>& rhs) const {return (coefficient == rhs.coefficient && exponent == rhs.exponent);};
+  
+  /**
+   * Purpose: To check if the calling object is not equal to the parameter
+   * Pre: Template type T must have the '!=' operator defined
+   * Param: rhs - The Term to be compared with the calling object
+   * Post: None
+   * Return: True if the calling object is not equal to the parameter, 
+             false otherwise
+   */
   bool operator!= (const Term<T>& rhs) const {return !(*this == rhs);};
+  
+  /**
+   * Purpose: To evaluate the Term at a specified constant
+   * Pre: Template type T must have the '*' operator defined
+          Template type T must be defined for function pow()
+   * Param: x - The constant to use for Term evaluation
+   * Post: None
+   * Return: The value of the term evaluated at x
+   */
   const T operator() (const T& x) const {return coefficient * pow(x, exponent);};
     
+  /**
+   * Purpose: To output the parameter rhs to the given ostream
+   * Pre: Template type T must have the '==' operator defined
+          Template type T must have the '!=' operator defined
+   * Param: out - The ostream to output the given Term to
+            rhs - The Term to be outputted
+   * Post: The ostream out will have characters inserted in to it's stream
+   * Return: The parameter out so that you can chain '<<' operators
+   */
   friend std::ostream& operator<< <>(std::ostream& out, const Term<T> &rhs);
 };
 #endif
