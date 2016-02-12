@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <stdexcept>
 #include <vector>
 #include "Polynomial.h"
 #include "InfinityNorm.h"
@@ -77,6 +78,10 @@ int main(int argc, char *argv[])
     {
       std::cerr << "Error: File " << filename << " does not exist. Please re-run with a valid filename." << std::endl;
     }
+  }
+  else
+  {
+    std::cerr << "Error: Invalid number of arguments provided. Please provide a single filename." << std::endl;	 
   }
   return 0;
 }
