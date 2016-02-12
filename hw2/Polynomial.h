@@ -59,7 +59,7 @@ class Polynomial
              data is initialized to a new array of size maxTerms
              data[0] is initialized to a new Term<T> with parameters c and e 
      */
-    Polynomial(const T& c, const T& e);
+    Polynomial(const T& c, const int e);
 
     /**
      * Purpose: A copy constructor to make a deep copy of the passed-in object
@@ -140,9 +140,7 @@ class Polynomial
 
     /**
      * Purpose: To add two Polynomials together
-     * Pre: Template type T must have the '<' operator defined
-            Template type T must have the '>' operator defined
-            Template type T must have the '=' operator defined
+       Pre: Template type T must have the '=' operator defined
             Template type T must have the '+' operator defined
             Template type T must have the '==' operator defined
      * Param: rhs - The Polynomial to be added to the calling object
@@ -154,9 +152,7 @@ class Polynomial
     /**
      * Purpose: To add two Polynomials together and set the calling object
                 equal to the result
-     * Pre: Template type T must have the '<' operator defined
-            Template type T must have the '>' operator defined
-            Template type T must have the '=' operator defined 
+       Pre: Template type T must have the '=' operator defined 
             Template type T must have the '+' operator defined
             Template type T must have the '==' operator defined
      * Post: The calling object will be modified to be the sum of itself
@@ -168,9 +164,7 @@ class Polynomial
     
     /**
      * Purpose: To subtract the parameter from the calling object
-     * Pre: Template type T must have the '<' operator defined
-            Template type T must have the '>' operator defined
-            Template type T must have the '=' operator defined
+       Pre: Template type T must have the '=' operator defined
             Template type T must have the '+' operator defined
             Template type T must have the '*' operator defined
             Template type T must have the '==' operator defined
@@ -183,9 +177,7 @@ class Polynomial
     /**
      * Purpose: To subtract the parameter from the calling object
                 and assign that difference to the calling object
-     * Pre: Template type T must have the '<' operator defined
-            Template type T must have the '>' operator defined
-            Template type T must have the '=' operator defined
+       Pre: Template type T must have the '=' operator defined
             Template type T must have the '+' operator defined
             Template type T must have the '==' operator defined
      * Param: rhs - The Polynomial to be subtracted from the calling object

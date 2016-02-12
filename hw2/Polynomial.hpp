@@ -32,7 +32,7 @@ Polynomial<T>::Polynomial(const int n)
 }
 
 template <class T>
-Polynomial<T>::Polynomial(const T& c, const T& e)
+Polynomial<T>::Polynomial(const T& c, const int e)
 {
   numTerms = 1;
   maxTerms = DEFAULT_MAX_TERMS;
