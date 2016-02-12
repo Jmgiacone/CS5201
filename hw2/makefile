@@ -20,4 +20,4 @@ clean:
 	-@rm -f driver > /dev/null 2>&1
 	-@rm -f ${OBJECTS} > /dev/null 2>&1
 
-driver.o: driver.cpp Polynomial.h Term.h Polynomial.hpp InfinityNorm.h InfinityNorm.hpp
+driver.o: driver.cpp Polynomial.h Term.h Polynomial.hpp InfinityNorm.h InfinityNorm.hpp RangeError.h SizeError.h
