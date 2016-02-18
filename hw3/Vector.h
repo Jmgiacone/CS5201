@@ -29,6 +29,7 @@ bool operator== (const Vector<T>& lhs, const Vector<T>& rhs);
 template <class T>
 bool operator!= (const Vector<T>& lhs, const Vector<T>& rhs);
 
+const int DEFAULT_MAX_TERMS = 5;
 template <class T>
 class Vector
 {
@@ -42,9 +43,13 @@ class Vector
     Vector();
     Vector(int s);
     Vector(const Vector<T>& src);
+    ~Vector();
 
     //Move Constructor
-    Vector(Vector<T>&& src);
+    Vector(Vector<T>&& src) : data(src.data), terms(src.terms), size(src.size)
+    {
+      src.data = NULL;
+    };
 
     //Conventional Operators
     const Vector<T>& operator= (const Vector<T>& rhs);
