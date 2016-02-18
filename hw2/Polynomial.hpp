@@ -1,5 +1,8 @@
 /**
  * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 2
  * Student ID: 12400927
  * Login: Jmgv27
  * Date: 2/11/2016
@@ -32,7 +35,7 @@ Polynomial<T>::Polynomial(const int n)
 }
 
 template <class T>
-Polynomial<T>::Polynomial(const T& c, const T& e)
+Polynomial<T>::Polynomial(const T& c, const int e)
 {
   numTerms = 1;
   maxTerms = DEFAULT_MAX_TERMS;

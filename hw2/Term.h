@@ -1,5 +1,8 @@
 /**
  * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 2
  * Student ID: 12400927
  * Login: Jmgv27
  * Date: 2/11/2016
@@ -7,11 +10,11 @@
  * Description: This is the header file for the templated Term class
  */
 
-
 #ifndef CS5201_HW2_TERM_H
 #define CS5201_HW2_TERM_H
 #include <iostream>
 #include <cmath>
+#include "ExponentError.h"
 
 template <class T>
 struct Term;
@@ -23,7 +26,7 @@ template <class T>
 struct Term
 {
   T coefficient;
-  T exponent;
+  int exponent;
   
   /**
    * Purpose: To construct a Term with both coefficients as zero
@@ -37,12 +40,20 @@ struct Term
    * Pre: Template type T must have the '=' operater defined
    * Post: The object is created with the given values
    */
-  Term(T c, T e) {coefficient = c; exponent = e;};
+  Term(const T& c, const int e) 
+  {
+    if(e < 0)
+    {
+      throw ExponentError("Negative Exponent detected!");
+    }
+    coefficient = c; 
+    exponent = e;
+  };
 
   /**
    * Purpose: To check if the calling object's exponent is less than the 
               exponent of the parameter
-   * Pre: Template type T must have the '<' operator defined
+   * Pre: None
    * Param: rhs - The Term to be compared with the calling object
    * Post: None
    * Return: If the calling object's exponent is less than the exponent of
@@ -53,7 +64,7 @@ struct Term
   /**
    * Purpose: To check if the calling object's exponent is greater than the 
               exponent of the parameter
-   * Pre: Template type T must have the '>' operator defined
+   * Pre: None
    * Param: rhs - The Term to be compared with the calling object
    * Post: None
    * Return: If the calling object's exponent is greater than the exponent of
@@ -64,7 +75,7 @@ struct Term
   /**
    * Purpose: To check if the calling object's exponent is less than or equal 
               to the exponent of the parameter
-   * Pre: Template type T must have the '<=' operator defined
+   * Pre: None
    * Param: rhs - The Term to be compared with the calling object
    * Post: None
    * Return: If the calling object's exponent is less than or equal to the 
@@ -75,7 +86,7 @@ struct Term
   /**
    * Purpose: To check if the calling object's exponent is greater than or equal
                to the exponent of the parameter
-   * Pre: Template type T must have the '>=' operator defined
+   * Pre: None
    * Param: rhs - The Term to be compared with the calling object
    * Post: None
    * Return: If the calling object's exponent is greater than or equal to the
