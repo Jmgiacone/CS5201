@@ -12,13 +12,13 @@ template <class T>
 std::istream& operator>> (std::istream& in, Vector<T>& rhs);
 
 template <class T>
-const Vector<T> operator+ (const Vector<T>& lhs, const Vector<T>& rhs);
+const Vector<T>& operator+ (const Vector<T>& lhs, const Vector<T>& rhs);
 
 template <class T>
-const Vector<T> operator- (const Vector<T>& lhs, const Vector<T>& rhs);
+const Vector<T>& operator- (const Vector<T>& lhs, const Vector<T>& rhs);
 
 template <class T>
-const Vector<T> operator- (const Vector<T>& rhs);
+const Vector<T>& operator- (const Vector<T>& rhs);
 
 template <class T>
 const T& operator* (const Vector<T>& lhs,const Vector<T>& rhs);
@@ -67,13 +67,13 @@ class Vector
 
     friend std::ostream& operator<< <>(std::ostream& out, const Vector<T>& rhs);
     friend std::istream& operator>> <>(std::istream& in, Vector<T>& rhs);
-    friend const Vector<T> operator+ <>(const Vector<T>& lhs, const Vector<T>& rhs);
-    friend const Vector<T> operator- <>(const Vector<T>& lhs, const Vector<T>& rhs);
-    friend const Vector<T> operator- <>(const Vector<T>& rhs);
+    friend const Vector<T>& operator+ <>(const Vector<T>& lhs, const Vector<T>& rhs);
+    friend const Vector<T>& operator- <>(const Vector<T>& lhs, const Vector<T>& rhs);
+    friend const Vector<T>& operator- <>(const Vector<T>& rhs);
     friend const T& operator* <>(const Vector<T>& lhs, const Vector<T>& rhs);
     friend bool operator== <>(const Vector<T>& lhs, const Vector<T>& rhs);
     friend bool operator!= <>(const Vector<T>& lhs, const Vector<T>& rhs);
-    friend void swap(Vector<T>& x, Vector<T>& y);
+    friend void swap <>(Vector<T>& x, Vector<T>& y);
 
 };
 

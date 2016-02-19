@@ -56,9 +56,44 @@ void swap(Vector<T>& x, Vector<T>& y)
 }
 
 template <class T>
-const Vector<T>& operator= (Vector<T> rhs)
+const Vector<T>& Vector<T>::operator= (Vector<T> rhs)
 {
   swap(*this, rhs);
 
   return *this;
+}
+
+template <class T>
+const Vector<T>& operator+ (const Vector<T>& lhs, const Vector<T>& rhs)
+{
+  if(lhs.terms != rhs.terms)
+  {
+    //Throw error
+  }
+
+  Vector<T> sum(lhs.terms);
+  for(int i = 0; i < lhs.terms; i++)
+  {
+    sum.data[i] = lhs.data[i] + rhs.data[i];
+  }
+
+  return sum;
+}
+
+template <class T>
+const Vector<T>& operator- (const Vector<T>& lhs, const Vector<T>& rhs)
+{
+  return (lhs + (-rhs));
+}
+
+template <class T>
+const Vector<T>& operator- (const Vector<T>& rhs)
+{
+  Vector<T> temp(rhs.size);
+  for (int i = 0; i < rhs.terms; i++)
+  {
+    temp.data[i] = -rhs.data[i];
+  }
+
+  return temp;
 }
