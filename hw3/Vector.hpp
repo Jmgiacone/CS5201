@@ -64,7 +64,7 @@ const Vector<T>& Vector<T>::operator= (Vector<T> rhs)
 }
 
 template <class T>
-const Vector<T>& operator+ (const Vector<T>& lhs, const Vector<T>& rhs)
+const Vector<T> operator+ (const Vector<T>& lhs, const Vector<T>& rhs)
 {
   if(lhs.terms != rhs.terms)
   {
@@ -81,7 +81,7 @@ const Vector<T>& operator+ (const Vector<T>& lhs, const Vector<T>& rhs)
 }
 
 template <class T>
-const Vector<T>& operator- (const Vector<T>& lhs, const Vector<T>& rhs)
+const Vector<T> operator- (const Vector<T>& lhs, const Vector<T>& rhs)
 {
   return (lhs + (-rhs));
 }
@@ -99,13 +99,13 @@ const Vector<T>& operator- (const Vector<T>& rhs)
 }
 
 template <class T>
-const Vector<T>& operator+= (const Vector<T>& rhs)
+const Vector<T>& Vector<T>::operator+= (const Vector<T>& rhs)
 {
   return (*this = (*this + rhs));
 }
 
 template <class T>
-const Vector<T>& operator-= (const Vector<T>& rhs)
+const Vector<T>& Vector<T>::operator-= (const Vector<T>& rhs)
 {
   return (*this = (*this - rhs));
 }
