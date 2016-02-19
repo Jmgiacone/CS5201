@@ -31,5 +31,9 @@ driver
 # Swap Files
 *.swo
 *.swp
-.idea/*
+hw2/.idea/*
+hw3/.idea/*
+*.dia
+*.dia~
+*.pdf
 *.txt
