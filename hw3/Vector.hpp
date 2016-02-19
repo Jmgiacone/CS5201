@@ -46,3 +46,11 @@ Vector<T>::~Vector()
   size = 0;
   data = NULL;
 }
+
+template <class T>
+void swap(Vector<T>& x, Vector<T>& y)
+{
+  std::swap(x.data, y.data);
+  std::swap(x.terms, y.terms);
+  std::swap(x.size, y.size);
+}

@@ -29,6 +29,9 @@ bool operator== (const Vector<T>& lhs, const Vector<T>& rhs);
 template <class T>
 bool operator!= (const Vector<T>& lhs, const Vector<T>& rhs);
 
+template <class T>
+void swap(Vector<T>& x, Vector<T>& y);
+
 const int DEFAULT_MAX_TERMS = 5;
 template <class T>
 class Vector
@@ -52,7 +55,7 @@ class Vector
     };
 
     //Conventional Operators
-    const Vector<T>& operator= (const Vector<T>& rhs);
+    const Vector<T>& operator= (Vector<T> rhs);
     const Vector<T>& operator+= (const Vector<T>& rhs);
     const Vector<T>& operator-= (const Vector<T>& rhs);
     const T& operator[] (const int x);
@@ -70,6 +73,7 @@ class Vector
     friend const T& operator* <>(const Vector<T>& lhs, const Vector<T>& rhs);
     friend bool operator== <>(const Vector<T>& lhs, const Vector<T>& rhs);
     friend bool operator!= <>(const Vector<T>& lhs, const Vector<T>& rhs);
+    friend void swap(Vector<T>& x, Vector<T>& y);
 
 };
 
