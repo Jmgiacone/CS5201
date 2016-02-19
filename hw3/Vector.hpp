@@ -54,3 +54,11 @@ void swap(Vector<T>& x, Vector<T>& y)
   std::swap(x.terms, y.terms);
   std::swap(x.size, y.size);
 }
+
+template <class T>
+const Vector<T>& operator= (Vector<T> rhs)
+{
+  swap(*this, rhs);
+
+  return *this;
+}
