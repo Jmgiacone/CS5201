@@ -119,3 +119,39 @@ const T& Vector<T>::operator[] (const int x)
   }
   return data[x];
 }
+
+template <class T>
+const T operator* (const Vector<T>& lhs, const Vector<T>& rhs)
+{
+  if(rhs.terms != lhs.terms)
+  {
+    //Throw Error
+  }
+
+  T temp;
+  for(int i = 0; i < rhs.terms; i++)
+  {
+    temp += lhs.data[i] * rhs.data[i];
+  }
+
+  return temp;
+}
+
+template <class T>
+const Vector<T> operator* (const Vector<T>& lhs, const T& rhs)
+{
+  Vector<T> dotProduct(lhs);
+
+  for(int i = 0; i < lhs.terms; i++)
+  {
+    dotProduct.data[i] *= rhs;
+  }
+
+  return dotProduct;
+}
+
+template <class T>
+const Vector<T> operator* (const T& lhs, const Vector<T>& rhs)
+{
+  return (rhs * lhs);
+}
