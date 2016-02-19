@@ -24,6 +24,12 @@ template <class T>
 const T operator* (const Vector<T>& lhs,const Vector<T>& rhs);
 
 template <class T>
+const Vector<T> operator* (const Vector<T>& lhs, const T& rhs);
+
+template <class T>
+const Vector<T> operator* (const T& lhs, const Vector<T>& rhs);
+
+template <class T>
 bool operator== (const Vector<T>& lhs, const Vector<T>& rhs);
 
 template <class T>
@@ -71,6 +77,8 @@ class Vector
     friend const Vector<T> operator- <>(const Vector<T>& lhs, const Vector<T>& rhs);
     friend const Vector<T> operator- <>(const Vector<T>& rhs);
     friend const T operator* <>(const Vector<T>& lhs, const Vector<T>& rhs);
+    friend const Vector<T> operator* <>(const Vector<T>& lhs, const T& rhs);
+    friend const Vector<T> operator* <> (const T& lhs, const Vector<T>& rhs);
     friend bool operator== <>(const Vector<T>& lhs, const Vector<T>& rhs);
     friend bool operator!= <>(const Vector<T>& lhs, const Vector<T>& rhs);
     friend void swap <>(Vector<T>& x, Vector<T>& y);
