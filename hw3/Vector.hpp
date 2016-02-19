@@ -97,3 +97,15 @@ const Vector<T>& operator- (const Vector<T>& rhs)
 
   return temp;
 }
+
+template <class T>
+const Vector<T>& operator+= (const Vector<T>& rhs)
+{
+  return (*this = (*this + rhs));
+}
+
+template <class T>
+const Vector<T>& operator-= (const Vector<T>& rhs)
+{
+  return (*this = (*this - rhs));
+}
