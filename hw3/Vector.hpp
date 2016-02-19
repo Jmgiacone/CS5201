@@ -109,3 +109,13 @@ const Vector<T>& Vector<T>::operator-= (const Vector<T>& rhs)
 {
   return (*this = (*this - rhs));
 }
+
+template <class T>
+const T& Vector<T>::operator[] (const int x)
+{
+  if(x < 0 || x >= terms)
+  {
+    //Throw error
+  }
+  return data[x];
+}
