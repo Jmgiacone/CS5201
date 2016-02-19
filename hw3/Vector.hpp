@@ -155,3 +155,28 @@ const Vector<T> operator* (const T& lhs, const Vector<T>& rhs)
 {
   return (rhs * lhs);
 }
+
+template <class T>
+bool operator== (const Vector<T>& lhs, const Vector<T>& rhs)
+{
+  if(lhs.terms != rhs.terms)
+  {
+    return false;
+  }
+
+  for(int i = 0; i < lhs.terms; i++)
+  {
+    if(lhs.data[i] != rhs.data[i])
+    {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+template <class T>
+bool operator!= (const Vector<T>& lhs, const Vector<T>& rhs)
+{
+  return !(lhs == rhs);
+}
