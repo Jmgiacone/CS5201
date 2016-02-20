@@ -4,30 +4,26 @@
 template <class T>
 Vector<T>::Vector()
 {
-  terms = 0;
-  size = DEFAULT_MAX_TERMS;
-  data = new T[size];
+  terms = DEFAULT_TERMS;
+  data = new T[terms];
 }
 
 template <class T>
-Vector<T>::Vector(int s)
+Vector<T>::Vector(int t)
 {
-  terms = 0;
-
-  if(s < 1)
+  if(t < 1)
   {
     //Error
   }
-  size = s;
-  data = new T[size];
+  terms = t;
+  data = new T[terms];
 }
 
 template <class T>
 Vector<T>::Vector(const Vector<T>& src)
 {
   terms = src.terms;
-  size = src.size;
-  data = new T[size];
+  data = new T[terms];
 
   for(int i = 0; i < terms; i++)
   {
@@ -43,7 +39,6 @@ Vector<T>::~Vector()
     delete [] data;
   }
   terms = 0;
-  size = 0;
   data = NULL;
 }
 
@@ -52,7 +47,6 @@ void swap(Vector<T>& x, Vector<T>& y)
 {
   std::swap(x.data, y.data);
   std::swap(x.terms, y.terms);
-  std::swap(x.size, y.size);
 }
 
 template <class T>
@@ -89,7 +83,7 @@ const Vector<T> operator- (const Vector<T>& lhs, const Vector<T>& rhs)
 template <class T>
 const Vector<T> operator- (const Vector<T>& rhs)
 {
-  Vector<T> temp(rhs.size);
+  Vector<T> temp(rhs.terms);
   for (int i = 0; i < rhs.terms; i++)
   {
     temp.data[i] = -rhs.data[i];
@@ -201,7 +195,7 @@ std::ostream& operator<< (std::ostream& out, const Vector<T>& rhs)
     {
       out << ", ";
     }
-
-    return out;
   }
+
+  return out;
 }

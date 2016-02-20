@@ -38,14 +38,13 @@ bool operator!= (const Vector<T>& lhs, const Vector<T>& rhs);
 template <class T>
 void swap(Vector<T>& x, Vector<T>& y);
 
-const int DEFAULT_MAX_TERMS = 5;
+const int DEFAULT_TERMS = 5;
 template <class T>
 class Vector
 {
   private:
     T* data;
     int terms;
-    int size;
 
   public:
     //Conventional Constructors
@@ -55,7 +54,7 @@ class Vector
     ~Vector();
 
     //Move Constructor
-    Vector(Vector<T>&& src) : data(src.data), terms(src.terms), size(src.size)
+    Vector(Vector<T>&& src) : data(src.data), terms(src.terms)
     {
       src.data = NULL;
     };
