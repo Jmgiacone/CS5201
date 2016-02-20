@@ -87,7 +87,7 @@ const Vector<T> operator- (const Vector<T>& lhs, const Vector<T>& rhs)
 }
 
 template <class T>
-const Vector<T>& operator- (const Vector<T>& rhs)
+const Vector<T> operator- (const Vector<T>& rhs)
 {
   Vector<T> temp(rhs.size);
   for (int i = 0; i < rhs.terms; i++)
