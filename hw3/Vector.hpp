@@ -180,3 +180,28 @@ bool operator!= (const Vector<T>& lhs, const Vector<T>& rhs)
 {
   return !(lhs == rhs);
 }
+
+template <class T>
+std::ostream& operator<< (std::ostream& out, const Vector<T>& rhs)
+{
+  for(int i = 0; i < rhs.terms; i++)
+  {
+    if(i == 0)
+    {
+      out << "[";
+    }
+
+    out << rhs.data[i];
+
+    if(i == rhs.terms - 1)
+    {
+      out << "]";
+    }
+    else
+    {
+      out << ", ";
+    }
+
+    return out;
+  }
+}
