@@ -105,7 +105,7 @@ const Vector<T>& Vector<T>::operator-= (const Vector<T>& rhs)
 }
 
 template <class T>
-const T& Vector<T>::operator[] (const int x)
+T& Vector<T>::operator[] (const int x)
 {
   if(x < 0 || x >= terms)
   {

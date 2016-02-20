@@ -63,7 +63,7 @@ class Vector
     const Vector<T>& operator= (Vector<T> rhs);
     const Vector<T>& operator+= (const Vector<T>& rhs);
     const Vector<T>& operator-= (const Vector<T>& rhs);
-    const T& operator[] (const int x);
+    T& operator[] (const int x);
 
     //Move operators
     const Vector<T>& operator= (Vector<T>&& rhs);
