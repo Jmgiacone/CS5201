@@ -115,6 +115,12 @@ T& Vector<T>::operator[] (const int x)
 }
 
 template <class T>
+const T& Vector<T>::operator[] (const int x) const
+{
+  return (*this)[x];
+}
+
+template <class T>
 const T operator* (const Vector<T>& lhs, const Vector<T>& rhs)
 {
   if(rhs.terms != lhs.terms)
