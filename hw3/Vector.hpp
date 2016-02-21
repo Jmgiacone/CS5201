@@ -205,3 +205,14 @@ std::ostream& operator<< (std::ostream& out, const Vector<T>& rhs)
 
   return out;
 }
+
+template <class T>
+std::istream& operator>> (std::istream& in, Vector<T>& rhs)
+{
+  for(int i = 0; i < rhs.terms; i++)
+  {
+    in >> rhs[i];
+  }
+
+  return in;
+}
