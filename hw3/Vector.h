@@ -59,6 +59,7 @@ class Vector
       src.data = NULL;
     };
 
+    const int numTerms() const {return terms;};
     //Conventional Operators
     const Vector<T>& operator= (Vector<T> rhs);
     const Vector<T>& operator+= (const Vector<T>& rhs);
