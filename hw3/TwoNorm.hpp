@@ -6,11 +6,19 @@ template <class T>
 const T TwoNorm<T>::operator() (const Vector<T>& src)
 {
   T temp;
+  int n = src.numTerms();
 
-  for(int i = 0; i < src.numTerms(); i++)
+  if(n != 0)
   {
-    temp += src[i] * src[i];
+    temp = src[0] * src[0];
+    for (int i = 1; i < src.numTerms(); i++)
+    {
+      temp += src[i] * src[i];
+    }
   }
-
+  else
+  {
+    //throw error
+  }
   return std::sqrt(temp);
 }
