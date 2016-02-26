@@ -1,6 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 #include <iostream>
+#include <stdexcept>
 
 template <class T>
 class Vector;
@@ -66,11 +67,6 @@ class Vector
     const Vector<T>& operator-= (const Vector<T>& rhs);
     T& operator[] (const int x);
     const T& operator[] (const int x) const;
-
-    //Move operators
-    const Vector<T>& operator= (Vector<T>&& rhs);
-    const Vector<T>& operator+= (Vector<T>&& rhs);
-    const Vector<T>& operator-= (Vector<T>&& rhs);
 
     friend std::ostream& operator<< <>(std::ostream& out, const Vector<T>& rhs);
     friend std::istream& operator>> <>(std::istream& in, Vector<T>& rhs);
