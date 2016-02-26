@@ -162,16 +162,120 @@ class Vector
      */
     const T& operator[] (const int x) const;
 
+    /**
+     * Purpose: Stream insertion operator - To facilitate output of Vector class to streams
+     * Pre: out be connected to a valid stream
+     * Param: out - The stream to be output to
+     *        rhs - The Vector object to be output
+     * Post: The Vector object is output to the stream out
+     * Return: The parameter out for chaining << operators
+     */
     friend std::ostream& operator<< <>(std::ostream& out, const Vector<T>& rhs);
+
+    /**
+     * Purpose: Stream extraction operator - To facilitate extracting data from a stream and storing it in a Vector
+     * Pre: in be connected to a valid stream
+     * Param: in - The stream to be extracted from
+     *        rhs - The Vector be extracted in to
+     * Post: The Vector object is extracted into by the stream in
+     * Return: The parameter in for chaining of >> operators
+     */
     friend std::istream& operator>> <>(std::istream& in, Vector<T>& rhs);
+
+    /**
+     * Purpose: operator+ - Adding two Vectors together
+     * Pre: lhs and rhs must be of the same size
+     *      Template type T must have operator+ (T, T) defined
+     *      Template type T must have operator= (T) defined
+     * Param: lhs - A Vector to be added
+     *        rhs - The other Vector to be added
+     * Post: If lhs and rhs are of different size, a length_error exception is thrown
+     * Return: The element-wise sum of the two Vectors
+     */
     friend const Vector<T> operator+ <>(const Vector<T>& lhs, const Vector<T>& rhs);
+
+    /**
+     * Purpose: operator- - Subtracting two Vectors from one another
+     * Pre: lhs and rhs must be of the same size
+     *      Template type T must have operator- (T) defined <--- unary- or negation operator
+     *      Template type T must have operator+ (T, T) defined
+     *      Template type T must have operator= (T) defined
+     * Param: lhs - The Vector to be subtracted from
+     *        rhs - The Vector to be subtracted
+     * Post: If lhs and rhs are of different size, a length_error exception is thrown
+     * Return: The element-wise difference of the two Vectors
+     */
     friend const Vector<T> operator- <>(const Vector<T>& lhs, const Vector<T>& rhs);
+
+    /**
+     * Purpose: operator- - Negation operator
+     * Pre: Template type T must have operator- (T) defined <--- unary- or negation operator
+     * Param: rhs - The Vector to be negated
+     * Post: None
+     * Return: The negation of parameter rhs
+     */
     friend const Vector<T> operator- <>(const Vector<T>& rhs);
+
+    /**
+     * Purpose: Operator* - Dot product of two Vectors
+     * Pre: lhs and rhs must be of the same size
+     *      Template type T must have operator* (T, T) defined
+     *      Template type T must have operator+= (T) defined
+     * Param: lhs - One of the Vectors to be used in the dot product
+     *        rhs - The other Vector to be used in the dot product
+     * Post: If lhs and rhs are of different sizes, a length_error exception is thrown
+     * Return: The dot product of the two Vectors
+     */
     friend const T operator* <>(const Vector<T>& lhs, const Vector<T>& rhs);
+
+    /**
+     * Purpose: operator* - Scalar multiplication on a Vector
+     * Pre: Template type T must have operator*= (T) defined
+     * Param: lhs - The Vector to be multiplied by the scalar
+     *        rhs - The scalar to be multiplied
+     * Post: None
+     * Return: The scalar product of lhs and rhs
+     */
     friend const Vector<T> operator* <>(const Vector<T>& lhs, const T& rhs);
+
+    /**
+     * Purpose: operator* - Scalar multiplication on a Vector
+     * Pre: Template type T must have operator*= (T) defined
+     * Param: rhs - The Vector to be multiplied by the scalar
+     *        lhs - The scalar to be multiplied
+     * Post: None
+     * Return: The scalar product of lhs and rhs
+     */
     friend const Vector<T> operator* <> (const T& lhs, const Vector<T>& rhs);
+
+    /**
+     * Purpose: operator== - Vector-Vector equality operator
+     * Pre: Template type T must have operator!= (T) defined
+     * Param: lhs - One of the Vectors to be compared
+     *        rhs - The other Vector to be compared
+     * Post: None
+     * Return: True if the Vectors are equal, false otherwise
+     */
     friend bool operator== <>(const Vector<T>& lhs, const Vector<T>& rhs);
+
+    /**
+     * Purpose: operator!= - Vector-Vector inequality operator
+     * Pre: Template type T must have operator!= (T) defined
+     * Param: lhs - One of the Vectors to be compared
+     *        rhs - The other Vector to be compared
+     * Post: None
+     * Return: True if the Vectors are not equal, false otherwise
+     */
     friend bool operator!= <>(const Vector<T>& lhs, const Vector<T>& rhs);
+
+    /**
+     * Purpose: Swap function - To swap values of two Vector types
+     * Pre: None
+     * Param: x - One of the Vectors to be swapped
+     *        y - The other Vector to be swapped
+     * Post: The member variables of x have been swapped with those of y
+     * Return: None
+     */
     friend void swap <>(Vector<T>& x, Vector<T>& y);
 
 };
