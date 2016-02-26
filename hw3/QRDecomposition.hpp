@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 #include "TwoNorm.h"
 #include "Vector.h"
@@ -42,6 +43,10 @@ std::vector<std::vector<Vector<T>>> QRDecomposition<T>::operator()(const std::ve
 
       r[i][i] = norm(temp);
 
+      if(r[i][i] == 0)
+      {
+        throw std::domain_error("Division by zero during QR Decomposition!");
+      }
       q[i] = (1 / r[i][i]) * temp;
     }
 
