@@ -233,3 +233,42 @@ std::istream& operator>> (std::istream& in, Vector<T>& rhs)
 
   return in;
 }
+
+/**
+ * Purpose: operator<< vector<Vector<T>> insertion operator
+ * Pre: Parameter out must be connected to a valid stream
+ * Param: Template type T must have operator<< (T) defined
+ *        out - The ostream to be output to
+ *        matrix - The matrix to be output
+ * Post: Parameter out will have parameter matrix inserted in to it
+ * Return: Parameter out for purposes of chaining << operators
+ */
+template <class T>
+std::ostream& operator<< (std::ostream& out, const std::vector<Vector<T>> matrix)
+{
+  int n = matrix[0].numTerms();
+  for(int i = 0; i < n; i++)
+  {
+    for(int j = 0; j < n; j++)
+    {
+      if(matrix[j][i] == 0)
+      {
+	    out << std::setw(8) << "0" << "\t";
+	  }
+	  else if(matrix[j][i] == 1)
+	  {
+		out << std::setw(8) << "1" << "\t";  
+	  }
+	  else
+	  {
+        out << std::setw(8) << std::fixed << std::setprecision(5) << matrix[j][i] << "\t";
+      }
+    }
+
+    if(i < n - 1)
+    {
+      out << std::endl;
+    }
+  }
+  return out;
+}
