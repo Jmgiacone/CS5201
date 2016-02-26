@@ -18,7 +18,7 @@ const T TwoNorm<T>::operator() (const Vector<T>& src)
   }
   else
   {
-    //throw error
+    throw std::invalid_argument("Vector is of size zero!");
   }
   return std::sqrt(temp);
 }
