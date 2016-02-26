@@ -8,6 +8,7 @@ template<class T>
 std::vector<std::vector<Vector<T>>> QRDecomposition<T>::operator()(const std::vector<Vector<T>>& a)
 {
   int n = a[0].numTerms();
+  T normResult;
   TwoNorm<T> norm;
   std::vector<Vector<T>> r(n), q(n);
 
@@ -25,8 +26,14 @@ std::vector<std::vector<Vector<T>>> QRDecomposition<T>::operator()(const std::ve
   {
     if (i == 0)
     {
+      normResult = norm(a[0]);
+      if(normResult == 0)
+      {
+        throw std::domain_error("Provided vector is a zero vector! Division by zero!");
+      }
+
       //Q1 = A1/twoNorm(A1)
-      q[0] = a[0] * (1 / (norm(a[0])));
+      q[0] = a[0] * (1 / (normResult));
     }
     else
     {
