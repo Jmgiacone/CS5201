@@ -1,6 +1,15 @@
-//
-// Created by Jordan on 2/17/2016.
-//
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 3
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/26/16
+ * Filename: Vector.hpp
+ * Description: Template implementation file for the Vector class
+ */
+
 template <class T>
 Vector<T>::Vector()
 {

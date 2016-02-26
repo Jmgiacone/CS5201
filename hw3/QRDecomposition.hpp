@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 3
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/26/16
+ * Filename: QRDecomposition.hpp
+ * Description: Templated implementation file for QRDecomposition functor
+ */
+
 #include <iostream>
 #include <stdexcept>
 #include <vector>

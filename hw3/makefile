@@ -1,3 +1,13 @@
+# Programmer: Jordan Giacone
+# Class: CS5201 Section A
+# Instructor: Clayton Price
+# Homework 3
+# Student ID: 12400927
+# Login: Jmgv27
+# Date: 2/26/16
+# Filename: makefile
+# Description: A makefile to build homework 3
+
 CXX = /usr/bin/g++
 FLAGS = -std=c++11 -g -w -Wall -pedantic-errors
 

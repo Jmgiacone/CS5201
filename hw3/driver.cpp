@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 3
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/26/16
+ * Filename: driver.cpp
+ * Description: The main driver to calculate QR decomposition
+ */
+
 #include <fstream>
 #include <iomanip>
 #include <vector>

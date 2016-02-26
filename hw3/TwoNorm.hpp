@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 3
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/26/16
+ * Filename: TwoNorm.hpp
+ * Description: Template implementation file for the TwoNorm functor
+ */
+
 #include <iostream>
 #include <cmath>
 #include "Vector.h"

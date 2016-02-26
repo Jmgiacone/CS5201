@@ -1,6 +1,14 @@
-//
-// Created by Jordan on 2/24/2016.
-//
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 3
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 2/26/16
+ * Filename: QRDecomposition.h
+ * Description: The header file for the QR decomposition functor
+ */
 
 #ifndef QRDECOMPOSITION_H
 #define QRDECOMPOSITION_H
