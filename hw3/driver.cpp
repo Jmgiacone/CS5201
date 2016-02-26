@@ -3,7 +3,16 @@
 #include <vector>
 #include "QRDecomposition.h"
 
+/**
+ * Purpose: operator<< vector<Vector<double>> insertion operator
+ * Pre: Parameter out must be connected to a valid stream
+ * Param: out - The ostream to be output to
+ *        matrix - The matrix to be output
+ * Post: Parameter out will have parameter matrix inserted in to it
+ * Return: Parameter out for purposes of chaining << operators
+ */
 std::ostream& operator<< (std::ostream& out, const std::vector<Vector<double>> matrix);
+
 int main(int argc, char* argv[])
 {
   QRDecomposition<double> qrDecomposition;
@@ -56,7 +65,7 @@ int main(int argc, char* argv[])
         {
           std::cerr << e.what() << std::endl;
         }
-        
+
         q = result[0];
         r = result[1];
 
