@@ -15,16 +15,6 @@
 #include <vector>
 #include "QRDecomposition.h"
 
-/**
- * Purpose: operator<< vector<Vector<double>> insertion operator
- * Pre: Parameter out must be connected to a valid stream
- * Param: out - The ostream to be output to
- *        matrix - The matrix to be output
- * Post: Parameter out will have parameter matrix inserted in to it
- * Return: Parameter out for purposes of chaining << operators
- */
-std::ostream& operator<< (std::ostream& out, const std::vector<Vector<double>> matrix);
-
 int main(int argc, char* argv[])
 {
   QRDecomposition<double> qrDecomposition;
@@ -82,10 +72,11 @@ int main(int argc, char* argv[])
         r = result[1];
 
         //Set specific formatting
-        std::cout.setf(std::ios::fixed);
-        std::cout.setf(std::ios::showpos);
-        std::cout.setf(std::ios::showpoint);
-        std::cout.precision(5);
+        //std::cout.setf(std::ios::fixed);
+        //std::cout.setf(std::ios::showpos);
+        //std::cout.setf(std::ios::showpoint);
+        //std::cout.setf(std::ios::left);
+        //std::cout.precision(5);
 
         std::cout << q << std::endl;
         std::cout << "=== Q ===" << std::endl;
@@ -94,9 +85,9 @@ int main(int argc, char* argv[])
         std::cout << "=== R ===" << std::endl;
 
         //Undo specific formatting
-        std::cout.unsetf(std::ios::fixed);
-        std::cout.unsetf(std::ios::showpos);
-        std::cout.unsetf(std::ios::showpoint);
+        //std::cout.unsetf(std::ios::fixed);
+        //std::cout.unsetf(std::ios::showpos);
+        //std::cout.unsetf(std::ios::showpoint);
 
         //Output Q1 * Q1
         for(int i = 0; i < q.size(); i++)
@@ -123,22 +114,4 @@ int main(int argc, char* argv[])
                          "Please provide exactly one argument, the filename" << std::endl;
     exit(-1);
   }
-}
-
-std::ostream& operator<< (std::ostream& out, const std::vector<Vector<double>> matrix)
-{
-  int n = matrix[0].numTerms();
-  for(int i = 0; i < n; i++)
-  {
-    for(int j = 0; j < n; j++)
-    {
-      out << matrix[j][i] << " ";
-    }
-
-    if(i < n - 1)
-    {
-      out << std::endl;
-    }
-  }
-  return out;
 }
