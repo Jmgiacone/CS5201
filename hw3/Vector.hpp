@@ -148,14 +148,14 @@ const T operator* (const Vector<T>& lhs, const Vector<T>& rhs)
 template <class T>
 const Vector<T> operator* (const Vector<T>& lhs, const T& rhs)
 {
-  Vector<T> dotProduct(lhs);
+  Vector<T> scalarProduct(lhs);
 
   for(int i = 0; i < lhs.terms; i++)
   {
-    dotProduct.data[i] *= rhs;
+    scalarProduct.data[i] *= rhs;
   }
 
-  return dotProduct;
+  return scalarProduct;
 }
 
 template <class T>
