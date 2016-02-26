@@ -9,7 +9,7 @@ template <class T>
 class QRDecomposition
 {
   public:
-    std::vector<std::vector<Vector<T>>>& operator() (const std::vector<Vector<T>>& a);
+    std::vector<std::vector<Vector<T>>> operator() (const std::vector<Vector<T>>& a);
 };
 
 #include "QRDecomposition.hpp"
