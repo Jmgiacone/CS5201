@@ -164,7 +164,8 @@ class Vector
 
     /**
      * Purpose: Stream insertion operator - To facilitate output of Vector class to streams
-     * Pre: out be connected to a valid stream
+     * Pre: Parameter out be connected to a valid stream
+     *      Template type T must have operator<< (ostream, T) defined
      * Param: out - The stream to be output to
      *        rhs - The Vector object to be output
      * Post: The Vector object is output to the stream out
@@ -174,7 +175,8 @@ class Vector
 
     /**
      * Purpose: Stream extraction operator - To facilitate extracting data from a stream and storing it in a Vector
-     * Pre: in be connected to a valid stream
+     * Pre: Parameter in be connected to a valid stream
+     *      Template type T must have operator>> (istream, T) defined
      * Param: in - The stream to be extracted from
      *        rhs - The Vector be extracted in to
      * Post: The Vector object is extracted into by the stream in
