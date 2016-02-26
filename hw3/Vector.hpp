@@ -110,6 +110,7 @@ T& Vector<T>::operator[] (const int x)
   if(x < 0 || x >= terms)
   {
     //Throw error
+    throw("Operator[] error");
   }
   return data[x];
 }
@@ -117,7 +118,12 @@ T& Vector<T>::operator[] (const int x)
 template <class T>
 const T& Vector<T>::operator[] (const int x) const
 {
-  return (*this)[x];
+  if(x < 0 || x >= terms)
+  {
+    //Throw error
+    throw("Operator[] error");
+  }
+  return data[x];
 }
 
 template <class T>
@@ -129,11 +135,15 @@ const T operator* (const Vector<T>& lhs, const Vector<T>& rhs)
   }
 
   T temp;
-  for(int i = 0; i < rhs.terms; i++)
-  {
-    temp += lhs.data[i] * rhs.data[i];
-  }
 
+  if(rhs.terms != 0)
+  {
+    temp = lhs.data[0] * rhs.data[0];
+    for (int i = 1; i < rhs.terms; i++)
+    {
+      temp += lhs.data[i] * rhs.data[i];
+    }
+  }
   return temp;
 }
 
