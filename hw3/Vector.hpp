@@ -13,7 +13,7 @@ Vector<T>::Vector(int t)
 {
   if(t < 1)
   {
-    //Error
+    throw std::invalid_argument("Zero or negative argument provided to constructor!");
   }
   terms = t;
   data = new T[terms];
@@ -62,7 +62,7 @@ const Vector<T> operator+ (const Vector<T>& lhs, const Vector<T>& rhs)
 {
   if(lhs.terms != rhs.terms)
   {
-    //Throw error
+    throw std::length_error("Left-hand side and right-hand side are of differing length!");
   }
 
   Vector<T> sum(lhs.terms);
@@ -109,8 +109,7 @@ T& Vector<T>::operator[] (const int x)
 {
   if(x < 0 || x >= terms)
   {
-    //Throw error
-    throw("Operator[] error");
+    throw std::out_of_range("Illegal range provided to Vector[]!");
   }
   return data[x];
 }
@@ -120,8 +119,7 @@ const T& Vector<T>::operator[] (const int x) const
 {
   if(x < 0 || x >= terms)
   {
-    //Throw error
-    throw("Operator[] error");
+    throw std::out_of_range("Illegal range provided to Vector[]!");
   }
   return data[x];
 }
@@ -131,7 +129,7 @@ const T operator* (const Vector<T>& lhs, const Vector<T>& rhs)
 {
   if(rhs.terms != lhs.terms)
   {
-    //Throw Error
+    throw std::length_error("Left-hand side and right-hand side are of differing length!");
   }
 
   T temp;
