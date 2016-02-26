@@ -4,7 +4,7 @@
 #include "Vector.h"
 
 template<class T>
-std::vector<std::vector<Vector<T>>>& QRDecomposition<T>::operator()(const std::vector<Vector<T>>& a)
+std::vector<std::vector<Vector<T>>> QRDecomposition<T>::operator()(const std::vector<Vector<T>>& a)
 {
   int n = a[0].numTerms();
   TwoNorm<T> norm;
@@ -15,27 +15,21 @@ std::vector<std::vector<Vector<T>>>& QRDecomposition<T>::operator()(const std::v
   {
     Vector<T> temp(n);
 
-    q.push_back(temp);
-    r.push_back(temp);
+    q[i] = temp;
+    r[i] = temp;
   }
 
   //r[i][j] -> jth element of the ith vector
-
-  //Q1 = A1/||A1||2
-  q[0] = a[0] * (1 / (norm(a[0])));
-
   for(int i = 0; i < n; i++)
   {
-    //Generate r[i][0] for i < n (first element of every vector)
-    for (int j = i; j < n; j++)
+    if (i == 0)
     {
-      //r[i][j] = (a[j], q[i]) <- Dot product
-      r[i][j] = a[j] * q[i];
+      //Q1 = A1/twoNorm(A1)
+      q[0] = a[0] * (1 / (norm(a[0])));
     }
-
-    //Generate r[i][i]
-    if (i != 0)
+    else
     {
+      //Generate r[i][i]
       Vector<T> temp(n);
 
       temp = r[i][0] * q[0];
@@ -46,12 +40,25 @@ std::vector<std::vector<Vector<T>>>& QRDecomposition<T>::operator()(const std::v
 
       temp = a[i] - temp;
 
-      r[i][i] = (norm(temp));
+      r[i][i] = norm(temp);
 
-      q[i] = (1 / r[i][i]) * (temp);
+      q[i] = (1 / r[i][i]) * temp;
+    }
+
+    //Generate r[j][i]
+    for (int j = 0; j < n; j++)
+    {
+      if(j < i)
+      {
+        r[j][i] = 0;
+      }
+      else
+      {
+        //r[j][i] = (a[j], q[i]) <- Dot product
+        r[j][i] = a[j] * q[i];
+      }
     }
   }
-
   std::vector<std::vector<Vector<T>>> qr;
   qr.push_back(q);
   qr.push_back(r);
