@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
         std::cout << "=== v1 + v2 ===" << std::endl;
         std::cout << a[0] - a[1] << std::endl;
         std::cout << "=== v1 - v2 ===" << std::endl;
-        std::cout << a[0] * a[2] << std::endl;
+        std::cout << a[0] * a[1] << std::endl;
         std::cout << "=== v1 * v2 ===" << std::endl;
         std::cout << a[0] << std::endl;
         std::cout << "=== Output stream for v1 ===" << std::endl;
@@ -71,23 +71,11 @@ int main(int argc, char* argv[])
         q = result[0];
         r = result[1];
 
-        //Set specific formatting
-        //std::cout.setf(std::ios::fixed);
-        //std::cout.setf(std::ios::showpos);
-        //std::cout.setf(std::ios::showpoint);
-        //std::cout.setf(std::ios::left);
-        //std::cout.precision(5);
-
         std::cout << q << std::endl;
         std::cout << "=== Q ===" << std::endl;
 
         std::cout << r << std::endl;
         std::cout << "=== R ===" << std::endl;
-
-        //Undo specific formatting
-        //std::cout.unsetf(std::ios::fixed);
-        //std::cout.unsetf(std::ios::showpos);
-        //std::cout.unsetf(std::ios::showpoint);
 
         //Output Q1 * Q1
         for(int i = 0; i < q.size(); i++)
