@@ -118,7 +118,7 @@ class Vector
      * Post: None
      * Return: The number of terms in the Vector
      */
-    const int numTerms() const {return terms;};
+    int numTerms() const;
 
     /**
      * Purpose: Assignment Operator - To assign the calling object to the state of the right-hand-side object

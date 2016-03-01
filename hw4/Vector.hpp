@@ -134,6 +134,11 @@ const T& Vector<T>::operator[] (const int x) const
 }
 
 template <class T>
+int Vector<T>::numTerms() const
+{
+  return terms;
+}
+template <class T>
 const T operator* (const Vector<T>& lhs, const Vector<T>& rhs)
 {
   if(rhs.terms != lhs.terms)
