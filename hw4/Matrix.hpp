@@ -312,3 +312,11 @@ bool operator!= (const Matrix<T>& lhs, const Matrix<T>& rhs)
 {
   return !(lhs == rhs);
 }
+
+template <class T>
+void swap(Matrix<T>& x, Matrix<T>& y)
+{
+  std::swap(x.rows, y.rows);
+  std::swap(x.columns, y.columns);
+  std::swap(x.data, y.data);
+}
