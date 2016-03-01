@@ -198,7 +198,7 @@ Matrix<T> operator- (const Matrix<T>& rhs)
 
   for(int i = 0; i < rhs.rows; i++)
   {
-    data[i] = -rhs[i];
+    rhs.data[i] = -rhs[i];
   }
 
   return temp;
@@ -220,4 +220,68 @@ Matrix<T> operator- (const Matrix<T>& lhs, const Matrix<T>& rhs)
   }
 
   return temp;
+}
+
+template <class T>
+Matrix<T> operator* (const Matrix<T>& lhs, const Matrix<T>& rhs)
+{
+  if(lhs.columns != rhs.rows)
+  {
+    throw std::length_error("Middle dimensions do not match!");
+  }
+
+  Matrix<T> temp(lhs.rows, rhs.columns);
+
+  for(int i = 0; i < temp.rows; i++)
+  {
+    for(int j = 0; j < temp.columns; j++)
+    {
+      temp[i][j] = lhs[i] * rhs[j];
+    }
+  }
+
+  return temp;
+}
+
+template <class T>
+Vector<T> operator* (const Matrix<T>& lhs, const Vector<T>& rhs)
+{
+  if(lhs.columns != rhs.numTerms())
+  {
+    throw std::length_error("Matrix and Vector have differing dimensions!");
+  }
+
+  Vector<T> temp(lhs.rows);
+  for(int i = 0; i < lhs.rows; i++)
+  {
+    temp[i] = lhs[i] * rhs;
+  }
+
+  return temp;
+}
+
+template <class T>
+Vector<T> operator* (const Vector<T>& lhs, const Matrix<T>& rhs)
+{
+  return (rhs * lhs);
+}
+
+template <class T>
+T operator* (const T& lhs, const Matrix<T>& rhs)
+{
+  Matrix<T> temp(rhs.rows, rhs.columns);
+
+  for(int i = 0; i < rhs.rows; i++)
+  {
+    for(int j = 0; j < rhs.columns; j++)
+    {
+      temp[i][j] = lhs * rhs[i][j];
+    }
+  }
+}
+
+template <class T>
+T operator* (const Matrix<T>& lhs, const T& rhs)
+{
+  return (rhs * lhs);
 }
