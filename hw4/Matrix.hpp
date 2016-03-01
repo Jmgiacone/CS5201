@@ -285,3 +285,30 @@ T operator* (const Matrix<T>& lhs, const T& rhs)
 {
   return (rhs * lhs);
 }
+
+template <class T>
+bool operator== (const Matrix<T>& lhs, const Matrix<T>& rhs)
+{
+  if(lhs.rows == rhs.columns && lhs.columns == rhs.rows)
+  {
+    for(int i = 0; i < rhs.rows; i++)
+    {
+      for(int j = 0; j < rhs.columns; j++)
+      {
+        if(lhs.data[i][j] != rhs[i][j])
+        {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  return false;
+}
+
+template <class T>
+bool operator!= (const Matrix<T>& lhs, const Matrix<T>& rhs)
+{
+  return !(lhs == rhs);
+}
