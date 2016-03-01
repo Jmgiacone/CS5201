@@ -62,8 +62,8 @@ class Matrix
     Matrix (const Matrix<T>& src);
     Matrix (Matrix<T>&& src);
     ~Matrix ();
-    const T& operator[] (int x) const;
-    T& operator[] (int x);
+    const Vector<T>& operator[] (int x) const;
+    Vector<T>& operator[] (int x);
     Matrix<T>& operator= (Matrix<T> rhs);
     Matrix<T>& operator= (Matrix<T>&& rhs);
     Matrix<T>& operator+= (const Matrix<T>& rhs);

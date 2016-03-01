@@ -71,7 +71,7 @@ Matrix<T>::~Matrix()
 }
 
 template <class T>
-const T& Matrix<T>::operator[] (int x) const
+const Vector<T>& Matrix<T>::operator[] (int x) const
 {
   if(x < 0 || x >= rows)
   {
@@ -82,7 +82,7 @@ const T& Matrix<T>::operator[] (int x) const
 }
 
 template <class T>
-T& Matrix<T>::operator[](int x)
+Vector<T>& Matrix<T>::operator[](int x)
 {
   if(x < 0 || x >= rows)
   {
