@@ -35,6 +35,7 @@ driver
 hw1/.idea/*
 hw2/.idea/*
 hw3/.idea/*
+hw4/.idea/*
 *.dia
 *.dia~
 *.pdf
