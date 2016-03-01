@@ -1,5 +1,5 @@
+#include <iomanip>
 #include <stdexcept>
-
 template <class T>
 Matrix<T>::Matrix()
 {
@@ -142,4 +142,30 @@ template <class T>
 int Matrix<T>::getColumns() const
 {
   return columns;
+}
+
+template <class T>
+ostream& operator<< (ostream& out, const Matrix<T>& rhs)
+{
+  for(int i = 0; i < rhs.rows; i++)
+  {
+    for(int j = 0; j < rhs.columns; j++)
+    {
+      out << std::setw(8) << std::fixed << std::setprecision(5) << rhs[i][j] << "\t";
+    }
+    out << std::endl;
+  }
+
+  return out;
+}
+
+template <class T>
+istream& operator>> (istream&in, Matrix<T>& rhs)
+{
+  for(int i = 0; i < rhs.rows; i++)
+  {
+    in >> rhs.data[i];
+  }
+
+  return in;
 }
