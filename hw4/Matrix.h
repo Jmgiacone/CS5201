@@ -3,8 +3,8 @@
 #include <iostream>
 #include "Vector.h"
 
-using std::ostream
-using std::istream
+using std::ostream;
+using std::istream;
 template<class T>
 class Matrix;
 
@@ -47,6 +47,7 @@ bool operator!= (const Matrix<T>& lhs, const Matrix<T>& rhs);
 template <class T>
 void swap (Matrix<T>& x, Matrix<T>& y);
 
+const int DEFAULT_ROWS = 5, DEFAULT_COLUMNS = 5;
 template <class T>
 class Matrix
 {
