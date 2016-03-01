@@ -190,3 +190,34 @@ Matrix<T> operator+ (const Matrix<T>& lhs, const Matrix<T>& rhs)
 
   return tmp;
 }
+
+template <class T>
+Matrix<T> operator- (const Matrix<T>& rhs)
+{
+  Matrix<T> temp(rhs.rows, rhs.columns);
+
+  for(int i = 0; i < rhs.rows; i++)
+  {
+    data[i] = -rhs[i];
+  }
+
+  return temp;
+}
+
+template <class T>
+Matrix<T> operator- (const Matrix<T>& lhs, const Matrix<T>& rhs)
+{
+  if(!(lhs.rows == rhs.rows && lhs.columns == rhs.columns))
+  {
+    throw std::length_error("lhs and rhs are of differing dimensions");
+  }
+
+  Matrix<T> temp(lhs.rows, lhs.columns);
+
+  for(int i = 0; i < temp.rows; i++)
+  {
+    temp.data[i] = lhs.data[i] - rhs.data[i];
+  }
+
+  return temp;
+}
