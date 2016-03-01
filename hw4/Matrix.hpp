@@ -169,3 +169,24 @@ istream& operator>> (istream&in, Matrix<T>& rhs)
 
   return in;
 }
+
+template <class T>
+Matrix<T> operator+ (const Matrix<T>& lhs, const Matrix<T>& rhs)
+{
+  if(!(lhs.rows == rhs.rows && lhs.columns == rhs.columns))
+  {
+    throw std::length_error("Operator+ - lhs and rhs have differing dimensions");
+  }
+
+  Matrix<T> tmp(lhs);
+
+  for(int i = 0; i < rhs.rows; i++)
+  {
+    for(int j = 0; j < rhs.columns; j++)
+    {
+      tmp.data[i][j] += rhs.data[i][j];
+    }
+  }
+
+  return tmp;
+}
