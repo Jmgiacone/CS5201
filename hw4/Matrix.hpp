@@ -151,7 +151,7 @@ ostream& operator<< (ostream& out, const Matrix<T>& rhs)
   {
     for(int j = 0; j < rhs.columns; j++)
     {
-      out << std::setw(8) << std::fixed << std::setprecision(5) << rhs[i][j] << "\t";
+      out << std::setw(8) << std::fixed << std::setprecision(5) << rhs[j][i] << "\t";
     }
     out << std::endl;
   }
