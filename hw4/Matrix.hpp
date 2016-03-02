@@ -41,6 +41,7 @@ Matrix<T>::Matrix(const Matrix<T>& src)
 {
   rows = src.rows;
   columns = src.columns;
+  data = new Vector<T>[rows];
 
   for(int i = 0; i < rows; i++)
   {
