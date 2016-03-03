@@ -152,7 +152,7 @@ ostream& operator<< (ostream& out, const Matrix<T>& rhs)
   {
     for(int j = 0; j < rhs.columns; j++)
     {
-      out << std::setw(8) << std::fixed << std::setprecision(5) << rhs[j][i] << "\t";
+      out << std::setw(8) << std::fixed << std::setprecision(5) << rhs[i][j] << "\t";
     }
     out << std::endl;
   }
@@ -290,7 +290,7 @@ T operator* (const Matrix<T>& lhs, const T& rhs)
 template <class T>
 bool operator== (const Matrix<T>& lhs, const Matrix<T>& rhs)
 {
-  if(lhs.rows == rhs.columns && lhs.columns == rhs.rows)
+  if(lhs.rows == rhs.rows && lhs.columns == rhs.columns)
   {
     for(int i = 0; i < rhs.rows; i++)
     {
