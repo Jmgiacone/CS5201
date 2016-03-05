@@ -65,11 +65,8 @@ class Matrix
     const Vector<T>& operator[] (int x) const;
     Vector<T>& operator[] (int x);
     Matrix<T>& operator= (Matrix<T> rhs);
-    Matrix<T>& operator= (Matrix<T>&& rhs);
     Matrix<T>& operator+= (const Matrix<T>& rhs);
-    Matrix<T>& operator+= (Matrix<T>&& rhs);
     Matrix<T>& operator-= (const Matrix<T>& rhs);
-    Matrix<T>& operator-= (Matrix<T>&& rhs);
     int getRows () const;
     int getColumns () const;
     

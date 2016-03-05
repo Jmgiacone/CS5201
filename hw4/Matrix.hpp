@@ -102,33 +102,13 @@ Matrix<T>& Matrix<T>::operator= (Matrix<T> rhs)
 }
 
 template <class T>
-Matrix<T>& Matrix<T>::operator= (Matrix<T>&& rhs)
-{
-  swap(*this, rhs);
-
-  return *this;
-}
-
-template <class T>
 Matrix<T>& Matrix<T>::operator+= (const Matrix<T>& rhs)
 {
   return (*this = (*this + rhs));
 }
 
 template <class T>
-Matrix<T>& Matrix<T>::operator+= (Matrix<T>&& rhs)
-{
-  return (*this = (*this + rhs));
-}
-
-template <class T>
 Matrix<T>& Matrix<T>::operator-= (const Matrix<T>& rhs)
-{
-  return (*this = (*this - rhs));
-}
-
-template <class T>
-Matrix<T>& Matrix<T>::operator-= (Matrix<T>&& rhs)
 {
   return (*this = (*this - rhs));
 }
