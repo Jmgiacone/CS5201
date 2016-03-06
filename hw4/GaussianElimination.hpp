@@ -20,73 +20,53 @@ Vector<T> GaussianElimination<T>::operator() (Matrix<T> a, Vector<T> b, bool piv
     float* multipliers = new float[numMultipliers];
 
     //Pivoting: At each step, find the largest element in the x position and swap that row to the y position
-    if(pivoting)
+
+    for(int i = 0; i < a.getRows(); i++)
     {
-      for(int i = 0; i < a.getRows(); i++)
+      for(int j = i + 1; j < a.getColumns(); j++)
       {
-        //Search for largest magnitude
-        T largestMagnitude = std::abs(a[i][i]), tmp;
-        int largestMagnitudeIndex = i;
-
-        for(int l = i+1; l < a.getRows(); l++)
+        if(pivoting)
         {
-          tmp = std::abs(a[l][i]);
+          //Search for largest magnitude
+          T largestMagnitude = std::abs(a[i][i]), tmp;
+          int largestMagnitudeIndex = i;
 
-          if(tmp > largestMagnitude)
+          for(int l = i+1; l < a.getRows(); l++)
           {
-            largestMagnitude = tmp;
-            largestMagnitudeIndex = l;
+            tmp = std::abs(a[l][i]);
+
+            if(tmp > largestMagnitude)
+            {
+              largestMagnitude = tmp;
+              largestMagnitudeIndex = l;
+            }
+          }
+          if(largestMagnitudeIndex != i)
+          {
+            //std::cout << "Largest magnitude is " << a[largestMagnitudeIndex][i] << " at position "
+            //<< largestMagnitudeIndex << std::endl;
+
+            //std::cout << "Swapping rows " << i + 1 << " and " << largestMagnitudeIndex + 1 << std::endl;
+            swap(a[i], a[largestMagnitudeIndex]);
+            std::swap(b[i], b[largestMagnitudeIndex]);
+
+            //std::cout << a << std::endl;
+            //std::cout << b << std::endl;
           }
         }
-        if(largestMagnitudeIndex != i)
+        
+        multipliers[j - i - 1] = a[j][i] / a[i][i];
+        //std::cout << "Multiplying Row " << i << " by " << multipliers[j - i - 1] <<
+        //             " and subtracting it from row " << j << std::endl;
+
+        for(int k = i; k < a.getColumns(); k++)
         {
-          //std::cout << "Largest magnitude is " << a[largestMagnitudeIndex][i] << " at position "
-          //<< largestMagnitudeIndex << std::endl;
-
-          //std::cout << "Swapping rows " << i + 1 << " and " << largestMagnitudeIndex + 1 << std::endl;
-          swap(a[i], a[largestMagnitudeIndex]);
-          std::swap(b[i], b[largestMagnitudeIndex]);
-
-          //std::cout << a << std::endl;
-          //std::cout << b << std::endl;
+          a[j][k] = a[j][k] - multipliers[j - i - 1] * a[i][k];
         }
 
-        for(int j = i + 1; j < a.getColumns(); j++)
-        {
-          multipliers[j - i - 1] = a[j][i] / a[i][i];
-          //std::cout << "Multiplying Row " << i << " by " << multipliers[j - i - 1] <<
-          //             " and subtracting it from row " << j << std::endl;
-
-          for(int k = i; k < a.getColumns(); k++)
-          {
-            a[j][k] = a[j][k] - multipliers[j - i - 1] * a[i][k];
-          }
-
-          b[j] = b[j] - multipliers[j - i - 1] * b[i];
-          //std::cout << a << std::endl;
-          //std::cout << b << std::endl;
-        }
-      }
-    }
-    else
-    {
-      //Forward elimination
-      for(int i = 0; i < a.getRows(); i++)
-      {
-        //Get all the multipliers in one go
-        for(int j = i + 1; j < a.getColumns(); j++)
-        {
-          multipliers[j - i - 1] = a[j][i] / a[i][i];
-          //std::cout << "Multiplying Row " << i << " by " << multipliers[j - i - 1] <<
-          //             " and subtracting it from row " << j << std::endl;
-          for(int k = i; k < a.getRows(); k++)
-          {
-            a[j][k] = a[j][k] - multipliers[j - i - 1] * a[i][k];
-          }
-          b[j] = b[j] - multipliers[j - i - 1] * b[i];
-          //std::cout << a << std::endl;
-          //std::cout << b << std::endl;
-        }
+        b[j] = b[j] - multipliers[j - i - 1] * b[i];
+        //std::cout << a << std::endl;
+        //std::cout << b << std::endl;
       }
     }
 
