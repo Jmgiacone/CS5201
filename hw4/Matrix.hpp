@@ -132,7 +132,22 @@ ostream& operator<< (ostream& out, const Matrix<T>& rhs)
   {
     for(int j = 0; j < rhs.columns; j++)
     {
-      out << std::setw(8) << std::fixed << std::setprecision(5) << rhs[i][j] << "\t";
+      T tmp = rhs[i][j];
+
+      out << std::setw(8);
+      if(tmp == 0)
+      {
+        out << "0";
+      }
+      else if(tmp == 1)
+      {
+        out << "1";
+      }
+      else
+      {
+        out << std::fixed << std::setprecision(5) << tmp;
+      }
+      out << "\t";
     }
     out << std::endl;
   }
