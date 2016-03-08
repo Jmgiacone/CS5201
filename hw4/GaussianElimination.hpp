@@ -3,27 +3,62 @@
 template <class T>
 Vector<T> GaussianElimination<T>::operator() (Matrix<T> a, Vector<T> b, bool pivoting)
 {
-  //Check to make sure b Vector has same number of rows as A matrix has rows
   if(a.getRows() != b.numTerms())
   {
-    throw std::invalid_argument("Error: Matrix rows and Vector rows do not match");
+    //B vector isn't same size as input matrix
+    throw std::invalid_argument("Dimension mismatch! input matrix and answer vector are of differening dimensions");
   }
-  else if(a.getRows() == 0 || a.getColumns() == 0 || b.numTerms() == 0)
+  else if(a.getRows() != a.getColumns())
   {
-    throw std::invalid_argument("Matrix or Vector dimensions are zero!");
+    //Non-square Matrix
+    throw std::invalid_argument("Input Matrix is not square! Please only use Gaussian Elimination on a square or Augmented Matrix");
+  }
+  Matrix<T> augmented(a.getRows(), a.getColumns()+1);
+  Vector<T> result(a.getRows());
+
+  //Create an augmented matrix from A and B
+  for(int i = 0; i < augmented.getRows(); i++)
+  {
+    for(int j = 0; j < augmented.getColumns()-1; j++)
+    {
+      augmented[i][j] = a[i][j];
+    }
+    augmented[i][augmented.getColumns()-1] = b[i];
   }
 
-  Vector<T> result(a.getColumns());
+  augmented = (*this)(augmented, pivoting);
+
+  for(int i = 0; i < result.numTerms(); i++)
+  {
+    result[i] = augmented[i][augmented.getColumns()-1];
+  }
+
+  return result;
+}
+
+template <class T>
+Matrix<T> GaussianElimination<T>::operator()(Matrix <T> a, bool pivoting)
+{
+  if(a.getRows() != a.getColumns() - 1)
+  {
+    //Matrix is not augmented
+    throw std::invalid_argument("Input Matrix is not augmented (Rows != Columns - 1)");
+  }
+  else if(a.getRows() == 0 || a.getColumns() == 0)
+  {
+    //Zero Dimensions
+    throw std::invalid_argument("Matrix dimensions are zero!");
+  }
+
   int numMultipliers = a.getRows() - 1;
   if(numMultipliers > 0)
   {
     float* multipliers = new float[numMultipliers];
 
-    //Pivoting: At each step, find the largest element in the x position and swap that row to the y position
-
+    //Forward Elimination
     for(int i = 0; i < a.getRows(); i++)
     {
-      for(int j = i + 1; j < a.getColumns(); j++)
+      for(int j = i + 1; j < a.getColumns() - 1; j++)
       {
         if(pivoting)
         {
@@ -43,55 +78,42 @@ Vector<T> GaussianElimination<T>::operator() (Matrix<T> a, Vector<T> b, bool piv
           }
           if(largestMagnitudeIndex != i)
           {
-            //std::cout << "Largest magnitude is " << a[largestMagnitudeIndex][i] << " at position "
-            //<< largestMagnitudeIndex << std::endl;
-
-            //std::cout << "Swapping rows " << i + 1 << " and " << largestMagnitudeIndex + 1 << std::endl;
-            swap(a[i], a[largestMagnitudeIndex]);
-            std::swap(b[i], b[largestMagnitudeIndex]);
-
-            //std::cout << a << std::endl;
-            //std::cout << b << std::endl;
+             swap(a[i], a[largestMagnitudeIndex]);
           }
         }
-        
-        multipliers[j - i - 1] = a[j][i] / a[i][i];
-        //std::cout << "Multiplying Row " << i << " by " << multipliers[j - i - 1] <<
-        //             " and subtracting it from row " << j << std::endl;
 
-        for(int k = i; k < a.getColumns(); k++)
+        if(a[i][i] == 0)
+        {
+          throw std::domain_error("Attempted Division by zero in forward elimination");
+        }
+
+        multipliers[j - i - 1] = a[j][i] / a[i][i];
+        a[j][i] = 0;
+        for(int k = i+1; k < a.getColumns(); k++)
         {
           a[j][k] = a[j][k] - multipliers[j - i - 1] * a[i][k];
         }
-
-        b[j] = b[j] - multipliers[j - i - 1] * b[i];
-        //std::cout << a << std::endl;
-        //std::cout << b << std::endl;
       }
     }
-
-    //std::cout << "Forward Elim complete" << std::endl;
-    //std::cout << a << std::endl;
-    //std::cout << b << std::endl;
-
-    //std::cout << "Begin back sub" << std::endl;
 
     //Back substitution
     for(int i = a.getRows() - 1; i >= 0; i--)
     {
-      for(int j = a.getColumns() - 1; j > i; j--)
+      for(int j = a.getColumns() - 2; j > i; j--)
       {
-        //std::cout << "b" << i+1 << " = " << b[i] << " - " << result[j] << " * " << a[j][i] << " = ";
-        b[i] = b[i] - result[j] * a[i][j];
-        //std::cout << b[i] << std::endl;
+        a[i][a.getColumns()-1] = a[i][a.getColumns()-1] - a[j][a.getColumns()-1] * a[i][j];
+        a[i][j] = 0;
       }
 
-      //std::cout << "x" << i+1 << " = " << b[i] << " / " << a[i][i] << " = ";
-      result[i] = b[i] / a[i][i];
-      //std::cout << result[i] << std::endl;
+      if(a[i][i] == 0)
+      {
+        throw std::domain_error("Attempted Division by zero in backward substitution");
+      }
+      a[i][a.getColumns()-1] = a[i][a.getColumns()-1] / a[i][i];
+      a[i][i] = 1;
     }
-    //std::cout << "Back sub complete. Answer = " << result << std::endl;
     delete [] multipliers;
   }
-  return result;
+
+  return a;
 }
