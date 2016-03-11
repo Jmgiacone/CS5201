@@ -136,7 +136,10 @@ ostream& operator<< (ostream& out, const Matrix<T>& rhs)
       {
         out << std::setw(10);
       }
-
+      else if(rhs[i][j] >= 0)
+      {
+        out << " ";
+      }
       out << std::fixed << std::setprecision(5) << rhs[i][j];
     }
     out << std::endl;
