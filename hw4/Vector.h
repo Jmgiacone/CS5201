@@ -130,20 +130,6 @@ class Vector
     const Vector<T>& operator= (Vector<T> rhs);
 
     /**
-     * Purpose: Move Assignment Operator - To assign the calling object to the state of the right-hand-side object
-     * Pre: Template type T must have std::swap(T, T) defined on it
-     * Param: rhs - The object to be copied from
-     * Post: The calling object will be in the same state as parameter rhs
-     *       Parameter rhs will have it's pointer 'stolen'
-     * Return: The calling object for the purpose of chaining = operators
-     */
-    const Vector<T>& operator= (Vector<T>&& rhs)
-    {
-      swap(*this, rhs);
-      return *this;
-    };
-
-    /**
      * Purpose: += Operator - To add the calling object and the parameter rhs together, then set the calling object
      *             equal to the result
      * Pre: The calling object and parameter rhs must have the same number of terms
@@ -155,25 +141,6 @@ class Vector
      * Return: The calling object for the purpose of chaining += operators
      */
     const Vector<T>& operator+= (const Vector<T>& rhs);
-
-    /**
-     * Purpose: Move += Operator - To add the calling object and the parameter rhs together, then set the calling object
-     *             equal to the result
-     * Pre: The calling object and parameter rhs must have the same number of terms
-     *      Template type T must have std::swap(T, T) defined on it
-     *      Template type T must have operator= (T) defined
-     *      Template type T must have operator+ (T, T) defined
-     * Param: rhs - The Vector to be added
-     * Post: If the calling object and rhs have differing numbers of terms, a std::length_error will be thrown
-     *       rhs will have it's data pointer 'stolen'
-     *       The calling object will be the sum of the calling object and the parameter rhs
-     *       
-     * Return: The calling object for the purpose of chaining += operators
-     */
-    const Vector<T>& operator+= (Vector<T>&& rhs)
-    {
-      return *this = (*this + rhs);
-    };
 
     /**
      * Purpose: += Operator - To subtract the parameter rhs from the calling object, then set the calling object
@@ -188,24 +155,6 @@ class Vector
      * Return: The calling object for the purpose of chaining -= operators
      */
     const Vector<T>& operator-= (const Vector<T>& rhs);
-
-    /**
-     * Purpose: += Operator - To subtract the parameter rhs from the calling object, then set the calling object
-     *             equal to the result
-     * Pre: The calling object and parameter rhs must have the same number of terms
-     *      Template type T must have operator= (T) defined
-     *      Template type T must have operator+ (T, T) defined
-     *      Template type T must have operator- (T) defined <--- This is unary - or the negation operator
-     * Param: rhs - The Vector to be subtracted
-     * Post: If the calling object and rhs have differing numbers of terms, a std::length_error will be thrown
-     *       The calling object will be the difference of the calling object and the parameter rhs
-     *       rhs will have it's data pointer 'stolen'
-     * Return: The calling object for the purpose of chaining -= operators
-     */
-    const Vector<T>& operator-= (Vector<T>&& rhs)
-    {
-      return *this = (*this - rhs);
-    };
 
     /**
      * Purpose: [] operator - To be able to peek at and modify elements of the Vector
