@@ -72,6 +72,24 @@ Matrix<T>::~Matrix()
 }
 
 template <class T>
+const Vector<T> Matrix<T>::getColumn(int x) const
+{
+  if(x < 0 || x >= columns)
+  {
+    throw std::out_of_range("Error: getColumn parameter is illegal");
+  }
+
+  Vector<T> tmp(rows);
+
+  for(int i = 0; i < rows; i++)
+  {
+    tmp[i] = (*this)[i][x];
+  }
+
+  return tmp;
+}
+
+template <class T>
 const Vector<T>& Matrix<T>::operator[] (int x) const
 {
   if(x < 0 || x >= rows)
@@ -225,7 +243,7 @@ Matrix<T> operator* (const Matrix<T>& lhs, const Matrix<T>& rhs)
   {
     for(int j = 0; j < temp.columns; j++)
     {
-      temp[i][j] = lhs[i] * rhs[j];
+      temp[i][j] = lhs[i] * rhs.getColumn(j);
     }
   }
 

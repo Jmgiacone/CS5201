@@ -62,6 +62,7 @@ class Matrix
     Matrix (const Matrix<T>& src);
     Matrix (Matrix<T>&& src);
     ~Matrix ();
+    const Vector<T> getColumn(int x) const;
     const Vector<T>& operator[] (int x) const;
     Vector<T>& operator[] (int x);
     Matrix<T>& operator= (Matrix<T> rhs);
