@@ -140,7 +140,7 @@ ostream& operator<< (ostream& out, const Matrix<T>& rhs)
       {
         out << " ";
       }
-      out << std::fixed << std::setprecision(5) << rhs[i][j];
+      out << std::fixed << std::setprecision(5) << rhs[i][j] << "\t";
     }
     out << std::endl;
   }
