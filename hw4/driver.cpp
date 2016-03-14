@@ -47,30 +47,53 @@ int main(int argc, char* argv[])
 
       fileIn.close();
 
-      cout << "Vandermonde Matrix A" << endl;
-      cout << m << endl;
-      cout << "\nResultant Vector b" << endl;
-      cout << v << endl;
-      cout << "\nAugmented Vandermonde Matrix" << endl;
-      cout << augmented << endl;
-      cout << "\nGaussian Elimination without pivoting" << endl;
-      noPivoting = elim(m, v, false);
-      cout << noPivoting << endl;
-      cout << "\nGaussian Elimination with pivoting" << endl;
-      pivoting = elim(m, v, true);
-      cout << pivoting << endl;
-      cout << "\nAugmented Gaussian Elimination without pivoting" << endl;
-      cout << elim(augmented, false) << endl;
-      cout << "\nAugmented Gaussian Elimination with pivoting" << endl;
-      cout << elim(augmented, true) << endl;
-      cout << "\nM" << endl;
-      cout << m << endl;
-      cout << "\nM Transpose" << endl;
-      cout << transpose(m) << endl;
-      cout << "\nM * M Transpose" << endl;
-      cout << "########################################" << endl;
-      cout << m * transpose(m) << endl;
-      cout << "########################################" << endl;
+      try
+      {
+        cout << "Vandermonde Matrix A" << endl;
+        cout << m << endl;
+        cout << "\nResultant Vector b" << endl;
+        cout << v << endl;
+        cout << "\nAugmented Vandermonde Matrix" << endl;
+        cout << augmented << endl;
+        cout << "\nGaussian Elimination without pivoting" << endl;
+        noPivoting = elim(m, v, false);
+        cout << noPivoting << endl;
+        cout << "\nGaussian Elimination with pivoting" << endl;
+        pivoting = elim(m, v, true);
+        cout << pivoting << endl;
+        cout << "\nAugmented Gaussian Elimination without pivoting" << endl;
+        cout << elim(augmented, false) << endl;
+        cout << "\nAugmented Gaussian Elimination with pivoting" << endl;
+        cout << elim(augmented, true) << endl;
+        cout << "\nM" << endl;
+        cout << m << endl;
+        cout << "\nM Transpose" << endl;
+        cout << transpose(m) << endl;
+        cout << "\nM * M Transpose" << endl;
+        cout << "########################################" << endl;
+        cout << m * transpose(m) << endl;
+        cout << "########################################" << endl;
+      }
+      catch(std::domain_error d)
+      {
+        cerr << "Caught domain_error exception. What()->" << d.what() << endl;
+        return 1;
+      }
+      catch(std::invalid_argument i)
+      {
+        cerr << "Caught invalid_argument exception. What()->" << i.what() << endl;
+        return 1;
+      }
+      catch(std::length_error l)
+      {
+        cerr << "Caught length_error exception. What()->" << l.what() << endl;
+        return 1;
+      }
+      catch(std::out_of_range o)
+      {
+        cerr << "Caught out_of_range exception. What()->" << o.what() << endl;
+        return 1;
+      }
 
       cout << "\nFinal Equation:" << endl;
       cout << "f(x) = ";
@@ -110,14 +133,14 @@ int main(int argc, char* argv[])
     }
     else
     {
-      cerr << "Error: File " << fileName << " does not exist.";
-      return 0;
+      cerr << "Error: File " << fileName << " does not exist." << endl;
+      return 1;
     }
   }
   else
   {
     cerr << "Error: Invalid number of parameters provided. Please provide a single parameter" << endl;
-    return 0;
+    return 1;
   }
   return 0;
 }
