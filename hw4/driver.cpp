@@ -10,6 +10,7 @@ int main(int argc, char* argv[])
 {
   std::ifstream fileIn;
   std::string fileName;
+  double answer;
   GaussianElimination<double> elim;
   MatrixTranspose<double> transpose;
 
@@ -46,49 +47,65 @@ int main(int argc, char* argv[])
 
       fileIn.close();
 
-      cout << "A and b" << endl;
+      cout << "Vandermonde Matrix A" << endl;
       cout << m << endl;
+      cout << "\nResultant Vector b" << endl;
       cout << v << endl;
-      
-      cout << "Elim without pivoting" << endl;
+      cout << "\nAugmented Vandermonde Matrix" << endl;
+      cout << augmented << endl;
+      cout << "\nGaussian Elimination without pivoting" << endl;
       noPivoting = elim(m, v, false);
       cout << noPivoting << endl;
-      cout << "Elim with pivoting" << endl;
+      cout << "\nGaussian Elimination with pivoting" << endl;
       pivoting = elim(m, v, true);
       cout << pivoting << endl;
-      cout << "Augmented Elim without pivoting" << endl;
+      cout << "\nAugmented Gaussian Elimination without pivoting" << endl;
       cout << elim(augmented, false) << endl;
-      cout << "Augmented Elim with pivoting" << endl;
-      cout << elim(augmented, true) << endl << endl;
-      cout << "M" << endl;
+      cout << "\nAugmented Gaussian Elimination with pivoting" << endl;
+      cout << elim(augmented, true) << endl;
+      cout << "\nM" << endl;
       cout << m << endl;
-      cout << "M Transpose" << endl;
+      cout << "\nM Transpose" << endl;
       cout << transpose(m) << endl;
-      cout << "M * M Transpose" << endl;
+      cout << "\nM * M Transpose" << endl;
+      cout << "########################################" << endl;
       cout << m * transpose(m) << endl;
-      cout << "M Transpose * M" << endl;
-      cout << transpose(m) * m << endl;
+      cout << "########################################" << endl;
 
-      cout << "Checking our answers" << endl;
+      cout << "\nFinal Equation:" << endl;
+      cout << "f(x) = ";
+      for(int i = 0; i < pivoting.numTerms(); i++)
+      {
+        cout << std::setprecision(5)<< pivoting[i] << "x^" << i;
+
+        if(i < pivoting.numTerms()-1)
+        {
+          cout << " + ";
+        }
+      }
+      cout << endl;
+      cout << "\nChecking our answers" << endl;
 
       for(int i = 0; i < t; i++)
       {
-        double answer = 0;
+        answer = 0;
+        cout << "Equation " << i+1 << endl;
         for(int j = 0; j < t; j++)
         {
           answer += pivoting[j] * pow(m[i][1], j);
-          cout << std::setprecision(3)<< pivoting[j] << "(" << m[i][1] << ")^" << j;
+          cout << std::setprecision(10)<< pivoting[j] << "*(" << m[i][1] << ")^" << j;
           
           if(j < t-1)
           {
-            cout << " + ";
+            cout << " + " << endl;
           } 
           else
           {
-            cout << " = ";
+            cout << endl << " = ";
           }
         }
-        cout << answer << "(" << v[i] << ")" << endl;
+        cout << answer << "(Expected: " << v[i] << ")" << endl;
+        cout << endl;
       }
     }
     else
