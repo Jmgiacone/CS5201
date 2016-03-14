@@ -148,19 +148,27 @@ ostream& operator<< (ostream& out, const Matrix<T>& rhs)
 {
   for(int i = 0; i < rhs.rows; i++)
   {
-    for(int j = 0; j < rhs.columns; j++)
+    for (int j = 0; j < rhs.columns; j++)
     {
-      if(j != 0)
+      if (j != 0)
       {
         out << std::setw(10);
       }
-      else if(rhs[i][j] >= 0)
+      else if (rhs[i][j] >= 0)
       {
         out << " ";
       }
       out << std::fixed << std::setprecision(5) << rhs[i][j] << "\t";
     }
-    out << std::endl;
+
+    if (i == rhs.rows - 1)
+    {
+
+    }
+    else
+    {
+      out << std::endl;
+    }
   }
 
   return out;
