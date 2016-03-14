@@ -210,14 +210,14 @@ std::ostream& operator<< (std::ostream& out, const Vector<T>& rhs)
   {
     if(i == 0)
     {
-      out << "[";
+      out << "<";
     }
 
     out << rhs.data[i];
 
     if(i == rhs.terms - 1)
     {
-      out << "]";
+      out << ">";
     }
     else
     {
