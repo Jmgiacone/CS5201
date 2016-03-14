@@ -19,4 +19,4 @@ clean:
 	-@rm -f driver > /dev/null 2>&1
 	-@rm -f ${OBJECTS} > /dev/null 2>&1
 
-driver.o: driver.cpp Matrix.h Matrix.hpp Vector.h Vector.hpp GaussianElimination.h GaussianElimination.hpp
+driver.o: driver.cpp Matrix.h Matrix.hpp Vector.h Vector.hpp GaussianElimination.h GaussianElimination.hpp MatrixTranspose.h MatrixTranspose.hpp
