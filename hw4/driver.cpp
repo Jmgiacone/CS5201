@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 4
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 3/14/16
+ * Filename: driver.cpp
+ * Description: driver file for homework4
+ */
+
 #include <fstream>
 #include <iostream>
 #include "GaussianElimination.h"

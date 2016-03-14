@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 4
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 3/14/16
+ * Filename: Matrix.hpp
+ * Description: Implementation file for Matrix class
+ */
+
 #include <iomanip>
 #include <stdexcept>
 template <class T>
@@ -222,19 +234,7 @@ Matrix<T> operator- (const Matrix<T>& rhs)
 template <class T>
 Matrix<T> operator- (const Matrix<T>& lhs, const Matrix<T>& rhs)
 {
-  if(!(lhs.rows == rhs.rows && lhs.columns == rhs.columns))
-  {
-    throw std::length_error("lhs and rhs are of differing dimensions");
-  }
-
-  Matrix<T> temp(lhs.rows, lhs.columns);
-
-  for(int i = 0; i < temp.rows; i++)
-  {
-    temp.data[i] = lhs.data[i] - rhs.data[i];
-  }
-
-  return temp;
+  return (lhs + (-rhs));
 }
 
 template <class T>

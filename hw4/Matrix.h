@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 4
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 3/14/16
+ * Filename: Matrix.h
+ * Description: Header Matrix class
+ * */
+
 #ifndef MATRIX_H
 #define MATRIX_H
 #include <iostream>

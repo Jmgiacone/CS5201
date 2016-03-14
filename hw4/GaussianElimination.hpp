@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 4
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 3/14/16
+ * Filename: GaussianElimination.hpp
+ * Description: HImplementation File for Gaussian Elimination functor
+ */
+
 #include <cmath>
 #include <stdexcept>
 template <class T>
@@ -53,7 +65,7 @@ Matrix<T> GaussianElimination<T>::operator()(Matrix <T> a, bool pivoting)
   int numMultipliers = a.getRows() - 1;
   if(numMultipliers > 0)
   {
-    float* multipliers = new float[numMultipliers];
+    T* multipliers = new T[numMultipliers];
 
     //Forward Elimination
     for(int i = 0; i < a.getRows(); i++)
