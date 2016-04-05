@@ -26,7 +26,35 @@ class Matrix;
 template <class T>
 ostream& operator<< (ostream& out, const Matrix<T>& rhs);
 
-//template <class T>
+template <class T>
+Matrix<T> operator+ (const Matrix<T>& lhs, const Matrix<T>& rhs);
+
+template <class T>
+Matrix<T> operator-(const Matrix<T>& lhs, const Matrix<T>& rhs);
+
+template <class T>
+Matrix<T> operator- (const Matrix<T>& rhs);
+
+template <class T>
+Matrix<T> operator* (const T& lhs, const Matrix<T>& rhs);
+
+template <class T>
+Matrix<T> operator* (const Matrix<T>& lhs, const T& rhs);
+
+template <class T>
+Matrix<T> operator* (const Matrix<T>& lhs, const Matrix<T>& rhs);
+
+template <class T>
+Vector<T> operator* (const Matrix<T>& lhs, const Vector<T>& rhs);
+
+template <class T>
+Vector<T> operator* (const Vector<T>& lhs, const Vector<T>& rhs);
+
+template <class T>
+bool operator== (const Matrix<T>& lhs, const Matrix<T>& rhs);
+
+template <class T>
+bool operator!= (const Matrix<T>& lhs, const Matrix<T>& rhs);
 
 template<class T>
 class Matrix
@@ -41,11 +69,25 @@ class Matrix
     Matrix<T>& operator+= (const Matrix<T>& rhs);
     Matrix<T>& operator-= (const Matrix<T>& rhs);
 
+    //Non-virtual friends
+    friend ostream& operator<< <>(ostream& out, const Matrix<T>& rhs);
+    friend Matrix<T> operator+ <>(const Matrix<T>& lhs, const Matrix<T>& rhs);
+    friend Matrix<T> operator- <>(const Matrix<T>& lhs, const Matrix<T>& rhs);
+    friend Matrix<T> operator- <>(const Matrix<T>& rhs);
+    friend Matrix<T> operator* <>(const T& lhs, const Matrix<T>& rhs);
+    friend Matrix<T> operator* <>(const Matrix<T>& lhs, const T& rhs);
+    friend Matrix<T> operator* <>(const Matrix<T>& lhs, const Matrix<T>& rhs);
+    friend Vector<T> operator* <>(const Matrix<T>& lhs, const Vector<T>& rhs);
+    friend Vector<T> operator* <>(const Vector<T>& lhs, const Vector<T>& rhs);
+    friend bool operator== <>(const Matrix<T>& lhs, const Matrix<T>& rhs);
+    friend bool operator!= <>(const Matrix<T>& lhs, const Matrix<T>& rhs);
+  
   protected:
     //Protected pure-virtual member functions to give off the illusion of virtual friends
 
     //operator<<
     virtual ostream& operatorOutput(ostream& out, const Matrix<T>& rhs) const = 0;
+
     //operator+
     virtual Matrix<T> operatorPlus(const Matrix<T>& lhs, const Matrix<T>& rhs) const = 0;
 
