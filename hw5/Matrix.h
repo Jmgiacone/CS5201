@@ -78,7 +78,7 @@ class Matrix
     friend Matrix<T> operator* <>(const Matrix<T>& lhs, const T& rhs);
     friend Matrix<T> operator* <>(const Matrix<T>& lhs, const Matrix<T>& rhs);
     friend Vector<T> operator* <>(const Matrix<T>& lhs, const Vector<T>& rhs);
-    friend Vector<T> operator* <>(const Vector<T>& lhs, const Vector<T>& rhs);
+    friend Vector<T> operator* <>(const Vector<T>& lhs, const Matrix<T>& rhs);
     friend bool operator== <>(const Matrix<T>& lhs, const Matrix<T>& rhs);
     friend bool operator!= <>(const Matrix<T>& lhs, const Matrix<T>& rhs);
   
