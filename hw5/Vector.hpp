@@ -15,6 +15,11 @@ Vector<T>::Vector()
 {
   terms = DEFAULT_TERMS;
   data = new T[terms];
+
+  for(int i = 0; i < terms; i++)
+  {
+    data[i] = 0;
+  }
 }
 
 template <class T>
@@ -26,6 +31,11 @@ Vector<T>::Vector(const int t)
   }
   terms = t;
   data = new T[terms];
+
+  for(int i = 0; i < terms; i++)
+  {
+    data[i] = 0;
+  }
 }
 
 template <class T>
