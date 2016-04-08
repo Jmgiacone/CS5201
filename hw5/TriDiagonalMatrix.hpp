@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 5
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 4/8/16
+ * Filename: TriDiagonalMatrix.hpp
+ * Description: This is the implementation file for the TriDiagonalMatrix
+ */
+
 template <class T>
 TriDiagonalMatrix<T>::TriDiagonalMatrix(int r, int c)
 {
@@ -119,7 +131,7 @@ const SmartVector<T> TriDiagonalMatrix<T>::operator[](int x) const
   return SmartVector<T>(columns, vect);
 }
 
-template <class T>
+/*template <class T>
 const SmartVector<T> TriDiagonalMatrix<T>::operator[] (int x)
 {
   T** vect = new T*[columns];
@@ -161,7 +173,7 @@ const SmartVector<T> TriDiagonalMatrix<T>::operator[] (int x)
   }
 
   return SmartVector<T>(columns, vect);
-}
+}*/
 
 template <class T>
 std::ostream& TriDiagonalMatrix<T>::output(std::ostream& out) const
@@ -191,6 +203,40 @@ std::ostream& TriDiagonalMatrix<T>::output(std::ostream& out) const
     }
   }
   return out;
+}
+
+template <class T>
+Vector<T> TriDiagonalMatrix<T>::gaussElimation(Vector<T> bVector) const
+{
+  Vector<T> xVector(bVector);
+  //TriDiagonalMatrix<T> aMatrix(*this);
+  Vector<T>* diagonals = new Vector<T>[3];
+  diagonals[0] = data[0];
+  diagonals[1] = data[1];
+  diagonals[2] = data[2];
+  //Implement Adam's Algorithm
+
+  //i = 0 -> ci' = ci/bi
+  diagonals[2][0] /= diagonals[1][0];
+
+  //i = 0 -> di' = di/bi
+  bVector[0] /= diagonals[1][0];
+
+  //ci' = ci / (bi - ai * ci-1')
+  //di' = (di - ai * di-1') / (bi - ai * ci-1')
+  for(int i = 1; i < diagonals[2].numTerms(); i++)
+  {
+    diagonals[2][i] /= diagonals[1][i] - diagonals[0][i-1] * diagonals[2][i-1];
+    bVector[i] = (bVector[i] - diagonals[0][i-1] * bVector[i-1]) / (diagonals[1][i] - diagonals[0][i-1] * diagonals[2][i-1]);
+  }
+
+  xVector[xVector.numTerms() - 1] = bVector[xVector.numTerms() - 1];
+  for(int i = xVector.numTerms() - 2; i >= 0; i--)
+  {
+    xVector[i] = bVector[i] - diagonals[2][i] * xVector[i + 1];
+  }
+
+  return xVector;
 }
 
 template <class T>
@@ -289,7 +335,7 @@ const Vector<T> operator* (const TriDiagonalMatrix<T>& lhs, const Vector<T>& rhs
 }
 
 template <class T>
-const bool operator== (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs)
+bool operator== (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs)
 {
   for(int i = 0; i < NUM_DIAGONALS; i++)
   {
@@ -303,7 +349,7 @@ const bool operator== (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<
 }
 
 template <class T>
-const bool operator!= (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs)
+bool operator!= (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs)
 {
   return !(lhs == rhs);
 }

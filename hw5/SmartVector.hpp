@@ -1,3 +1,15 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 5
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 4/8/16
+ * Filename: SmartVector.tpp
+ * Description: This is the implementation file for the Smart Vector
+ */
+
 template <class T>
 SmartVector<T>::SmartVector(int size, T** d)
 {

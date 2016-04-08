@@ -5,7 +5,7 @@
  * Homework 4
  * Student ID: 12400927
  * Login: Jmgv27
- * Date: 2/26/16
+ * Date: 4/8/16
  * Filename: Vector.hpp
  * Description: Template implementation file for the Vector class
  */

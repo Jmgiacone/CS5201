@@ -5,7 +5,7 @@
  * Homework 4
  * Student ID: 12400927
  * Login: Jmgv27
- * Date: 3/14/16
+ * Date: 4/8/16
  * Filename: Matrix.h
  * Description: Header Matrix class
  * */
@@ -64,6 +64,7 @@ class Matrix : public AbstractMatrix<T>
     int rows;
     int columns;
     Vector<T>* data;
+    Matrix<T> elim(Matrix<T> augmented, bool pivoting) const;
 
   public:
     /**
@@ -199,6 +200,7 @@ class Matrix : public AbstractMatrix<T>
      */
     virtual ostream& output(ostream& out) const;
 
+    virtual Vector<T> gaussElimation(Vector<T> bVector) const;
     /**
      * Purpose: Matrix extraction operator
      * Pre: istream in must be connected to a stream
