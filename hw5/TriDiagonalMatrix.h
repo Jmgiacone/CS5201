@@ -1,61 +1,73 @@
 //
-// Created by Jordan on 4/5/2016.
+// Created by Jordan on 4/7/2016.
 //
 
 #ifndef TRIDIAGONALMATRIX_H
 #define TRIDIAGONALMATRIX_H
+#include "AbstractMatrix.h"
 #include "Matrix.h"
+#include "SmartVector.h"
 
-const int DEFAULT_ROWS = 2, DEFAULT_COLUMNS = 2;
 template <class T>
-class TriDiagonalMatrix : public Matrix<T>
+class TriDiagonalMatrix;
+
+template <class T>
+const TriDiagonalMatrix<T> operator+ (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+
+template <class T>
+const TriDiagonalMatrix<T> operator- (const TriDiagonalMatrix<T>& rhs);
+
+template <class T>
+const TriDiagonalMatrix<T> operator- (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+
+template <class T>
+const Matrix<T> operator* (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+
+template <class T>
+const Vector<T> operator* (const TriDiagonalMatrix<T>& lhs, const Vector<T>& rhs);
+
+template <class T>
+const bool operator== (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+
+template <class T>
+const bool operator!= (const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+
+const int NUM_DIAGONALS = 3;//, DEFAULT_ROWS = 2, DEFAULT_COLUMNS = 2;
+template <class T>
+class TriDiagonalMatrix : public AbstractMatrix<T>
 {
   private:
-    int rows, columns;
     Vector<T>* data;
+    int rows, columns;
 
   public:
     TriDiagonalMatrix() : TriDiagonalMatrix(DEFAULT_ROWS, DEFAULT_COLUMNS) {}
     TriDiagonalMatrix(int r, int c);
+    TriDiagonalMatrix(int r, int c, const Vector<T>& diag1, const Vector<T>& diag2, const Vector<T>& diag3);
     TriDiagonalMatrix(const TriDiagonalMatrix<T>& rhs);
-    TriDiagonalMatrix(TriDiagonalMatrix&& rhs) : rows(rhs.rows), columns(rhs.columns), data(rhs.data) {rhs.data = NULL;}
+    TriDiagonalMatrix(TriDiagonalMatrix<T>&& rhs) : rows(rhs.rows), columns(rhs.columns),
+                                                    data(rhs.data) {rhs.data = NULL;}
+    ~TriDiagonalMatrix();
+    TriDiagonalMatrix<T>& operator= (TriDiagonalMatrix<T> rhs);
+    void swap(TriDiagonalMatrix<T>& x, TriDiagonalMatrix<T>& y);
+    TriDiagonalMatrix<T>& operator+= (const TriDiagonalMatrix<T>& rhs);
+    TriDiagonalMatrix<T>& operator-= (const TriDiagonalMatrix<T>& rhs);
+    const SmartVector<T> operator[] (int x) const;
+    const SmartVector<T> operator[] (int x);
 
-    virtual Matrix<T>& operator= (Matrix<T>& rhs);
-    virtual Vector<T> operator[] (const int x) const;
-    virtual Vector<T> operator[] (const int x);
+    //AbstractMatrix interface functions
+    virtual int numRows() const {return rows;}
+    virtual int numColumns() const {return columns;}
+    virtual std::ostream& output(std::ostream& out) const;
 
-    //operator<<
-    virtual ostream& operatorOutput(ostream& out, const Matrix<T>& rhs) const;
-  
-    //operator+
-    virtual Matrix<T> operatorPlus(const Matrix<T>& lhs, const Matrix<T>& rhs) const;
-  
-    //operator-
-    virtual Matrix<T> operatorMinus(const Matrix<T>& lhs, const Matrix<T>& rhs) const;
-  
-    //operator- unary
-    virtual Matrix<T> operatorMinus(const Matrix<T>& rhs) const;
-  
-    //operator* - Scalar-Matrix mult
-    virtual Matrix<T> operatorAsterisk(const T& lhs, const Matrix<T>& rhs) const;
-  
-    //operator* - Matrix-Scalar mult
-    virtual Matrix<T> operatorAsterisk(const Matrix<T>& lhs, const T& rhs) const;
-  
-    //Operator* - Matrix-Matrix mult
-    virtual Matrix<T> operatorAsterisk(const Matrix<T>& lhs, const Matrix<T>& rhs) const;
-  
-    //operator* - Matrix-Vector mult
-    virtual Vector<T> operatorAsterisk(const Matrix<T>& lhs, const Vector<T>& rhs) const;
-  
-    //operator* - Vector-Matrix mult
-    virtual Vector<T> operatorAsterisk(const Vector<T>& lhs, const Vector<T>& rhs) const;
-  
-    //operator== - Equality
-    virtual bool operatorDoubleEqual(const Matrix<T>& lhs, const Matrix<T>& rhs) const;
-  
-    //operator!= - Inequality
-    virtual bool operatorBangEqual(const Matrix<T>& lhs, const Matrix<T>& rhs) const;
+    //Friend functions
+    friend const TriDiagonalMatrix<T> operator+ <>(const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+    friend const TriDiagonalMatrix<T> operator- <>(const TriDiagonalMatrix<T>& rhs);
+    friend const TriDiagonalMatrix<T> operator- <>(const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+    friend const Matrix<T> operator* <>(const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+    friend const Vector<T> operator* <>(const TriDiagonalMatrix<T>& lhs, const Vector<T>& rhs);
+    friend const bool operator== <>(const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
+    friend const bool operator!= <>(const TriDiagonalMatrix<T>& lhs, const TriDiagonalMatrix<T>& rhs);
 };
 #include "TriDiagonalMatrix.hpp"
 #endif
