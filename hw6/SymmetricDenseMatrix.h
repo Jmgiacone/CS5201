@@ -12,6 +12,9 @@ template <class T>
 SymmetricDenseMatrix<T> operator+ (const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
 
 template <class T>
+SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& rhs);
+
+template <class T>
 SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
 
 static const int DEFAULT_DIMENSIONS = 2;
@@ -37,6 +40,11 @@ class SymmetricDenseMatrix : public AbstractMatrix<T>
     virtual AbstractMatrix<T>* clone() const;
     virtual Vector<T> gaussianElimination(Vector<T> bVector) const;
     void swap(SymmetricDenseMatrix<T>& lhs, SymmetricDenseMatrix<T>& rhs);
+  
+    //Friends
+    friend SymmetricDenseMatrix<T> operator+ (const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
+    friend SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& rhs);
+    friend SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
   protected:
     virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
     virtual ostream& output(ostream& out) const;
