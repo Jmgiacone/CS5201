@@ -29,12 +29,14 @@ class SymmetricDenseMatrix : public AbstractMatrix<T>
     ~SymmetricDenseMatrix();
     virtual int numRows() const {return dimensions;}
     virtual int numColumns() const {return dimensions;}
+    virtual SymmetricDenseMatrix<T>& operator= (SymmetricDenseMatrix<T> rhs);
     virtual AbstractMatrix<T>& operator+= (const AbstractMatrix<T>& rhs);
     virtual AbstractMatrix<T>& operator-= (const AbstractMatrix<T>& rhs);
     virtual T& operator()(const int row, const int column);
     virtual T& operator()(const int row, const int column) const;
     virtual AbstractMatrix<T>* clone() const;
     virtual Vector<T> gaussianElimination(Vector<T> bVector) const;
+    void swap(SymmetricDenseMatrix<T>& lhs, SymmetricDenseMatrix<T>& rhs);
   protected:
     virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
     virtual ostream& output(ostream& out) const;
