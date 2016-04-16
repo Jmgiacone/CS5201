@@ -96,3 +96,20 @@ void SymmetricDenseMatrix<T>::swap(SymmetricDenseMatrix<T> &lhs, SymmetricDenseM
   std::swap(lhs.dimensions, rhs.dimensions);
   std::swap(lhs.data, rhs.data);
 }
+
+template <class T>
+SymmetricDenseMatrix<T> operator+ (const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs)
+{
+  if(lhs.numRows() != rhs.numRows())
+  {
+    throw std::invalid_argument("SymmetricDenseMatrix: Matrices are of differing sizes");
+  }
+   SymmetricDenseMatrix<T> sum(lhs.dimensions);
+
+  for(int i = 0; i < lhs.dimensions; i++)
+  {
+    lhs.data[i] = rhs.data[i];
+  }
+
+  return sum;
+}
