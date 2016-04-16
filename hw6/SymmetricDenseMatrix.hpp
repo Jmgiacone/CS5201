@@ -51,3 +51,35 @@ AbstractMatrix<T>& SymmetricDenseMatrix<T>::operator-=(const AbstractMatrix<T>& 
 {
   return *this = *this + -static_cast<SymmetricDenseMatrix>(rhs);
 }
+
+template <class T>
+T& SymmetricDenseMatrix<T>::operator()(const int row, const int column) const
+{
+  if(column < 0 || column >= dimensions || row < 0 || row >= dimensions)
+  {
+    throw std::invalid_argument("SymmetricDenseMatrix: Indices provided to operator() are invalid");
+  }
+
+  if(column < row)
+  {
+    return (*this)(column, row);
+  }
+
+  return data[row][column];
+}
+
+template <class T>
+T& SymmetricDenseMatrix<T>::operator()(const int row, const int column)
+{
+  if(column < 0 || column >= dimensions || row < 0 || row >= dimensions)
+  {
+    throw std::invalid_argument("SymmetricDenseMatrix: Indices provided to operator() are invalid");
+  }
+
+  if(column < row)
+  {
+    return (*this)(column, row);
+  }
+
+  return data[row][column];
+}
