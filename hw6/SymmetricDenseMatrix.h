@@ -42,9 +42,9 @@ class SymmetricDenseMatrix : public AbstractMatrix<T>
     void swap(SymmetricDenseMatrix<T>& lhs, SymmetricDenseMatrix<T>& rhs);
 
     //Friends
-    friend SymmetricDenseMatrix<T> operator+ (const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
-    friend SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& rhs);
-    friend SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
+    friend SymmetricDenseMatrix<T> operator+ <>(const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
+    friend SymmetricDenseMatrix<T> operator- <>(const SymmetricDenseMatrix<T>& rhs);
+    friend SymmetricDenseMatrix<T> operator- <>(const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
   protected:
     virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
     virtual ostream& output(ostream& out) const;
