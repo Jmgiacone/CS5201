@@ -22,8 +22,8 @@ class SymmetricDenseMatrix : public AbstractMatrix<T>
     int dimensions;
     Vector<T>* data;
   public:
-    SymmetricDenseMatrix();
-    SymmetricDenseMatrix(const int rows, const int columns);
+    SymmetricDenseMatrix() : SymmetricDenseMatrix(DEFAULT_DIMENSIONS){}
+    SymmetricDenseMatrix(const int d);
     SymmetricDenseMatrix(const SymmetricDenseMatrix<T>& src);
     SymmetricDenseMatrix(SymmetricDenseMatrix<T>&& src) : dimensions(src.dimensions), data(src.data) {src.data = NULL;}
     ~SymmetricDenseMatrix();

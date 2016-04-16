@@ -1,7 +1,7 @@
 template <class T>
-SymmetricDenseMatrix<T>::SymmetricDenseMatrix()
+SymmetricDenseMatrix<T>::SymmetricDenseMatrix(const int d)
 {
-  dimensions = DEFAULT_DIMENSIONS;
+  dimensions = d;
 
   data = new Vector<T>[dimensions];
 
