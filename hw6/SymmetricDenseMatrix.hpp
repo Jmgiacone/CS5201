@@ -89,3 +89,10 @@ AbstractMatrix<T>* SymmetricDenseMatrix<T>::clone() const
 {
   return new SymmetricDenseMatrix(*this);
 }
+
+template <class T>
+void SymmetricDenseMatrix<T>::swap(SymmetricDenseMatrix<T> &lhs, SymmetricDenseMatrix<T> &rhs)
+{
+  std::swap(lhs.dimensions, rhs.dimensions);
+  std::swap(lhs.data, rhs.data);
+}
