@@ -31,3 +31,11 @@ SymmetricDenseMatrix<T>::~SymmetricDenseMatrix()
     delete [] data;
   }
 }
+
+template <class T>
+SymmetricDenseMatrix<T>& SymmetricDenseMatrix<T>::operator=(SymmetricDenseMatrix<T> rhs)
+{
+  swap(*this, rhs);
+
+  return *this;
+}
