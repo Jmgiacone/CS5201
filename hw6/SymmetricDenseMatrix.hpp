@@ -113,3 +113,22 @@ SymmetricDenseMatrix<T> operator+ (const SymmetricDenseMatrix<T>& lhs, const Sym
 
   return sum;
 }
+
+template <class T>
+SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs)
+{
+  return lhs + -rhs;
+}
+
+template <class T>
+SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& rhs)
+{
+  SymmetricDenseMatrix<T> negation(rhs.dimensions);
+
+  for(int i = 0; i < rhs.dimensions; i++)
+  {
+    negation.data[i] = -rhs.data[i];
+  }
+
+  return negation;
+}
