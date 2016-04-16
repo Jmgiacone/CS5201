@@ -1,5 +1,12 @@
-//
-// Created by jordan on 4/9/16.
-//
+template <class T>
+SymmetricDenseMatrix<T>::SymmetricDenseMatrix()
+{
+  dimensions = DEFAULT_DIMENSIONS;
 
-#include "SymmetricDenseMatrix.h"
+  data = new Vector<T>[dimensions];
+
+  for(int i = 0; i < dimensions; i++)
+  {
+    data[i] = Vector<T>(dimensions - i);
+  }
+}
