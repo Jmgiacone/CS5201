@@ -10,10 +10,7 @@ template <class T>
 ostream& operator<< (ostream& out, const AbstractMatrix<T>& rhs);
 
 template <class T>
-bool operator== (const AbstractMatrix<T>& lhs, const AbstractMatrix<T>& rhs);
-
-template <class T>
-bool operator != (const AbstractMatrix<T>& lhs, const AbstractMatrix<T>& rhs);
+Vector<T> operator* (const AbstractMatrix<T>& lhs, const Vector<T>& rhs);
 
 template <class T>
 class AbstractMatrix
@@ -31,11 +28,10 @@ class AbstractMatrix
 
     //Friends
     friend ostream& operator<< <>(ostream& out, const AbstractMatrix<T>& rhs);
-    friend bool operator== <>(const AbstractMatrix<T>& lhs, const AbstractMatrix<T>& rhs);
-    friend bool operator!= <>(const AbstractMatrix<T>& lhs, const AbstractMatrix<T>& rhs);
+    friend Vector<T> operator* <>(const AbstractMatrix<T>& lhs, const Vector<T>& rhs);
 
   protected:
-    virtual bool isEqual(const AbstractMatrix<T>& rhs) const = 0;
+    virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const = 0;
     virtual ostream& output(ostream& out) const = 0;
 };
 #include "AbstractMatrix.hpp"
