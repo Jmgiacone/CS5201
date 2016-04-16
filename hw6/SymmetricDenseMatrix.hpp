@@ -83,3 +83,9 @@ T& SymmetricDenseMatrix<T>::operator()(const int row, const int column)
 
   return data[row][column];
 }
+
+template <class T>
+AbstractMatrix<T>* SymmetricDenseMatrix<T>::clone() const
+{
+  return new SymmetricDenseMatrix(*this);
+}
