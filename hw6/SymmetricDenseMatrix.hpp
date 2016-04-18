@@ -132,3 +132,34 @@ SymmetricDenseMatrix<T> operator- (const SymmetricDenseMatrix<T>& rhs)
 
   return negation;
 }
+
+template <class T>
+ostream& SymmetricDenseMatrix<T>::output(ostream &out) const
+{
+  for(int i = 0; i < dimensions; i++)
+  {
+    for(int j = 0; j < dimensions; j++)
+    {
+      if(j != 0)
+      {
+        out << std::setw(10);
+      }
+      else if ((*this)(i, j) >= 0)
+      {
+        out << " ";
+      }
+      out << std::fixed << std::setprecision(5) << (*this)(i, j) << "\t";
+    }
+
+    if (i == dimensions - 1)
+    {
+
+    }
+    else
+    {
+      out << std::endl;
+    }
+  }
+
+  return out;
+}

@@ -1,8 +1,10 @@
 #ifndef ABSTRACTMATRIX_H
 #define ABSTRACTMATRIX_H
+#include <iomanip>
 #include <iostream>
 #include "Vector.h"
 using std::ostream;
+using std::endl;
 template <class T>
 class AbstractMatrix;
 
