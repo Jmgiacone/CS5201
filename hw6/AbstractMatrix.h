@@ -34,7 +34,6 @@ class AbstractMatrix
 
   protected:
     virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const = 0;
-    virtual ostream& output(ostream& out) const = 0;
 };
 #include "AbstractMatrix.hpp"
 #endif

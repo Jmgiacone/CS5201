@@ -43,7 +43,6 @@ class DiagonalMatrix : public AbstractMatrix<T>
     friend DiagonalMatrix<T> operator- <>(const DiagonalMatrix<T>& lhs, const DiagonalMatrix<T>& rhs);
 protected:
     virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
-    virtual ostream& output(ostream& out) const;
 };
 #include "DiagonalMatrix.hpp"
 #endif

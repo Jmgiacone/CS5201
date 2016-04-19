@@ -47,7 +47,6 @@ class SymmetricDenseMatrix : public AbstractMatrix<T>
     friend SymmetricDenseMatrix<T> operator- <>(const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
   protected:
     virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
-    virtual ostream& output(ostream& out) const;
 };
 #include "SymmetricDenseMatrix.hpp"
 #endif
