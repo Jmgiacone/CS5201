@@ -163,3 +163,19 @@ ostream& SymmetricDenseMatrix<T>::output(ostream &out) const
 
   return out;
 }
+
+template <class T>
+Vector<T> SymmetricDenseMatrix<T>::gaussianElimination(Vector<T> bVector) const
+{
+  //TODO: This
+
+  return bVector;
+}
+
+template <class T>
+Vector<T> SymmetricDenseMatrix<T>::vectorMultiplication(const Vector<T>& bVector) const
+{
+  //Todo: This
+
+  return bVector;
+}
