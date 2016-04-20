@@ -6,29 +6,15 @@ DiagonalMatrix<T>::DiagonalMatrix(int d)
 {
   dimensions = d;
 
-  data = new Vector<T>[dimensions];
+  data = Vector<T>(dimensions);
 }
 
 template <class T>
 DiagonalMatrix<T>::DiagonalMatrix(const DiagonalMatrix<T>& src)
 {
   dimensions = src.dimensions;
-  data = new Vector<T>[dimensions];
 
-  for(int i = 0; i < dimensions; i++)
-  {
-    data[i] = src.data[i];
-  }
-}
-
-template <class T>
-DiagonalMatrix<T>::~DiagonalMatrix()
-{
-  if(data != NULL)
-  {
-    delete [] data;
-    data = NULL;
-  }
+  data = src.data;
 }
 
 template <class T>
@@ -93,10 +79,7 @@ DiagonalMatrix<T> operator+ (const DiagonalMatrix<T>& lhs, const DiagonalMatrix<
 
   DiagonalMatrix<T> sum(lhs.dimensions);
 
-  for(int i = 0; i < rhs.dimensions; i++)
-  {
-    sum.data[i] = lhs.data[i] + rhs.data[i];
-  }
+  sum.data = lhs.data + rhs.data;
 
   return sum;
 }
@@ -112,10 +95,7 @@ DiagonalMatrix<T> operator- (const DiagonalMatrix<T>& rhs)
 {
   DiagonalMatrix<T> negation(rhs.dimensions);
 
-  for(int i = 0; i < rhs.dimensions; i++)
-  {
-    negation.data[i] = -rhs.data[i];
-  }
+  negation.data = -rhs.data;
 
   return negation;
 }

@@ -19,14 +19,13 @@ class DiagonalMatrix : public AbstractMatrix<T>
 {
   private:
     int dimensions;
-    Vector<T>* data;
+    Vector<T> data;
     static T zero = 0;
   public:
     DiagonalMatrix() : DiagonalMatrix(DEFAULT_DIMENSIONS) {};
     DiagonalMatrix(int d);
     DiagonalMatrix(const DiagonalMatrix<T>& src);
-    DiagonalMatrix(DiagonalMatrix<T>&& src) : dimensions(src.dimensions), data(src.data) {src.data = NULL;}
-    ~DiagonalMatrix();
+    DiagonalMatrix(DiagonalMatrix<T>&& src) : dimensions(src.dimensions), data(std::move(src.data)) {}
 
     virtual int numRows() const {return dimensions;}
     virtual int numColumns() const {return dimensions;}
