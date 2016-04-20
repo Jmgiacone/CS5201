@@ -18,6 +18,9 @@ template <class T>
 UpperTriangularMatrix<T> operator- (const UpperTriangularMatrix<T>& lhs, const UpperTriangularMatrix<T>& rhs);
 
 template <class T>
+void swap(UpperTriangularMatrix<T>& x, UpperTriangularMatrix<T>& y);
+
+template <class T>
 class UpperTriangularMatrix : AbstractMatrix<T>
 {
   private:
@@ -33,10 +36,8 @@ class UpperTriangularMatrix : AbstractMatrix<T>
     ~UpperTriangularMatrix();
 
     UpperTriangularMatrix<T>& operator= (UpperTriangularMatrix<T> rhs);
-    UpperTriangularMatrix<T>& operator+= (UpperTriangularMatrix<T>& rhs);
-    UpperTriangularMatrix<T>& operator-= (UpperTriangularMatrix<T>& rhs);
-
-    void swap(UpperTriangularMatrix<T>& x, UpperTriangularMatrix<T>& y);
+    UpperTriangularMatrix<T>& operator+= (const UpperTriangularMatrix<T>& rhs);
+    UpperTriangularMatrix<T>& operator-= (const UpperTriangularMatrix<T>& rhs);
 
     virtual T& operator()(const int row, const int column) const;
     virtual T& operator()(const int row, const int column);
@@ -48,6 +49,7 @@ class UpperTriangularMatrix : AbstractMatrix<T>
     friend UpperTriangularMatrix<T> operator+ <>(const UpperTriangularMatrix<T>& lhs, const UpperTriangularMatrix<T>& rhs);
     friend UpperTriangularMatrix<T> operator- <>(const UpperTriangularMatrix<T>& rhs);
     friend UpperTriangularMatrix<T> operator- <>(const UpperTriangularMatrix<T>& lhs, const UpperTriangularMatrix<T>& rhs);
+    friend void swap <>(UpperTriangularMatrix<T>& x, UpperTriangularMatrix<T>& y);
   
 
 };
