@@ -21,12 +21,13 @@ template <class T>
 void swap(UpperTriangularMatrix<T>& x, UpperTriangularMatrix<T>& y);
 
 template <class T>
-class UpperTriangularMatrix : AbstractMatrix<T>
+class UpperTriangularMatrix : public AbstractMatrix<T>
 {
-  private:
-    static T zero = 0;
+   private:
     int dimensions;
     Vector<T>* data;
+    T zero = 0;
+    const T constZero = 0;
 
   public:
     UpperTriangularMatrix() : UpperTriangularMatrix(DEFAULT_TERMS) {}
@@ -39,10 +40,13 @@ class UpperTriangularMatrix : AbstractMatrix<T>
     UpperTriangularMatrix<T>& operator+= (const UpperTriangularMatrix<T>& rhs);
     UpperTriangularMatrix<T>& operator-= (const UpperTriangularMatrix<T>& rhs);
 
-    virtual T& operator()(const int row, const int column) const;
+    virtual const T& operator()(const int row, const int column) const;
     virtual T& operator()(const int row, const int column);
     virtual AbstractMatrix<T>* clone() const;
-    virtual Vector<T> gaussElimination(Vector<T> bVector) const;
+    virtual Vector<T> gaussianElimination(Vector<T> bVector) const;
+    virtual const Vector<T> getColumn(int column) const;
+    virtual int numColumns() const {return dimensions;}
+    virtual int numRows() const {return dimensions;}
     virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
 
     //Friends

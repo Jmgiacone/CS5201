@@ -172,7 +172,7 @@ class Vector
      * Post: If parameter x is not withing the proper range, a out_of_range exception will be thrown
      * Return: The element indexed at parameter x
      */
-    const T& operator[] (const int x) const;
+    T& operator[] (const int x) const;
 
     /**
      * Purpose: Stream insertion operator - To facilitate output of Vector class to streams

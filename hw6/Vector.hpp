@@ -124,7 +124,7 @@ T& Vector<T>::operator[] (const int x)
 }
 
 template <class T>
-const T& Vector<T>::operator[] (const int x) const
+T& Vector<T>::operator[] (const int x) const
 {
   if(x < 0 || x >= terms)
   {
