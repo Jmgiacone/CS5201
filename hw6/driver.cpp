@@ -1,4 +1,5 @@
 #include <fstream>
+#include <stdexcept>
 #include "SymmetricDenseMatrix.h"
 #include "DenseMatrix.h"
 #include "DiagonalMatrix.h"
@@ -34,22 +35,40 @@ int main(int argc, char* argv[])
   //Does the file exist?
   if(fileIn)
   {
-    for(int i = 0; i < NUM_MATRICES; i++)
+    try
     {
-      fileIn >> dimensions;
-
-      input = DenseMatrix<double>(dimensions, dimensions);
-
-      //Read in the matrix
-      for (int i = 0; i < dimensions; i++)
+      for (int i = 0; i < NUM_MATRICES; i++)
       {
-        for (int j = 0; j < dimensions; j++)
-        {
-          fileIn >> input[i][j];
-        }
-      }
+        fileIn >> dimensions;
 
-      getEigenValues(input, i + 1);
+        input = DenseMatrix<double>(dimensions, dimensions);
+
+        //Read in the matrix
+        for (int i = 0; i < dimensions; i++)
+        {
+          for (int j = 0; j < dimensions; j++)
+          {
+            fileIn >> input[i][j];
+          }
+        }
+
+        getEigenValues(input, i + 1);
+      }
+    }
+    catch(std::invalid_argument e)
+    {
+      cout << e.what() << endl;
+      return 1;
+    }
+    catch(std::domain_error e)
+    {
+      cout << e.what() << endl;
+      return 1;
+    }
+    catch(std::length_error e)
+    {
+      cout << e.what() << endl;
+      return 1;
     }
     cout << "===" << endl;
     fileIn.close();
