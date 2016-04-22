@@ -1,7 +1,14 @@
-//
-// Created by jordan on 4/9/16.
-//
-
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 6
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 4/22/16
+ * Filename: SymmetricDenseMatrix.h
+ * Description: This is the header for the SymmetricDenseMatrix class
+ */
 #ifndef SYMMETRICDENSEMATRIX_H
 #define SYMMETRICDENSEMATRIX_H
 #include "AbstractMatrix.h"

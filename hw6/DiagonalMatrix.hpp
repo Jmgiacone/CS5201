@@ -1,6 +1,14 @@
-//
-// Created by jordan on 4/9/16.
-//
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 6
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 4/22/16
+ * Filename: DiagonaltMatrix.hpp
+ * Description: This is the implementation file for the DiagonalMatrix class
+ */
 template <class T>
 DiagonalMatrix<T>::DiagonalMatrix(int d)
 {

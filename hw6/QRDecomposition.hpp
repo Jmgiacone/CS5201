@@ -1,11 +1,23 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 6
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 4/22/16
+ * Filename: QRDecomposition.hpp
+ * Description: This is the header for the QRDecomposition class
+ */
 #include "DenseMatrix.h"
 #include "TwoNorm.h"
 
 template <class T>
 QRDecomposition<T>::QRDecomposition()
 {
-
+  //Do nothing
 }
+
 template <class T>
 void QRDecomposition<T>::operator()(const AbstractMatrix<T>& aMatrix)
 {

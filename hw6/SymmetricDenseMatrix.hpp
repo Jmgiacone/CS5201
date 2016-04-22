@@ -1,3 +1,14 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 6
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 4/22/16
+ * Filename: SymmetricDenseMatrix.hpp
+ * Description: This is the implementation file for the SymmetricDenseMatrix class
+ */
 template <class T>
 SymmetricDenseMatrix<T>::SymmetricDenseMatrix(const int d)
 {

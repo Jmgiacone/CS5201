@@ -1,3 +1,14 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 6
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 4/22/16
+ * Filename: LowerTriangularMatrix.hpp
+ * Description: This is the implementation file for the LowerTriangularMatrix class
+ */
 template <class T>
 LowerTriangularMatrix<T>::LowerTriangularMatrix(const int d)
 {

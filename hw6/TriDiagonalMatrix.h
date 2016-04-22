@@ -2,14 +2,13 @@
  * Programmer: Jordan Giacone
  * Class: CS5201 Section A
  * Instructor: Clayton Price
- * Homework 5
+ * Homework 6
  * Student ID: 12400927
  * Login: Jmgv27
- * Date: 4/8/16
+ * Date: 4/22/16
  * Filename: TriDiagonalMatrix.h
  * Description: This is the derived class from AbstractMatrix
  */
-
 #ifndef TRIDIAGONALMATRIX_H
 #define TRIDIAGONALMATRIX_H
 #include "DenseMatrix.h"

@@ -2,14 +2,13 @@
  * Programmer: Jordan Giacone
  * Class: CS5201 Section A
  * Instructor: Clayton Price
- * Homework 5
+ * Homework 6
  * Student ID: 12400927
  * Login: Jmgv27
- * Date: 4/8/16
+ * Date: 4/22/16
  * Filename: TriDiagonalMatrix.hpp
  * Description: This is the implementation file for the TriDiagonalMatrix
  */
-
 template <class T>
 TriDiagonalMatrix<T>::TriDiagonalMatrix(int r, int c)
 {

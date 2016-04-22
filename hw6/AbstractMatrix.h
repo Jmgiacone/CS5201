@@ -1,3 +1,14 @@
+/**
+ * Programmer: Jordan Giacone
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 6
+ * Student ID: 12400927
+ * Login: Jmgv27
+ * Date: 4/22/16
+ * Filename: AbstractMatrix.h
+ * Description: This is the interface base for an Abstract Matrix
+ */
 #ifndef ABSTRACTMATRIX_H
 #define ABSTRACTMATRIX_H
 #include <iomanip>
