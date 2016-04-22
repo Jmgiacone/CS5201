@@ -71,7 +71,7 @@ void swap(LowerTriangularMatrix<T> &x, LowerTriangularMatrix<T> &y)
 }
 
 template <class T>
-T& LowerTriangularMatrix<T>::operator()(const int row, const int column) const
+const T& LowerTriangularMatrix<T>::operator()(const int row, const int column) const
 {
   if (zero != 0)
   {
