@@ -52,19 +52,19 @@ SymmetricDenseMatrix<T>& SymmetricDenseMatrix<T>::operator=(SymmetricDenseMatrix
 }
 
 template <class T>
-AbstractMatrix<T>& SymmetricDenseMatrix<T>::operator+=(const AbstractMatrix<T>& rhs)
+SymmetricDenseMatrix<T>& SymmetricDenseMatrix<T>::operator+=(const SymmetricDenseMatrix<T>& rhs)
 {
-  return *this = *this + dynamic_cast<const SymmetricDenseMatrix<T>&>(rhs);
+  return *this = *this + rhs;
 }
 
 template <class T>
-AbstractMatrix<T>& SymmetricDenseMatrix<T>::operator-=(const AbstractMatrix<T>& rhs)
+SymmetricDenseMatrix<T>& SymmetricDenseMatrix<T>::operator-=(const SymmetricDenseMatrix<T>& rhs)
 {
-  return *this = *this + -dynamic_cast<const SymmetricDenseMatrix<T>&>(rhs);
+  return *this = *this + -rhs;
 }
 
 template <class T>
-T& SymmetricDenseMatrix<T>::operator()(const int row, const int column) const
+const T& SymmetricDenseMatrix<T>::operator()(const int row, const int column) const
 {
   if(column < 0 || column >= dimensions || row < 0 || row >= dimensions)
   {
