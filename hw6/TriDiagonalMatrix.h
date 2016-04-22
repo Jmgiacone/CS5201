@@ -169,13 +169,55 @@ class TriDiagonalMatrix : public AbstractMatrix<T>
      */
     virtual int numColumns() const {return columns;}
 
+    /*
+     * Purpose: Grab a specified row
+     * Pre: row is in the range [0, numRows())
+     * Param: row -  the row to be grabbed
+     * Post: If row is invalid, an invalid_argument exception is thrown
+     * Return: the specified row
+     */
     Vector<T> getRow(int row) const;
+
+    /**
+     * Purpose: Get a specified column in the DenseMatrix
+     * Pre: Parameter x must be in the range [0, columns)
+     * Param: x - The index of the column to be grabbed
+     * Post: If x is not in the range [0, columns), then an out_of_range exception is thrown
+     * Return: The column at the specified index
+     */
     virtual const Vector<T> getColumn(const int column) const;
 
+    /*
+     * Purpose: Inspection/Change Operator
+     * Pre: row must be in the range [0, numRows())
+     *      column must be in the range [0, numColumns())
+     * Param: row - The row of the element
+     *        column - The column of the element
+     * Post: The element is returned by reference, so it may be changed externally
+     *       If the row or column is invalid, an invalid_argument will be thrown
+     * Return: The element at index [row][column]
+     */
     virtual T& operator()(const int row, const int column);
 
+    /*
+     * Purpose: Inspection/Change Operator
+     * Pre: row must be in the range [0, numRows())
+     *      column must be in the range [0, numColumns())
+     * Param: row - The row of the element
+     *        column - The column of the element
+     * Post: The element is returned by reference, so it may be changed externally
+     *       If the row or column is invalid, an invalid_argument will be thrown
+     * Return: The element at index [row][column]
+     */
     virtual const T& operator()(const int row, const int column) const;
 
+    /*
+     * Purpose: Clone function
+     * Pre: None
+     * Param: None
+     * Post: None
+     * Return: A pointer to a clone of the calling object
+     */
     virtual AbstractMatrix<T>* clone() const;
     //Friend functions
 
