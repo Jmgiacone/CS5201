@@ -96,15 +96,3 @@ AbstractMatrix<T>* LowerTriangularMatrix<T>::clone() const
 {
   return new LowerTriangularMatrix<T>(*this);
 }
-
-template <class T>
-Vector<T> LowerTriangularMatrix<T>::gaussElimination(Vector<T> bVector) const
-{
-  return bVector;
-}
-
-template <class T>
-Vector<T> LowerTriangularMatrix<T>::vectorMultiplication(const Vector<T> &bVector) const
-{
-  return bVector;
-}

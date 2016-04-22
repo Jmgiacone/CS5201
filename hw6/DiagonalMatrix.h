@@ -15,33 +15,33 @@ template <class T>
 DiagonalMatrix<T> operator- (const DiagonalMatrix<T>& lhs, const DiagonalMatrix<T>& rhs);
 
 template <class T>
+DiagonalMatrix<T> operator* (const DiagonalMatrix<T>& lhs, DiagonalMatrix<T>& rhs);
+template <class T>
 class DiagonalMatrix : public AbstractMatrix<T>
 {
   private:
     int dimensions;
     Vector<T> data;
-    static T zero = 0;
+    T zero = 0;
   public:
     DiagonalMatrix() : DiagonalMatrix(DEFAULT_DIMENSIONS) {};
     DiagonalMatrix(int d);
     DiagonalMatrix(const DiagonalMatrix<T>& src);
     DiagonalMatrix(DiagonalMatrix<T>&& src) : dimensions(src.dimensions), data(std::move(src.data)) {}
-
+    DiagonalMatrix<T>& operator+= (const DiagonalMatrix<T>& rhs);
+    DiagonalMatrix<T>& operator-= (const DiagonalMatrix<T>& rhs);
     virtual int numRows() const {return dimensions;}
     virtual int numColumns() const {return dimensions;}
-    virtual AbstractMatrix<T>& operator+= (const AbstractMatrix<T>& rhs);
-    virtual AbstractMatrix<T>& operator-= (const AbstractMatrix<T>& rhs);
+    virtual const Vector<T> getColumn(const int column) const;
     virtual T& operator()(const int row, const int column);
-    virtual T& operator()(const int row, const int column) const;
+    virtual const T& operator()(const int row, const int column) const;
     virtual AbstractMatrix<T>* clone() const;
-    virtual Vector<T> gaussianElimination(Vector<T> bVector) const;
 
     //Friends
     friend DiagonalMatrix<T> operator+ <>(const DiagonalMatrix<T>& lhs, const DiagonalMatrix<T>& rhs);
     friend DiagonalMatrix<T> operator- <>(const DiagonalMatrix<T>& rhs);
     friend DiagonalMatrix<T> operator- <>(const DiagonalMatrix<T>& lhs, const DiagonalMatrix<T>& rhs);
-protected:
-    virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
+    friend DiagonalMatrix<T> operator* <>(const DiagonalMatrix<T>& lhs, DiagonalMatrix<T>& rhs);
 };
 #include "DiagonalMatrix.hpp"
 #endif

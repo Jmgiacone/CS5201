@@ -94,18 +94,6 @@ AbstractMatrix<T>* UpperTriangularMatrix<T>::clone() const
 }
 
 template <class T>
-Vector<T> UpperTriangularMatrix<T>::gaussianElimination(Vector<T> bVector) const
-{
-  return bVector;
-}
-
-template <class T>
-Vector<T> UpperTriangularMatrix<T>::vectorMultiplication(const Vector<T> &bVector) const
-{
-  return bVector;
-}
-
-template <class T>
 const Vector<T> UpperTriangularMatrix<T>::getColumn(int column) const
 {
   if(column < 0 || column >= dimensions)
@@ -123,4 +111,67 @@ const Vector<T> UpperTriangularMatrix<T>::getColumn(int column) const
     }
   }
   return x;
+}
+
+template <class T>
+DenseMatrix<T> operator* (const UpperTriangularMatrix<T>& lhs, const DenseMatrix<T>& rhs)
+{
+  DenseMatrix<T> product(rhs.numRows(), rhs.numRows());
+
+  for(int i = 0; i < rhs.numRows(); i++)
+  {
+    for(int j = 0; j < rhs.numRows(); j++)
+    {
+      product(i, j) = 0;
+    }
+  }
+
+  T element = 0;
+
+  for(int i = 0; i < rhs.numRows(); i++)
+  {
+    for(int k = 0; k < rhs.numRows(); k++)
+    {
+      for (int j = i; j < rhs.numRows(); j++)
+      {
+        element += lhs(i, j) * rhs(j, k);
+      }
+      product(i, k) = element;
+      element = 0;
+    }
+  }
+  return product;
+}
+
+template <class T>
+UpperTriangularMatrix<T> operator* (const UpperTriangularMatrix<T>& lhs, const UpperTriangularMatrix<T>& rhs)
+{
+  UpperTriangularMatrix<T> product(lhs.numColumns());
+
+  for(int i = 0; i < rhs.numRows(); i++)
+  {
+    for(int j = 0; j < rhs.numRows(); j++)
+    {
+      if(j >= i)
+      {
+        product(i, j) = 0;
+      }
+    }
+  }
+
+  T element = 0;
+
+  for(int i = 0; i < rhs.numRows(); i++)
+  {
+    for(int k = 0; k < rhs.numRows(); k++)
+    {
+      for (int j = i; j < rhs.numRows(); j++)
+      {
+        element += lhs(i, j) * rhs(j, k);
+      }
+      product(i, k) = element;
+      element = 0;
+    }
+  }
+  return product;
 }

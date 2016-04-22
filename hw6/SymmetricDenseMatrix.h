@@ -38,15 +38,12 @@ class SymmetricDenseMatrix : public AbstractMatrix<T>
     virtual T& operator() (const int row, const int column);
     virtual T& operator() (const int row, const int column) const;
     virtual AbstractMatrix<T>* clone() const;
-    virtual Vector<T> gaussianElimination(Vector<T> bVector) const;
     void swap(SymmetricDenseMatrix<T>& lhs, SymmetricDenseMatrix<T>& rhs);
 
     //Friends
     friend SymmetricDenseMatrix<T> operator+ <>(const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
     friend SymmetricDenseMatrix<T> operator- <>(const SymmetricDenseMatrix<T>& rhs);
     friend SymmetricDenseMatrix<T> operator- <>(const SymmetricDenseMatrix<T>& lhs, const SymmetricDenseMatrix<T>& rhs);
-  protected:
-    virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
 };
 #include "SymmetricDenseMatrix.hpp"
 #endif

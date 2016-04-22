@@ -197,8 +197,6 @@ class DenseMatrix : public AbstractMatrix<T>
 
     virtual T& operator()(const int row, const int column);
     virtual const T& operator()(const int row, const int column) const;
-    virtual Vector<T> gaussianElimination(Vector<T> bVector) const;
-    virtual Vector<T> vectorMultiplication(const Vector<T>& rhs) const;
     virtual AbstractMatrix<T>* clone() const;
     /**
      * Purpose: DenseMatrix extraction operator

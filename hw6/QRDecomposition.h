@@ -11,7 +11,13 @@ template <class T>
 class QRDecomposition
 {
   public:
-    std::vector<AbstractMatrix<T>*> operator()(const AbstractMatrix<T>& aMatrix);
+    QRDecomposition();
+    void operator()(const AbstractMatrix<T>& aMatrix);
+    DenseMatrix<T> getQ() {return q;}
+    UpperTriangularMatrix<T> getR() {return r;}
+  private:
+    DenseMatrix<T> q;
+    UpperTriangularMatrix<T> r;
 };
 #include "QRDecomposition.hpp"
 #endif

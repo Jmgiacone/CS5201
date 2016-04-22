@@ -43,8 +43,6 @@ class LowerTriangularMatrix : public AbstractMatrix<T>
     virtual T& operator()(const int row, const int column) const;
     virtual T& operator()(const int row, const int column);
     virtual AbstractMatrix<T>* clone() const;
-    virtual Vector<T> gaussElimination(Vector<T> bVector) const;
-    virtual Vector<T> vectorMultiplication(const Vector<T>& bVector) const;
 
     //Friends
     friend LowerTriangularMatrix<T> operator+ <>(const LowerTriangularMatrix<T>& lhs, const LowerTriangularMatrix<T>& rhs);

@@ -2,19 +2,32 @@
 #include "TwoNorm.h"
 
 template <class T>
-std::vector<AbstractMatrix<T>*> QRDecomposition<T>::operator()(const AbstractMatrix<T>& aMatrix)
+QRDecomposition<T>::QRDecomposition()
 {
-  std::vector<AbstractMatrix<T>*> matrices;
-  DenseMatrix<T> q(aMatrix.numRows(), aMatrix.numRows());
-  UpperTriangularMatrix<T> r(aMatrix.numRows());
+
+}
+template <class T>
+void QRDecomposition<T>::operator()(const AbstractMatrix<T>& aMatrix)
+{
+  q = DenseMatrix<T>(aMatrix.numRows(), aMatrix.numRows());
+  r = UpperTriangularMatrix<T>(aMatrix.numRows());
   T normResult;
   TwoNorm<T> norm;
 
   for(int i = 0; i < aMatrix.numRows(); i++)
   {
-    normResult = norm(aMatrix.getColumn(0));
+    for(int j = 0; j < aMatrix.numRows(); j++)
+    {
+      q(i, j) = 0;
+      r(i, j) = 0;
+    }
+  }
+
+  for(int i = 0; i < aMatrix.numRows(); i++)
+  {
     if(i == 0)
     {
+      normResult = norm(aMatrix.getColumn(0));
       if(normResult == 0)
       {
         throw std::domain_error("Error in QRDecomposition: Attempted division by zero");
@@ -44,6 +57,11 @@ std::vector<AbstractMatrix<T>*> QRDecomposition<T>::operator()(const AbstractMat
       {
         throw std::domain_error("QRDecomposition: Attempted division by zero");
       }
+
+      for(int j = 0; j < aMatrix.numRows(); j++)
+      {
+        q(j, i) = (1 / r(i, i)) * temp[j];
+      }
     }
 
     for(int j = 0; j < aMatrix.numRows(); j++)
@@ -51,9 +69,4 @@ std::vector<AbstractMatrix<T>*> QRDecomposition<T>::operator()(const AbstractMat
       r(i, j) = aMatrix.getColumn(j) * q.getColumn(i);
     }
   }
-
-
-  matrices.push_back(&q);
-  matrices.push_back(&r);
-  return matrices;
 }

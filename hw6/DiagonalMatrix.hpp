@@ -18,15 +18,15 @@ DiagonalMatrix<T>::DiagonalMatrix(const DiagonalMatrix<T>& src)
 }
 
 template <class T>
-AbstractMatrix<T>& DiagonalMatrix<T>::operator+=(const AbstractMatrix<T> &rhs)
+DiagonalMatrix<T>& DiagonalMatrix<T>::operator+=(const DiagonalMatrix<T> &rhs)
 {
-  return *this = *this + dynamic_cast<const DiagonalMatrix<T>&>(rhs);
+  return *this = *this + rhs;
 }
 
 template <class T>
-AbstractMatrix<T>& DiagonalMatrix<T>::operator-=(const AbstractMatrix<T> &rhs)
+DiagonalMatrix<T>& DiagonalMatrix<T>::operator-=(const DiagonalMatrix<T> &rhs)
 {
-  return *this = *this - dynamic_cast<const DiagonalMatrix<T>&>(rhs);
+  return *this = *this - rhs;
 }
 
 template <class T>
@@ -47,9 +47,8 @@ T& DiagonalMatrix<T>::operator()(const int row, const int column)
 }
 
 template <class T>
-T& DiagonalMatrix<T>::operator()(const int row, const int column) const
+const T& DiagonalMatrix<T>::operator()(const int row, const int column) const
 {
-  zero = 0;
   if(row < 0 || row >= dimensions || column < 0 || column >= dimensions)
   {
     throw std::invalid_argument("DiagonalMatrix::(): Invalid row/column");
@@ -101,13 +100,33 @@ DiagonalMatrix<T> operator- (const DiagonalMatrix<T>& rhs)
 }
 
 template <class T>
-Vector<T> DiagonalMatrix<T>::gaussianElimination(Vector<T> bVector) const
+const Vector<T> DiagonalMatrix<T>::getColumn(const int column) const
 {
-  return bVector;
+  if(column < 0 || column >= numColumns())
+  {
+    throw std::invalid_argument("Invalid column provided");
+  }
+
+  Vector<T> columnVector(numColumns());
+
+  for(int i = 0; i < numColumns(); i++)
+  {
+    columnVector[i] = 0;
+  }
+  columnVector[column] = data[column];
+
+  return columnVector;
 }
 
 template <class T>
-Vector<T> DiagonalMatrix<T>::vectorMultiplication(const Vector<T> &bVector) const
+DiagonalMatrix<T> operator* (const DiagonalMatrix<T>& lhs, DiagonalMatrix<T>& rhs)
 {
-  return bVector;
+  DiagonalMatrix<T> product(lhs.dimensions);
+
+  for(int i = 0; i < lhs.dimensions; i++)
+  {
+    product.data[i] = lhs.data[i] * rhs.data[i];
+  }
+
+  return product;
 }
