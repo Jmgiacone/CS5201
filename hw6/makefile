@@ -18,4 +18,10 @@ clean:
 	-@rm -f driver > /dev/null 2>&1
 	-@rm -f ${OBJECTS} > /dev/null 2>&1
 
-driver.o: driver.cpp
+driver.o: driver.cpp SymmetricDenseMatrix.h AbstractMatrix.h Vector.h \
+ Vector.hpp AbstractMatrix.hpp SymmetricDenseMatrix.hpp DenseMatrix.h \
+ DenseMatrix.hpp DiagonalMatrix.h DiagonalMatrix.hpp \
+ UpperTriangularMatrix.h UpperTriangularMatrix.hpp \
+ LowerTriangularMatrix.h LowerTriangularMatrix.hpp QRDecomposition.h \
+ QRDecomposition.hpp TwoNorm.h TwoNorm.hpp TriDiagonalMatrix.h \
+ TriDiagonalMatrix.hpp
