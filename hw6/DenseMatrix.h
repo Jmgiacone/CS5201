@@ -183,22 +183,40 @@ class DenseMatrix : public AbstractMatrix<T>
      * Return: The number of columns in the DenseMatrix
      */
     virtual int numColumns() const;
-    
-    //Friends
 
-    /**
-     * Purpose: DenseMatrix output function
-     * Pre: ostream out must be connected to a stream
-     *      Template type T must have operator<<(ostream, T) defined
-     * Param: out - The ostream to output the DenseMatrix to
-     * Post: The parameter out will have rhs inserted in to it
-     * Return: Parameter out
+    /*
+     * Purpose: Inspection/Change Operator
+     * Pre: row must be in the range [0, numRows())
+     *      column must be in the range [0, numColumns())
+     * Param: row - The row of the element
+     *        column - The column of the element
+     * Post: The element is returned by reference, so it may be changed externally
+     *       If the row or column is invalid, an invalid_argument will be thrown
+     * Return: The element at index [row][column]
      */
-    //virtual ostream& output(ostream& out) const;
-
     virtual T& operator()(const int row, const int column);
+
+    /*
+     * Purpose: Inspection/Change Operator
+     * Pre: row must be in the range [0, numRows())
+     *      column must be in the range [0, numColumns())
+     * Param: row - The row of the element
+     *        column - The column of the element
+     * Post: The element is returned by reference, so it may be changed externally
+     *       If the row or column is invalid, an invalid_argument will be thrown
+     * Return: The element at index [row][column]
+     */
     virtual const T& operator()(const int row, const int column) const;
+
+    /*
+     * Purpose: Clone function
+     * Pre: None
+     * Param: None
+     * Post: None
+     * Return: A pointer to a clone of the calling object
+     */
     virtual AbstractMatrix<T>* clone() const;
+
     /**
      * Purpose: DenseMatrix extraction operator
      * Pre: istream in must be connected to a stream
@@ -330,7 +348,6 @@ class DenseMatrix : public AbstractMatrix<T>
     int rows;
     int columns;
     Vector<T>* data;
-    DenseMatrix<T> elim(DenseMatrix<T> augmented, bool pivoting) const;
 };
 #include "DenseMatrix.hpp"
 #endif

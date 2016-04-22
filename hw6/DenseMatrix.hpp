@@ -308,6 +308,11 @@ void swap(DenseMatrix<T>& x, DenseMatrix<T>& y)
 template <class T>
 T& DenseMatrix<T>::operator()(int row, int column)
 {
+  if(row < 0 || row >= rows || column < 0 || column >= columns)
+  {
+    throw std::out_of_range("Illegal argument provided to DenseMatrix []");
+  }
+
   return (*this)[row][column];
 }
 
