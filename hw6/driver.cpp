@@ -81,6 +81,12 @@ int main(int argc, char* argv[])
       cout << e.what() << endl;
       return 1;
     }
+    catch(std::out_of_range e)
+    {
+      cout << e.what() << endl;
+      return 1;
+    }
+
     cout << "===" << endl;
     fileIn.close();
   }
