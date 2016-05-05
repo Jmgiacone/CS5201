@@ -1,3 +1,5 @@
+#include <cstdio>
+
 /**
  *  @file genericmatrix.hpp
  *  @author shae, CS5201 Section A
