@@ -9,8 +9,7 @@
  * Filename: QRDecomposition.hpp
  * Description: This is the header for the QRDecomposition class
  */
-#include "genericmatrix.h"
-#include "TwoNorm.h"
+
 
 template <class T>
 QRDecomposition<T>::QRDecomposition()
