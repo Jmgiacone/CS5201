@@ -19,11 +19,11 @@ template <class T>
 class LaplaceMatrix : public SquareMatrix<T>, public Invalidateable<T>
 {
   private:
-    int dimensions;
+    size_t dimensions;
     T coefficient;
 
   public:
-    LaplaceMatrix(const int d = 4) : dimensions(d), coefficient(DIAGONAL_COEFFICIENT) {}
+    LaplaceMatrix(const size_t d = 4) : dimensions(d), coefficient(DIAGONAL_COEFFICIENT) {}
 
     const T& operator() (const size_t row, const size_t column);
     friend const LaplaceMatrix<T> operator* <>(const T& scalar, const LaplaceMatrix<T>& matrix);
