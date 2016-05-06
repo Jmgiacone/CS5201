@@ -12,7 +12,9 @@
 #ifndef QRDECOMPOSITION_H
 #define QRDECOMPOSITION_H
 
-#include "AbstractMatrix.h"
+#include "abstractmatrix.h"
+#include "genericmatrix.h"
+#include "triangularmatrix.h"
 #include <vector>
 template <class T>
 class QRDecomposition
@@ -44,7 +46,7 @@ class QRDecomposition
      * Post: None
      * Return: Q matrix
      */
-    DenseMatrix<T> getQ() {return q;}
+    GenericMatrix<T> getQ() {return q;}
 
     /*
      * Purpose: Get R matrix
@@ -53,10 +55,10 @@ class QRDecomposition
      * Post: None
      * Return: R matrix
      */
-    UpperTriangularMatrix<T> getR() {return r;}
+    TriangularMatrix<T> getR() {return r;}
   private:
-    DenseMatrix<T> q;
-    UpperTriangularMatrix<T> r;
+    GenericMatrix<T> q;
+    TriangularMatrix<T> r;
 };
 #include "QRDecomposition.hpp"
 #endif
