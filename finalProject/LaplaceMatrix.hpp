@@ -34,39 +34,6 @@ const T& LaplaceMatrix<T>::operator()(const size_t row, const size_t column)
     return coefficient;
   }
   return 0.0;
-  /*
-   else if(row == column + 1)
-   {
-   if(column % (m_dim_n - 1))
-   {
-   return coefficient;
-   }
-   else
-   {
-   return 0.0;
-   }
-   }
-   else if(row + 1 == column)
-   {
-   if(row % (m_dim_n - 1))
-   {
-   return coefficient;
-   }
-   else
-   {
-   return 0.0;
-   }
-   }
-
-   else if(column+(m_dim_n - 1) == row)
-   {
-   return coefficient;
-   }
-   else if(row+(m_dim_n - 1) == column)
-   {
-   return coefficient;
-   }*/
-
 }
 
 template<typename T>
