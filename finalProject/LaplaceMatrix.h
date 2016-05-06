@@ -11,22 +11,22 @@
 template <class T>
 class LaplaceMatrix;
 
-template <class T>
-const LaplaceMatrix<T> operator* (const T& scalar, const LaplaceMatrix<T>& matrix);
-
-const float DIAGONAL_COEFFICIENT = .25;
+const double DIAGONAL_COEFFICIENT = .25;
 template <class T>
 class LaplaceMatrix : public SquareMatrix<T>, public Invalidateable<T>
 {
   private:
-    size_t dimensions;
+    size_t m_dim_n;
     T coefficient;
 
   public:
-    LaplaceMatrix(const size_t d = 4) : dimensions(d), coefficient(DIAGONAL_COEFFICIENT) {}
 
+    LaplaceMatrix(const size_t d = 4) : m_dim_n(d), coefficient(DIAGONAL_COEFFICIENT) {}
+    ///@brief returns the value at the given index.
+    ///@pre T must be comparable/assignable with double values
+    ///@post the value at the given index is returned
     const T& operator() (const size_t row, const size_t column);
-    friend const LaplaceMatrix<T> operator* <>(const T& scalar, const LaplaceMatrix<T>& matrix);
+    void laplaceBoundCheck (const size_t row, const size_t column);
 };
 #include "LaplaceMatrix.hpp"
 #endif
