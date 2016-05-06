@@ -108,7 +108,7 @@ T evaluateBorderFunction(const double x, const double y)
   else
   {
     //Argument isn't on the border, continue as normal
-    //throw std::invalid_argument("Argument is not on the border");
+    throw std::invalid_argument("Argument is not on the border");
   }
 }
 
