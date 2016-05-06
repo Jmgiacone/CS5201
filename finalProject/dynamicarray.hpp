@@ -300,7 +300,6 @@ void DynamicArray<T>::reverse()
 template<typename T>
 void DynamicArray<T>::reserve(const size_t size)
 {
-  std::cout << "reserving for " << size << std::endl;
   if (m_length < size)
   {
     resize(size);
