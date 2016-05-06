@@ -15,7 +15,8 @@
 #include "abstractmatrix.h"
 #include "genericmatrix.h"
 #include "triangularmatrix.h"
-#include <vector>
+#include "genericmatrix.h"
+#include "TwoNorm.h"
 template <class T>
 class QRDecomposition
 {
