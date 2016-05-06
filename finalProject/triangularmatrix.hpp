@@ -20,21 +20,52 @@ void TriangularMatrix<T>::createReferenceRows()
   DynamicArray<BoundedReferenceVector<T> > &logical_rows =
       !(this->m_transposed) ? this->m_rows : this->m_cols;
   (logical_rows).clear();
-  for (size_t i = 0; i < (this->m_dim_n); i++)
+  //- - - - >
+  //0 - - - >
+  //0 0 - - >
+  //0 0 0 - >
+  if (m_type == UPPER)
   {
-    DynamicArray<T*> pointer_references;
-    size_t bound_lower = i;
-    for (size_t j = bound_lower; j < this->m_dim_n; j++)
+    for (size_t i = 0; i < (this->m_dim_n); i++)
     {
-      T* diagonal = (T*) &(m_tri_data[i][j - bound_lower]);
-      pointer_references.append(diagonal);
+      DynamicArray<T*> pointer_references;
+      size_t bound_lower = i;
+      for (size_t j = bound_lower; j < this->m_dim_n; j++)
+      {
+        T* diagonal = (T*) &(m_tri_data[i][j - bound_lower]);
+        pointer_references.append(diagonal);
+      }
+      size_t bound_upper = this->m_dim_n - 1;
+      (logical_rows).append(
+          BoundedReferenceVector<T>(pointer_references, (this->m_dim_n),
+              bound_lower, bound_upper));
     }
-    size_t bound_upper = this->m_dim_n - 1;
-    (logical_rows).append(
-        BoundedReferenceVector<T>(pointer_references, (this->m_dim_n),
-            bound_lower, bound_upper));
+  }
+
+  //- 0 0 0 >
+  //- - 0 0 >
+  //- - - 0 >
+  //- - - - >
+  else if (m_type == LOWER)
+  {
+    for (size_t i = 0; i < (this->m_dim_n); i++)
+    {
+      DynamicArray<T*> pointer_references;
+      size_t bound_upper = i;
+      for (size_t j = 0; j <= bound_upper; j++)
+      {
+        T* diagonal = (T*) &(m_tri_data[i][j]);
+        pointer_references.append(diagonal);
+      }
+      size_t bound_lower = 0;
+      (logical_rows).append(
+          BoundedReferenceVector<T>(pointer_references, (this->m_dim_n),
+              bound_lower, bound_upper));
+    }
   }
 }
+
+///@TODO need to take into account different upper or lower triangular matricies
 template<typename T>
 void TriangularMatrix<T>::createReferenceCols()
 {
@@ -42,20 +73,52 @@ void TriangularMatrix<T>::createReferenceCols()
       !(this->m_transposed) ? this->m_cols : this->m_rows;
   (logical_cols).clear();
   DynamicArray<T*> pointer_references;
-  for (size_t i = 0; i < (this->m_dim_n); i++)
+  //| | | |
+  //0 | | |
+  //0 0 | |
+  //0 0 0 |
+  //V V V V
+  if (m_type == UPPER)
   {
-    DynamicArray<T*> pointer_references;
-    size_t bound_lower = 0;
-    size_t bound_upper = i;
-    for (size_t j = bound_lower; j <= bound_upper; j++)
+    for (size_t i = 0; i < (this->m_dim_n); i++)
     {
-      T* diagonal = (T*) &(m_tri_data[j][i - j]);
-      pointer_references.append(diagonal);
+      DynamicArray<T*> pointer_references;
+      size_t bound_lower = 0;
+      size_t bound_upper = i;
+      for (size_t j = bound_lower; j <= bound_upper; j++)
+      {
+        T* diagonal = (T*) &(m_tri_data[j][i - j]);
+        pointer_references.append(diagonal);
+      }
+      (logical_cols).append(
+          BoundedReferenceVector<T>(pointer_references, (this->m_dim_n),
+              bound_lower, bound_upper));
+      pointer_references.clear();
     }
-    (logical_cols).append(
-        BoundedReferenceVector<T>(pointer_references, (this->m_dim_n),
-            bound_lower, bound_upper));
-    pointer_references.clear();
+  }
+
+  //| 0 0 0
+  //| | 0 0
+  //| | | 0
+  //| | | |
+  //V V V V
+  else if (m_type == LOWER)
+  {
+    for (size_t i = 0; i < (this->m_dim_n); i++)
+    {
+      DynamicArray<T*> pointer_references;
+      size_t bound_lower = i;
+      size_t bound_upper = this->m_dim_n - 1;
+      for (size_t j = bound_lower; j <= bound_upper; j++)
+      {
+        T* diagonal = (T*) &(m_tri_data[j][i]);
+        pointer_references.append(diagonal);
+      }
+      (logical_cols).append(
+          BoundedReferenceVector<T>(pointer_references, (this->m_dim_n),
+              bound_lower, bound_upper));
+      pointer_references.clear();
+    }
   }
 }
 
@@ -108,6 +171,30 @@ TriangularMatrix<T>::TriangularMatrix(const TRIANGLE_TYPE type,
   m_tri_data = tri_data;
   this->m_dim_n = m_tri_data.size();
   this->m_transposed = type;
+  this->initReferenceDims();
+}
+
+template<typename T>
+TriangularMatrix<T>::TriangularMatrix(const size_t dim_n,
+    const TRIANGLE_TYPE type, const T& item)
+{
+  m_type = type;
+  this->m_dim_n = dim_n;
+  if (type == UPPER)
+  {
+    for (size_t i = 0; i < dim_n; i++)
+    {
+      m_tri_data.append(AlgebraVector<T>((dim_n - i), item));
+    }
+  }
+  else if (type == LOWER)
+  {
+    for (size_t i = 0; i < dim_n; i++)
+    {
+      m_tri_data.append(AlgebraVector<T>((i + 1), item));
+    }
+  }
+  this->m_transposed = false;
   this->initReferenceDims();
 }
 

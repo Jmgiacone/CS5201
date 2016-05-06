@@ -95,6 +95,18 @@ class GenericMatrix: public virtual UnrestrictedRefMatrix<T>
     /// @post initializes class members
     GenericMatrix(const size_t rows, const AlgebraVector<T>& row);
 
+    ///@TODO ADD TO UML
+    /// @brief parameterized constructor
+    /// @pre T = T is defined
+    /// @post initializes class members to item with given size constraints
+    GenericMatrix(const size_t rows, const size_t cols, const T& item = T());
+
+    ///@TODO ADD TO UML
+    /// @brief parameterized constructor
+    /// @pre T = T is defined
+    /// @post initializes class members to item with given size constraints
+    GenericMatrix(const size_t dim_n, const T& item = T()) : GenericMatrix(dim_n, dim_n, item) {}
+
     /// @pre T = T defined
     /// @post calling objects member variables are set to rhs's and a
     /// reference to the calling object is returned

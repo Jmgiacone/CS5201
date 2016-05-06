@@ -56,6 +56,7 @@ GenericMatrix<T>::GenericMatrix(const DynamicArray<AlgebraVector<T> >& data)
 template<typename T>
 GenericMatrix<T>::GenericMatrix(const size_t rows, const AlgebraVector<T>& row)
 {
+  this->m_transposed = false;
   this->m_num_rows = rows;
   this->m_num_cols = row.size();
   m_data.reserve(rows);
@@ -65,6 +66,21 @@ GenericMatrix<T>::GenericMatrix(const size_t rows, const AlgebraVector<T>& row)
   }
   this->initReferenceDims();
 }
+
+template<typename T>
+GenericMatrix<T>::GenericMatrix(const size_t rows, const size_t cols, const T& item)
+{
+  this->m_transposed = false;
+  this->m_num_rows = rows;
+  this->m_num_cols = cols;
+  m_data.reserve(rows);
+  for(size_t i = 0; i < rows; i++)
+  {
+    m_data[i] = (AlgebraVector<T>(cols, item));
+  }
+  this->initReferenceDims();
+}
+
 
 template<typename T>
 const GenericMatrix<T>& GenericMatrix<T>::operator =(

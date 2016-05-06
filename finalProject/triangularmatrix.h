@@ -82,6 +82,8 @@ class TriangularMatrix: public virtual Invalidateable<T>,
     TriangularMatrix(const TRIANGLE_TYPE type,
         const DynamicArray<AlgebraVector<T> >& tri_data);
 
+    TriangularMatrix(const size_t dim_n, const TRIANGLE_TYPE type, const T& item = T());
+
     /// @brief assignment operator, calling object set to rhs
     /// @pre T = T defined
     /// @post calling objects member variables are set to rhs's and a
