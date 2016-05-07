@@ -16,7 +16,7 @@
 template <class T>
 class LaplaceMatrix;
 
-const double DIAGONAL_COEFFICIENT = .25;
+const double DIAGONAL_COEFFICIENT = -0.25;
 template <class T>
 class LaplaceMatrix  //public SquareMatrix<T>, public Invalidateable<T>
 {
