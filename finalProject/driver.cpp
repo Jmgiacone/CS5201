@@ -36,11 +36,11 @@ void print_seperator(string message)
 ///@brief sets the format for the given os object
 ///@pre none
 /// message is formatted with width set width, precision of precision, and right alignment
-/*void print_formatter(std::ostream & os, const int precision = default_precision,
+void print_formatter(std::ostream & os, const int precision = default_precision,
     const int width = number_max)
 {
   os << setw(width) << fixed << setprecision(precision) << right;
-}*/
+}
 
 ///@brief caculates absolute error based on x_real an approximation
 ///@pre none

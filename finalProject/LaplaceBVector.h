@@ -47,7 +47,5 @@ template <double topFunction(double x, double y),
     double rightFunction(double x, double y),
     class T>
 T evaluateBorderFunction(const double x, const double y);
-void print_formatter(std::ostream & os, const int precision = default_precision,
-                     const int width = number_max);
 #include "LaplaceBVector.hpp"
 #endif

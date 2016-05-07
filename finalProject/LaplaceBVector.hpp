@@ -136,8 +136,7 @@ AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool qrMethod)
   QRDecomposition<T> qrDecomp;
   AlgebraVector<T> bVector = laplaceBVector<topFunction, bottomFunction, leftFunction, rightFunction, gFunction, T>(n);
   GenericMatrix<T> aMatrix = LaplaceMatrix<T>(n).toGenMat();
-  print_formatter(cout);
-  cout << bVector << endl;
+
   if(qrMethod)
   {
     //Do the QR method
@@ -145,11 +144,6 @@ AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool qrMethod)
     cout << endl;
     GenericMatrix<T> q = qrDecomp.getQ();
     TriangularMatrix<T> r = qrDecomp.getR();
-
-    print_formatter(cout);
-    cout << q << endl;
-    print_formatter(cout);
-    cout << r << endl;
 
     //Transpose q
     q.transpose();
@@ -161,14 +155,6 @@ AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool qrMethod)
   }
   else
   {
-    print_formatter(cout);
-    cout << aMatrix << endl;
     return gaussElim(aMatrix, bVector);
   }
-}
-
-void print_formatter(std::ostream & os, const int precision,
-                     const int width)
-{
-  os << setw(width) << fixed << setprecision(precision) << right;
 }
