@@ -1,16 +1,9 @@
 /**
  *  @file refbasedmatrix.hpp
- *  @author shae, CS5201 Section A
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 18, 2016
  *  @brief Description:
  *  @details Details:
- */
-
-/*template<typename T>
- RefBasedMatrix<T>::RefBasedMatrix()
- {
- initReferenceDims();
- }
  */
 template<typename T>
 const AbstractMatrix<T>& RefBasedMatrix<T>::operator *=(const T& rhs)

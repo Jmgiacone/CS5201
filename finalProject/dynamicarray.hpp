@@ -1,9 +1,13 @@
 /**
- *  @file dynamicarray.hpp
- *  @author shae, CS5201 Section A
- *  @date Feb 23, 2016
- *  @brief Description:
- *  @details Details:
+ * Programmers: Jordan Giacone, Shae Bolt
+ * Class: CS5201 Section A
+ * Instructor: Clayton Price
+ * Homework 5
+ * Student ID: 12400927, 18074469
+ * Login: Jmgv27, Snb4y4
+ * Date: 4/8/16
+ * Filename: GaussianElimination.h
+ * Description: Header File for Gaussian Elimination functor
  */
 
 template<typename T>

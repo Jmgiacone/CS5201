@@ -1,6 +1,6 @@
 /**
  *  @file squarematrix.h
- *  @author shae, CS5201 Section A
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 21, 2016
  *  @brief Description:
  *  @details Details:
@@ -18,7 +18,7 @@ class SquareMatrix: public virtual AbstractMatrix<T>
   protected:
     size_t m_dim_n;
   public:
-    ///@brief defualt constructs dimension
+    ///@brief default constructs dimension
     /// @pre
     /// @post sets dimension to zero
     SquareMatrix() :

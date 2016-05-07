@@ -1,5 +1,13 @@
-#include <iostream>
-#include "LaplaceMatrix.h"
+/**
+ *  @file LaplaceBVector.hpp
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
+ *  @date May 6, 2016
+ *  @brief Description: PDE laplace matrix estimation functions
+ *  given a set of four border functions and a forcing function
+ *  @details Details:
+ */
+
+
 
 using std::cout;
 using std::endl;
@@ -32,7 +40,7 @@ AlgebraVector<T> laplaceBVector(const size_t n)
         tmp = evaluateBorderFunction<topFunction, bottomFunction, leftFunction, rightFunction, T>((x-1)*h, y*h);
         uVector[i] += tmp;
       }
-      catch (std::invalid_argument a)
+      catch (std::invalid_argument& a)
       {
         //Not a border point
         //cout << "Not a border point" << endl;
@@ -43,7 +51,7 @@ AlgebraVector<T> laplaceBVector(const size_t n)
         tmp = evaluateBorderFunction<topFunction, bottomFunction, leftFunction, rightFunction, T>((x+1)*h, y*h);
         uVector[i] += tmp;
       }
-      catch (std::invalid_argument a)
+      catch (std::invalid_argument& a)
       {
         //Not a border point
         //cout << "Not a border point" << endl;
@@ -54,7 +62,7 @@ AlgebraVector<T> laplaceBVector(const size_t n)
         tmp = evaluateBorderFunction<topFunction, bottomFunction, leftFunction, rightFunction, T>(x*h, (y-1)*h);
         uVector[i] += tmp;
       }
-      catch (std::invalid_argument a)
+      catch (std::invalid_argument& a)
       {
         //Not a border point
         //cout << "Not a border point" << endl;
@@ -65,7 +73,7 @@ AlgebraVector<T> laplaceBVector(const size_t n)
         tmp = evaluateBorderFunction<topFunction, bottomFunction, leftFunction, rightFunction, T>(x*h, (y+1)*h);
         uVector[i] += tmp;
       }
-      catch (std::invalid_argument a)
+      catch (std::invalid_argument& a)
       {
         //Not a border point
         //cout << "Not a border point" << endl;

@@ -1,6 +1,6 @@
 /**
  *  @file triangularmatrix.h
- *  @author shae, CS5201 Section A
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 19, 2016
  *  @brief Description:
  *  @details Details:

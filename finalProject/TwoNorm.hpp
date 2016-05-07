@@ -1,14 +1,11 @@
 /**
- * Programmer: Jordan Giacone
- * Class: CS5201 Section A
- * Instructor: Clayton Price
- * Homework 6
- * Student ID: 12400927
- * Login: Jmgv27
- * Date: 4/22/16
- * Filename: TwoNorm.hpp
- * Description: Template implementation file for the TwoNorm functor
+ *  @file TwoNorm.hpp
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
+ *  @date Apr 22, 2016
+ *  @brief Description: Template implementation file for the TwoNorm functor
+ *  @details Details:
  */
+
 #include <iostream>
 #include <cmath>
 #include "algebravector.h"

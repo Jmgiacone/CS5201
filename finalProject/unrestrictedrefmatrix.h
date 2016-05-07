@@ -1,6 +1,6 @@
 /**
  *  @file unrestrictedrefmatrix.h
- *  @author shae, CS5201 Section A
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 18, 2016
  *  @brief Description:
  *  @details Details:
@@ -41,7 +41,6 @@ class UnrestrictedRefMatrix: public virtual UnrestrictedDimMatrix<T>,
         UnrestrictedDimMatrix<T>(), RefBasedMatrix<T>()
     {
     }
-    //UnrestrictedRefMatrix(const UnrestrictedRefMatrix<T>& urm):UnrestrictedDimMatrix<T>(urm.rows(), urm.columns()){std::cout << urm.rows() << " saf" << std::endl;}
     virtual ~UnrestrictedRefMatrix()
     {
     }

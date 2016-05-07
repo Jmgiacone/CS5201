@@ -1,6 +1,6 @@
 /**
  *  @file invalidateable.h
- *  @author shae, CS5201 Section A
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 20, 2016
  *  @brief Description:
  *  @details Details:
@@ -11,7 +11,7 @@
 #include "genericmatrix.h"
 #include "boundedreferencevector.h"
 
-///@brief represents an object that can be invalidiated
+///@brief represents a matrix that can be invalidiated
 template<typename T>
 class Invalidateable: public virtual AbstractMatrix<T>
 {

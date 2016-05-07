@@ -1,3 +1,13 @@
+/**
+ *  @file LaplaceBVector.h
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
+ *  @date May 6, 2016
+ *  @brief Description: PDE laplace matrix estimation functions
+ *  given a set of four border functions and a forcing function
+ *  @details Details:
+ */
+
+
 //
 // Created by Jordan on 5/6/2016.
 //
@@ -8,6 +18,9 @@
 #include "triangularmatrix.h"
 #include "GaussianElimination.h"
 #include "QRDecomposition.h"
+#include <iostream>
+#include "LaplaceMatrix.h"
+
 template <double topFunction(double x, double y),
           double bottomFunction(double x, double y),
           double leftFunction(double x, double y),

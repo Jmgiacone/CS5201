@@ -1,13 +1,9 @@
 /**
- * Programmer: Jordan Giacone
- * Class: CS5201 Section A
- * Instructor: Clayton Price
- * Homework 4
- * Student ID: 12400927
- * Login: Jmgv27
- * Date: 4/8/16
- * Filename: GaussianElimination.hpp
- * Description: HImplementation File for Gaussian Elimination functor
+ *  @file GaussianElimination.hpp
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
+ *  @date Apr 8, 2016
+ *  @brief Description: Header File for Gaussian Elimination functor
+ *  @details Details:
  */
 
 #include <cmath>

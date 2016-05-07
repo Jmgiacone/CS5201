@@ -1,14 +1,12 @@
 /**
- * Programmer: Jordan Giacone
- * Class: CS5201 Section A
- * Instructor: Clayton Price
- * Homework 6
- * Student ID: 12400927
- * Login: Jmgv27
- * Date: 4/22/16
- * Filename: TwoNorm.h
- * Description: Header file for the TwoNorm functor
+ *  @file TwoNorm.h
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
+ *  @date Apr 22, 2016
+ *  @brief Description: Header file for the TwoNorm functor
+ *  @details Details:
  */
+
+
 
 #ifndef TWONORM_H
 #define TWONORM_H
