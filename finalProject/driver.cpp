@@ -17,7 +17,7 @@ using std::endl;
 
 #define line_width 20
 #define number_max 14
-#define default_precision 10
+#define default_precision 20
 using namespace std;
 
 ///@brief sends a message out with cout with format so output appears centered
@@ -77,7 +77,7 @@ int main()
 
   const double h = 1 / static_cast<double>(n);
   int i = 0;
-  print_seperator(" laplace comparison for gaussian");
+  print_seperator(" Laplace comparison for Gaussian Elimination ");
   for(size_t y = 1; y < n; y++)
   {
     for(size_t x = 1; x < n; x++)
@@ -86,12 +86,12 @@ int main()
       double laplace_val = laplace_result_GAUSS[i];
       double a_err = relative_error(real_val, laplace_val);
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " relative error = " << a_err << endl;
+      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " Relative error = " << a_err << endl;
       i++;
     }
   }
   i = 0;
-  print_seperator(" laplace comparison for QR decomposition");
+  print_seperator(" Laplace comparison for QR Decomposition ");
   for(size_t y = 1; y < n; y++)
   {
     for(size_t x = 1; x < n; x++)
@@ -100,7 +100,7 @@ int main()
       double laplace_val = laplace_result_QRDEC[i];
       double a_err = absolute_error(real_val, laplace_val);
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " relative error = " << a_err << endl;
+      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " Relative error = " << a_err << endl;
       i++;
     }
   }
