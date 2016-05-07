@@ -59,7 +59,7 @@ class TriangularMatrix: public virtual Invalidateable<T>,
     /// @pre
     /// @post default constructs base classes
     TriangularMatrix() :
-        UnrestrictedDimMatrix<T>(), RefBasedMatrix<T>(), m_type(UPPER)
+        SquareMatrix<T>(), RefBasedMatrix<T>(), m_type(UPPER)
     {
 
     }
