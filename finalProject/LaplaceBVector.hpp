@@ -1,4 +1,6 @@
 #include <iostream>
+#include "LaplaceMatrix.h"
+
 using std::cout;
 using std::endl;
 
@@ -74,8 +76,6 @@ AlgebraVector<T> laplaceBVector(const size_t n)
   }
   answer = ((h*h/4) * gVector) - (.25 * uVector);
 
-  cout << answer << endl;
-
   return answer;
 }
 
@@ -118,9 +118,30 @@ template <double topFunction(double x, double y),
           double rightFunction(double x, double y),
           double gFunction(double x, double y),
           class T>
-AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool pivoting)
+AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool qrMethod)
 {
-  AlgebraVector<T> answer(n, 0);
+  GaussianElimination<T> gaussElim;
+  QRDecomposition<T> qrDecomp;
+  AlgebraVector<T> bVector = laplaceBVector<topFunction, bottomFunction, leftFunction, rightFunction, gFunction, T>(n);
+  GenericMatrix<T> aMatrix = LaplaceMatrix<T>(n).toGenMat();
+  cout << bVector << endl;
+  if(qrMethod)
+  {
+    //Do the QR method
+    qrDecomp(aMatrix);
+    GenericMatrix<T> q = qrDecomp.getQ();
+    TriangularMatrix<T> r = qrDecomp.getR();
 
-  return answer;
+    //Transpose q
+    q.transpose();
+
+    //b = QT * b
+    bVector = q * bVector;
+
+    return gaussElim(r, bVector);
+  }
+  else
+  {
+    return gaussElim(aMatrix, bVector);
+  }
 }
