@@ -67,7 +67,7 @@ double realFunction(double x, double y);
 
 int main()
 {
-  const size_t n = 15;
+  const size_t n = 25;
   AlgebraVector<double> laplace_result_QRDEC = laplaceMatrixSolver<topFunction,
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
   AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
@@ -84,9 +84,9 @@ int main()
     {
       double real_val = realFunction(x*h, y*h);
       double laplace_val = laplace_result_GAUSS[i];
-      double a_err = absolute_error(real_val, laplace_val);
+      double a_err = relative_error(real_val, laplace_val);
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): Real Value = " << real_val << " Approximate Value = " << laplace_val << " Absolute error = " << a_err << endl;
+      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " Relative error = " << a_err << endl;
       i++;
     }
   }
@@ -100,7 +100,7 @@ int main()
       double laplace_val = laplace_result_QRDEC[i];
       double a_err = absolute_error(real_val, laplace_val);
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): Real Value = " << real_val << " Approximate Value = " << laplace_val << " Absolute error = " << a_err << endl;
+      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " Relative error = " << a_err << endl;
       i++;
     }
   }
