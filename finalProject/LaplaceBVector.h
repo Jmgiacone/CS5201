@@ -6,6 +6,8 @@
 #define LAPLACEBVECTOR_H
 #include "algebravector.h"
 #include "triangularmatrix.h"
+#include "GaussianElimination.h"
+#include "QRDecomposition.h"
 template <double topFunction(double x, double y),
           double bottomFunction(double x, double y),
           double leftFunction(double x, double y),
@@ -20,7 +22,7 @@ template <double topFunction(double x, double y),
     double rightFunction(double x, double y),
     double gFunction(double x, double y),
     class T>
-AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool pivoting);
+AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool qrMethod);
 
 template <double topFunction(double x, double y),
     double bottomFunction(double x, double y),
