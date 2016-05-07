@@ -86,7 +86,7 @@ int main()
       double laplace_val = laplace_result_GAUSS[i];
       double a_err = relative_error(real_val, laplace_val);
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " Relative error = " << a_err << endl;
+      cout << "Point (" << x*h << ", " << y*h << "): Real Value = " << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
       i++;
     }
   }
@@ -100,7 +100,7 @@ int main()
       double laplace_val = laplace_result_QRDEC[i];
       double a_err = absolute_error(real_val, laplace_val);
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " Relative error = " << a_err << endl;
+      cout << "Point (" << x*h << ", " << y*h << "): Real Value = " << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
       i++;
     }
   }
