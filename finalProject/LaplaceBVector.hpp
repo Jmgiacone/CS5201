@@ -35,7 +35,7 @@ AlgebraVector<T> laplaceBVector(const size_t n)
     for(int x = 1; x < n_int; x++)
     {
       //Get the g vector all set
-      gVector[i] = gFunction(x*h, y*h);
+      gVector[i] = -gFunction(x*h, y*h);
 
       //Add in border functions, if any
       //cout << "Checking neighbors for (" << x*h << ", " << y*h << ")" << endl;
@@ -87,7 +87,7 @@ AlgebraVector<T> laplaceBVector(const size_t n)
       i++;
     }
   }
-  answer = ((h*h/4) * gVector) - (.25 * uVector);
+  answer = ((h*h/4) * gVector) + (.25 * uVector);
 
   return answer;
 }
