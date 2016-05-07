@@ -12,7 +12,8 @@
 
 #ifndef GAUSSIANELIMINATION_H
 #define GAUSSIANELIMINATION_H
-#include "Matrix.h"
+#include "genericmatrix.h"
+#include "algebravector.h"
 template <class T>
 class GaussianElimination
 {
@@ -36,7 +37,7 @@ class GaussianElimination
      *       If there is an attempted division by zero, a domain_error exception is thrown
      * Return: The answer Vector
      */
-    Vector<T> operator() (Matrix<T> a, Vector<T> b, bool pivoting);
+    AlgebraVector<T> operator() (GenericMatrix<T> a, AlgebraVector<T> b);
 
     /**
      * Purpose: Function Evaluation operator - Augmented Matrix
@@ -55,17 +56,7 @@ class GaussianElimination
      *       If there is an attempted division by zero, a domain_error exception is thrown
      * Return: The augmented Matrix with all it's diagonal elements set to 1
      */
-    Matrix<T> operator() (Matrix<T> a, bool pivoting);
-
-    /**
-     * Purpose: Abstract Gauss Elimination
-     * Pre: aMatrix must have the same number of columns as bVector is long
-     * Param: aMatrix - The matrix to be solved
-     *        bVector - The "b" vector
-     * Post: If there is a dimension mismatch, an invalid_argument exception will be thrown
-     * Return: The "x" Vector in the equation Ax = b
-     */
-    Vector<T> operator() (AbstractMatrix<T>& aMatrix, const Vector<T>& bVector);
+    GenericMatrix<T> operator() (GenericMatrix<T> a);
 };
 #include "GaussianElimination.hpp"
 #endif
