@@ -17,12 +17,12 @@ template <class T>
 const T TwoNorm<T>::operator() (const AlgebraVector<T>& src)
 {
   T temp;
-  int n = src.size();
+  int n = static_cast<int>(src.size());
 
   if(n != 0)
   {
     temp = src[0] * src[0];
-    for (int i = 1; i < src.size(); i++)
+    for (int i = 1; i < n; i++)
     {
       temp += src[i] * src[i];
     }

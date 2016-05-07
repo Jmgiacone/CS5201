@@ -33,10 +33,12 @@ AlgebraVector<T> GaussianElimination<T>::operator() (GenericMatrix<T> a, Algebra
   //Vector<T> result(a.numRows());
 
   //Create an augmented matrix from A and B
-  for(int i = 0; i < augmented.rows(); i++)
+  int rows = static_cast<int>(augmented.rows());
+  int columns = static_cast<int>(augmented.columns());
+  for(int i = 0; i < rows; i++)
   //for(int i = 0; i < augmented.numRows(); i++)
   {
-    for(int j = 0; j < augmented.columns()-1; j++)
+    for(int j = 0; j < columns - 1; j++)
     //for(int j = 0; j < augmented.numColumns()-1; j++)
     {
       augmented[i][j] = a[i][j];
@@ -47,7 +49,8 @@ AlgebraVector<T> GaussianElimination<T>::operator() (GenericMatrix<T> a, Algebra
 
   augmented = (*this)(augmented);
 
-  for(int i = 0; i < result.size(); i++)
+  int vectSize = static_cast<int>(result.size());
+  for(int i = 0; i < vectSize; i++)
   //for(int i = 0; i < result.numTerms(); i++)
   {
     result[i] = augmented[i][augmented.columns()-1];
@@ -73,17 +76,19 @@ GenericMatrix<T> GaussianElimination<T>::operator()(GenericMatrix <T> a)
     throw std::invalid_argument("Matrix dimensions are zero!");
   }
 
-  int numMultipliers = a.rows() - 1;
+  int numMultipliers = static_cast<int>(a.rows()) - 1;
+  int rows = static_cast<int>(a.rows());
+  int columns = static_cast<int>(a.columns());
   //int numMultipliers = a.numRows() - 1;
   if(numMultipliers > 0)
   {
     T* multipliers = new T[numMultipliers];
 
     //Forward Elimination
-    for(int i = 0; i < a.rows(); i++)
+    for(int i = 0; i < rows; i++)
     //for(int i = 0; i < a.numRows(); i++)
     {
-      for(int j = i + 1; j < a.columns() - 1; j++)
+      for(int j = i + 1; j < columns - 1; j++)
       //for(int j = i + 1; j < a.numColumns() - 1; j++)
       {
         if(a[i][i] == 0)
@@ -93,7 +98,7 @@ GenericMatrix<T> GaussianElimination<T>::operator()(GenericMatrix <T> a)
 
         multipliers[j - i - 1] = a[j][i] / a[i][i];
         a[j][i] = 0;
-        for(int k = i+1; k < a.columns(); k++)
+        for(int k = i+1; k < columns; k++)
         //for(int k = i+1; k < a.numColumns(); k++)
         {
           a[j][k] = a[j][k] - multipliers[j - i - 1] * a[i][k];
@@ -102,10 +107,10 @@ GenericMatrix<T> GaussianElimination<T>::operator()(GenericMatrix <T> a)
     }
 
     //Back substitution
-    for(int i = a.rows() - 1; i >=0; i--)
+    for(int i = rows - 1; i >=0; i--)
     //for(int i = a.numRows() - 1; i >= 0; i--)
     {
-      for(int j = a.columns() - 2; j > i; j--)
+      for(int j = columns - 2; j > i; j--)
       //for(int j = a.numColumns() - 2; j > i; j--)
       {
         a[i][a.columns() - 1] = a[i][a.columns() - 1] - a[j][a.columns() - 1] * a[i][j];
