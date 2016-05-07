@@ -165,7 +165,7 @@ void GenericMatrix<T>::createReferenceRows()
 
   size_t row_size = m_data.size();
   size_t col_size = row_size ? m_data[0].size() : 0;
-  std::cout << "start initing rows for generic" << std::endl;
+  //std::cout << "start initing rows for generic" << std::endl;
   for (size_t i = 0; i < row_size; i++)
   {
     DynamicArray<T*> row;
@@ -178,13 +178,13 @@ void GenericMatrix<T>::createReferenceRows()
         BoundedReferenceVector<T>(row, col_size, 0, col_size - 1));
     //what happens to variables? do I need to set null?
   }
-  std::cout << "finit" << std::endl;
-  for(size_t i = 0; i < (logical_rows).size(); i ++)
+  //std::cout << "finit" << std::endl;
+  /*for(size_t i = 0; i < (logical_rows).size(); i ++)
   {
     std::cout << logical_rows[i] << std::endl;
-  }
-  std::cout << "finit" << std::endl;
-  std::cout << "done initing rows for generic" << std::endl;
+  }*/
+  //std::cout << "finit" << std::endl;
+  //std::cout << "done initing rows for generic" << std::endl;
 }
 
 template<typename T>
