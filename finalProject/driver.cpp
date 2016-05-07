@@ -1,3 +1,12 @@
+/**
+ *  @file driver.cpp
+ *  @author Jordan Giacone, Shae Bolt , CS5201 Section A
+ *  @date May 5, 2016
+ *  @brief Description: driver that tests PDE solving techniques.
+ *  @details Details:
+ */
+
+
 #include <iostream>
 #include "LaplaceBVector.h"
 #include "LaplaceMatrix.h"
@@ -63,6 +72,8 @@ int main()
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
   AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, false);
+
+
 
   const double h = 1 / static_cast<double>(n);
   int i = 0;

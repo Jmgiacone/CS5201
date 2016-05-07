@@ -17,7 +17,7 @@ const T LaplaceMatrix<T>::operator()(const size_t row, const size_t column)
 
   if (row == column)
   {
-    return -1.0;
+    return 1.0;
   }
   else if (max_dim == min_dim + 1)
   {
