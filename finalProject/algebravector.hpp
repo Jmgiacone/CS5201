@@ -133,8 +133,7 @@ std::istream& AlgebraVector<T>::readin(std::istream& is)
 template<typename T>
 T AlgebraVector<T>::vectorMultiply(const AbstractVector<T>& rhs) const
 {
-  T temp;
-  temp -= temp;
+  T temp = T();
   vecArithmeticSizeCheck(*this, rhs);
 
   for (size_t i = 0; i < size(); i++)

@@ -14,7 +14,7 @@ BoundedReferenceVector<T>::BoundedReferenceVector(
   m_ref_size = t_pointer_references.size();
   m_bound_lower = 0;
   m_bound_upper = m_ref_size - 1;
-  m_zero -= m_zero;
+  m_zero = T();
 }
 
 template<typename T>
@@ -78,7 +78,7 @@ BoundedReferenceVector<T>::BoundedReferenceVector(
   m_bound_lower = bound_lower;
   m_bound_upper = bound_upper;
 //forcing the value to be the equivalent of zero
-  m_zero -= m_zero;
+  m_zero = T();
 }
 
 template<typename T>
@@ -90,7 +90,7 @@ const BoundedReferenceVector<T>& BoundedReferenceVector<T>::operator =(
   m_bound_lower = rhs.m_bound_lower;
   m_bound_upper = rhs.m_bound_upper;
 //forcing the value to be the equivalent of zero
-  m_zero -= m_zero;
+  m_zero = T();
   return *this;
 }
 
@@ -103,7 +103,7 @@ const BoundedReferenceVector<T>& BoundedReferenceVector<T>::operator =(
   m_bound_lower = std::move(rhs.m_bound_lower);
   m_bound_upper = std::move(rhs.m_bound_upper);
 //forcing the value to be the equivalent of zero
-  m_zero -= m_zero;
+  m_zero = T();
   return *this;
 }
 
