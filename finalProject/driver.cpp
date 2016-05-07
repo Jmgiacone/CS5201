@@ -16,7 +16,7 @@ using std::cin;
 using std::endl;
 
 #define line_width 15
-#define number_max 6
+#define number_max 20
 #define default_precision 20
 using namespace std;
 
@@ -67,7 +67,7 @@ double realFunction(double x, double y);
 
 int main()
 {
-  const size_t n = 10;
+  const size_t n = 15;
   AlgebraVector<double> laplace_result_QRDEC = laplaceMatrixSolver<topFunction,
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
   AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
@@ -88,6 +88,7 @@ int main()
       double a_err = relative_error(real_val, laplace_val);
 
       std::cout.copyfmt(oldState);
+      print_formatter(cout, 4, 4);
       cout << "Point (" << x*h << ", " << y*h << "): Real Value = ";
       print_formatter(cout);
       cout << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
@@ -104,7 +105,8 @@ int main()
       double laplace_val = laplace_result_QRDEC[i];
       double a_err = absolute_error(real_val, laplace_val);
       std::cout.copyfmt(oldState);
-      cout << "Point (" << x*h << ", " << y*h << "): Real Value = ";
+      print_formatter(cout, 4, 4);
+      cout <<  setw(4) << "Point (" << x*h << ", " << y*h << "): Real Value = ";
       print_formatter(cout);
       cout << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
       i++;
