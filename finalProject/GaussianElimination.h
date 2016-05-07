@@ -1,19 +1,19 @@
 /**
- * Programmer: Jordan Giacone
- * Class: CS5201 Section A
- * Instructor: Clayton Price
- * Homework 5
- * Student ID: 12400927
- * Login: Jmgv27
- * Date: 4/8/16
- * Filename: GaussianElimination.h
- * Description: Header File for Gaussian Elimination functor
+ *  @file GaussianElimination.h
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
+ *  @date Apr 8, 2016
+ *  @brief Description: Header File for Gaussian Elimination functor
+ *  @details Details:
  */
+
+
 
 #ifndef GAUSSIANELIMINATION_H
 #define GAUSSIANELIMINATION_H
 #include "genericmatrix.h"
 #include "algebravector.h"
+
+///@brief Header File for Gaussian Elimination functor
 template <class T>
 class GaussianElimination
 {

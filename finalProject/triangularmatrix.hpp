@@ -1,18 +1,11 @@
 /**
  *  @file triangularmatrix.hpp
- *  @author shae, CS5201 Section A
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 21, 2016
  *  @brief Description:
  *  @details Details:
  */
 
-/**
- *  @file TriangularMatrix.hpp
- *  @author shae, CS5201 Section A
- *  @date Apr 21, 2016
- *  @brief Description:
- *  @details Details:
- */
 
 template<typename T>
 void TriangularMatrix<T>::createReferenceRows()
@@ -126,21 +119,6 @@ template<typename T>
 std::istream& TriangularMatrix<T>::readin(std::istream& is)
 {
   std::cerr << "No way to read in" << std::endl;
-  /*
-   T temp;
-   DynamicArray<T> diagonal;
-   while ((is.peek() != EOF) && !(is.eof()))
-   {
-   is >> temp;
-   if (is.eof())
-   {
-   break;
-   }
-   diagonal.append(temp);
-   }
-   m_diagonal = AlgebraVector<T>(top);
-
-   */
   return is;
 }
 

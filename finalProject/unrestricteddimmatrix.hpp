@@ -1,6 +1,6 @@
 /**
  *  @file unrestricteddimmatrix.hpp
- *  @author shae, CS5201 Section A
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 18, 2016
  *  @brief Description:
  *  @details Details:

@@ -1,6 +1,11 @@
-//
-// Created by Jordan on 5/4/2016.
-//
+/**
+ *  @file LaplaceBVector.h
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
+ *  @date May 4, 2016
+ *  @brief Description: PDE laplace matrix class for use
+ *  in PDE estimation
+ *  @details Details:
+ */
 
 #ifndef LAPLACEMATRIX_H
 #define LAPLACEMATRIX_H

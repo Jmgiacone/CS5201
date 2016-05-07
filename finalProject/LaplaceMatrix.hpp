@@ -1,8 +1,9 @@
 /**
- *  @file LaplaceMatrix.hpp
- *  @author shae, CS5201 Section A
- *  @date May 6, 2016
- *  @brief Description:
+ *  @file LaplaceBVector.hpp
+ *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
+ *  @date May 4, 2016
+ *  @brief Description: PDE laplace matrix class for use
+ *  in PDE estimation
  *  @details Details:
  */
 
