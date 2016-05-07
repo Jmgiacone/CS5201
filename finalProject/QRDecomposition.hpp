@@ -15,6 +15,7 @@ template <class T>
 QRDecomposition<T>::QRDecomposition()
 {
   //Do nothing
+  r = TriangularMatrix<T>(5, TRIANGLE_TYPE::UPPER);
 }
 
 template <class T>
