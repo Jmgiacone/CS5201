@@ -1,0 +1,11 @@
+driver.o: driver.cpp LaplaceBVector.h algebravector.h abstractvector.h \
+ dynamicarray.h dynamicarray.hpp abstractvector.hpp algebravector.hpp \
+ triangularmatrix.h invalidateable.h genericmatrix.h \
+ unrestrictedrefmatrix.h unrestricteddimmatrix.h abstractmatrix.h \
+ boundedreferencevector.h boundedreferencevector.hpp abstractmatrix.hpp \
+ unrestricteddimmatrix.hpp refbasedmatrix.h refbasedmatrix.hpp \
+ unrestrictedrefmatrix.hpp genericmatrix.hpp invalidateable.hpp \
+ squarerefmatrix.h squarematrix.h squarematrix.hpp squarerefmatrix.hpp \
+ triangularmatrix.hpp GaussianElimination.h GaussianElimination.hpp \
+ QRDecomposition.h TwoNorm.h TwoNorm.hpp QRDecomposition.hpp \
+ LaplaceMatrix.h LaplaceMatrix.hpp LaplaceBVector.hpp

@@ -16,8 +16,8 @@ using std::cin;
 using std::endl;
 
 #define line_width 20
-#define number_max 14
-#define default_precision 10
+#define number_max 15
+#define default_precision 15
 using namespace std;
 
 ///@brief sends a message out with cout with format so output appears centered
