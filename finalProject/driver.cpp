@@ -33,19 +33,66 @@ void print_formatter(std::ostream & os, const int precision = default_precision,
   os << setw(width) << fixed << setprecision(precision) << right;
 }
 
+///@brief caculates absolute error based on x_real an approximation
+///@pre none
+///@post returns the absolute error of the two arguments by value
+double absolute_error(const double x_real, const double x_approximate)
+{
+  return abs(x_real - x_approximate);
+}
+
+///@brief calculates relative error based on x_real an approximation
+///@pre none
+///@post returns the relative error of the two arguments by value
+double relative_error(const double x_real, const double x_approximate)
+{
+  return absolute_error(x_real, x_approximate) / x_real;
+}
 
 double topFunction(double x, double y);
 double bottomFunction(double x, double y);
 double leftFunction(double x, double y);
 double rightFunction(double x, double y);
 double gFunction(double x, double y);
+double realFunction(double x, double y);
 
 int main()
 {
-  const size_t x = 3;
-  AlgebraVector<double> vect = laplaceBVector<topFunction, bottomFunction, leftFunction, rightFunction, gFunction, double>(x);
-  print_formatter(cout);
-  cout << vect << endl;
+  const size_t n = 3;
+  AlgebraVector<double> laplace_result_QRDEC = laplaceMatrixSolver<topFunction,
+      bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
+  AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
+      bottomFunction, leftFunction, rightFunction, gFunction, double>(n, false);
+
+  const double h = 1 / static_cast<double>(n);
+  int i = 0;
+  print_seperator(" laplace comparison for guassian");
+  for(int y = 1; y < n; y++)
+  {
+    for(int x = 1; x < n; x++)
+    {
+      double real_val = realFunction(x*h, y*h);
+      double laplace_val = laplace_result_GAUSS[i];
+      double a_err = absolute_error(real_val, laplace_val);
+      print_formatter(cout);
+      cout << "real value = " << real_val << " laplace approximation = " << laplace_val << " absolute error = " << a_err << endl;
+      i++;
+    }
+  }
+  i = 0;
+  print_seperator(" laplace comparison for QR decomposition");
+  for(int y = 1; y < n; y++)
+  {
+    for(int x = 1; x < n; x++)
+    {
+      double real_val = realFunction(x*h, y*h);
+      double laplace_val = laplace_result_QRDEC[i];
+      double a_err = absolute_error(real_val, laplace_val);
+      print_formatter(cout);
+      cout << "real value = " << real_val << " laplace approximation = " << laplace_val << " absolute error = " << a_err << endl;
+      i++;
+    }
+  }
   return 0;
 }
 
@@ -55,12 +102,12 @@ double topFunction(double x, double y)
 }
 double bottomFunction(double x, double y)
 {
-  return 1 - x*x;
+  return 1 - x * x;
 }
 
 double leftFunction(double x, double y)
 {
-  return 1 + y*y;
+  return 1 + y * y;
 }
 
 double rightFunction(double x, double y)
@@ -71,4 +118,9 @@ double rightFunction(double x, double y)
 double gFunction(double x, double y)
 {
   return -2 * ((x * x) + (y * y));
+}
+
+double realFunction(double x, double y)
+{
+  return (1 - x * x) * (1 + y * y);
 }
