@@ -5,6 +5,7 @@
 #ifndef LAPLACEBVECTOR_H
 #define LAPLACEBVECTOR_H
 #include "algebravector.h"
+#include "triangularmatrix.h"
 template <double topFunction(double x, double y),
           double bottomFunction(double x, double y),
           double leftFunction(double x, double y),
