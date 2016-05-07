@@ -67,7 +67,7 @@ double realFunction(double x, double y);
 
 int main()
 {
-  const size_t n = 3;
+  const size_t n = 15;
   AlgebraVector<double> laplace_result_QRDEC = laplaceMatrixSolver<topFunction,
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
   AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
@@ -77,7 +77,7 @@ int main()
 
   const double h = 1 / static_cast<double>(n);
   int i = 0;
-  print_seperator(" laplace comparison for gaussian");
+  print_seperator(" Laplace comparison for Gaussian Elimination ");
   for(size_t y = 1; y < n; y++)
   {
     for(size_t x = 1; x < n; x++)
@@ -86,12 +86,12 @@ int main()
       double laplace_val = laplace_result_GAUSS[i];
       double a_err = absolute_error(real_val, laplace_val);
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " absolute error = " << a_err << endl;
+      cout << "Point (" << x*h << ", " << y*h << "): Real Value = " << real_val << " Approximate Value = " << laplace_val << " Absolute error = " << a_err << endl;
       i++;
     }
   }
   i = 0;
-  print_seperator(" laplace comparison for QR decomposition");
+  print_seperator(" Laplace comparison for QR Decomposition ");
   for(size_t y = 1; y < n; y++)
   {
     for(size_t x = 1; x < n; x++)
@@ -100,7 +100,7 @@ int main()
       double laplace_val = laplace_result_QRDEC[i];
       double a_err = absolute_error(real_val, laplace_val);
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): real value = " << real_val << " laplace approximation = " << laplace_val << " absolute error = " << a_err << endl;
+      cout << "Point (" << x*h << ", " << y*h << "): Real Value = " << real_val << " Approximate Value = " << laplace_val << " Absolute error = " << a_err << endl;
       i++;
     }
   }
