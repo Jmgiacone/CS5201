@@ -130,7 +130,7 @@ double rightFunction(double x, double y)
   double tmp = x;
   x = tmp;
   tmp = y;
-  return 1.0;
+  return 0.0;
 }
 
 double gFunction(double x, double y)
