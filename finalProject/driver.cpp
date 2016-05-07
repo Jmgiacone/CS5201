@@ -96,6 +96,7 @@ int main()
     }
   }
   i = 0;
+  cout << endl;
   print_seperator(" Laplace comparison for QR Decomposition ");
   for(size_t y = 1; y < n; y++)
   {
