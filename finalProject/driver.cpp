@@ -15,9 +15,9 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-#define line_width 20
-#define number_max 15
-#define default_precision 15
+#define line_width 15
+#define number_max 6
+#define default_precision 20
 using namespace std;
 
 ///@brief sends a message out with cout with format so output appears centered
@@ -39,7 +39,7 @@ void print_seperator(string message)
 void print_formatter(std::ostream & os, const int precision = default_precision,
     const int width = number_max)
 {
-  os << setw(width) << fixed << setprecision(precision) << right;
+  os << setw(width) << fixed << setprecision(precision) << left;
 }
 
 ///@brief caculates absolute error based on x_real an approximation
@@ -67,13 +67,14 @@ double realFunction(double x, double y);
 
 int main()
 {
-  const size_t n = 25;
+  const size_t n = 10;
   AlgebraVector<double> laplace_result_QRDEC = laplaceMatrixSolver<topFunction,
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
   AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, false);
 
-
+  std::ios oldState(nullptr);
+  oldState.copyfmt(std::cout);
 
   const double h = 1 / static_cast<double>(n);
   int i = 0;
@@ -85,8 +86,11 @@ int main()
       double real_val = realFunction(x*h, y*h);
       double laplace_val = laplace_result_GAUSS[i];
       double a_err = relative_error(real_val, laplace_val);
+
+      std::cout.copyfmt(oldState);
+      cout << "Point (" << x*h << ", " << y*h << "): Real Value = ";
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): Real Value = " << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
+      cout << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
       i++;
     }
   }
@@ -99,8 +103,10 @@ int main()
       double real_val = realFunction(x*h, y*h);
       double laplace_val = laplace_result_QRDEC[i];
       double a_err = absolute_error(real_val, laplace_val);
+      std::cout.copyfmt(oldState);
+      cout << "Point (" << x*h << ", " << y*h << "): Real Value = ";
       print_formatter(cout);
-      cout << "Point (" << x*h << ", " << y*h << "): Real Value = " << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
+      cout << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
       i++;
     }
   }
