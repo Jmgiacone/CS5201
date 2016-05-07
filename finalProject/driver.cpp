@@ -7,8 +7,8 @@ using std::cin;
 using std::endl;
 
 #define line_width 20
-#define number_max 9
-#define default_precision 5
+#define number_max 14
+#define default_precision 10
 using namespace std;
 
 ///@brief sends a message out with cout with format so output appears centered
@@ -43,7 +43,9 @@ double gFunction(double x, double y);
 int main()
 {
   const size_t x = 3;
-  laplaceBVector<topFunction, bottomFunction, leftFunction, rightFunction, gFunction, double>(x);
+  AlgebraVector<double> vect = laplaceBVector<topFunction, bottomFunction, leftFunction, rightFunction, gFunction, double>(x);
+  print_formatter(cout);
+  cout << vect << endl;
   return 0;
 }
 
@@ -68,5 +70,5 @@ double rightFunction(double x, double y)
 
 double gFunction(double x, double y)
 {
-  return 0;
+  return -2 * ((x * x) + (y * y));
 }
