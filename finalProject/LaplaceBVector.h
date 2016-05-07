@@ -21,6 +21,10 @@
 #include <iostream>
 #include "LaplaceMatrix.h"
 
+#define line_width 20
+#define number_max 14
+#define default_precision 10
+
 template <double topFunction(double x, double y),
           double bottomFunction(double x, double y),
           double leftFunction(double x, double y),
@@ -43,5 +47,7 @@ template <double topFunction(double x, double y),
     double rightFunction(double x, double y),
     class T>
 T evaluateBorderFunction(const double x, const double y);
+void print_formatter(std::ostream & os, const int precision = default_precision,
+                     const int width = number_max);
 #include "LaplaceBVector.hpp"
 #endif

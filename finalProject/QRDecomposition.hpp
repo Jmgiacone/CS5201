@@ -34,7 +34,8 @@ void QRDecomposition<T>::operator()(const AbstractMatrix<T>& aMatrix)
     }
   }*/
 
-  for(int i = 0; i < aMatrix.rows(); i++)
+  int rows = static_cast<int>(aMatrix.rows());
+  for(int i = 0; i < rows; i++)
   {
     if(i == 0)
     {
@@ -44,7 +45,7 @@ void QRDecomposition<T>::operator()(const AbstractMatrix<T>& aMatrix)
         throw std::domain_error("Error in QRDecomposition: Attempted division by zero");
       }
 
-      for(int j = 0; j < aMatrix.rows(); j++)
+      for(int j = 0; j < rows; j++)
       {
         q[j][0] = aMatrix[j][0] * (1 / normResult);
       }
@@ -73,14 +74,14 @@ void QRDecomposition<T>::operator()(const AbstractMatrix<T>& aMatrix)
         throw std::domain_error("QRDecomposition: Attempted division by zero");
       }
 
-      for(int j = 0; j < aMatrix.rows(); j++)
+      for(int j = 0; j < rows; j++)
       {
         q[j][i] = (1 / r[i][i]) * temp[j];
         //q(j, i) = (1 / r(i, i)) * temp[j];
       }
     }
 
-    for(int j = 0; j < aMatrix.rows(); j++)
+    for(int j = 0; j < rows; j++)
     {
       r[i][j] = aMatrix.getColumn(j) * q.getColumn(i);
       //r(i, j) = aMatrix.getColumn(j) * q.getColumn(i);

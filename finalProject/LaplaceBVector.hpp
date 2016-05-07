@@ -11,6 +11,10 @@
 
 using std::cout;
 using std::endl;
+using std::setw;
+using std::fixed;
+using std::setprecision;
+using std::right;
 
 template <double topFunction(double x, double y),
           double bottomFunction(double x, double y),
@@ -25,15 +29,16 @@ AlgebraVector<T> laplaceBVector(const size_t n)
   AlgebraVector<T> answer(matrixDimensions, 0), gVector(matrixDimensions, 0), uVector(matrixDimensions, 0);
   const double h = 1 / static_cast<double>(n);
   int i = 0;
-  for(int y = 1; y < n; y++)
+  int n_int = static_cast<int>(n);
+  for(int y = 1; y < n_int; y++)
   {
-    for(int x = 1; x < n; x++)
+    for(int x = 1; x < n_int; x++)
     {
       //Get the g vector all set
       gVector[i] = gFunction(x*h, y*h);
 
       //Add in border functions, if any
-      cout << "Checking neighbors for (" << x*h << ", " << y*h << ")" << endl;
+      //cout << "Checking neighbors for (" << x*h << ", " << y*h << ")" << endl;
 
       try
       {
@@ -78,7 +83,7 @@ AlgebraVector<T> laplaceBVector(const size_t n)
         //Not a border point
         //cout << "Not a border point" << endl;
       }
-      cout << endl;
+      //cout << endl;
       i++;
     }
   }
@@ -94,8 +99,7 @@ template <double topFunction(double x, double y),
     class T>
 T evaluateBorderFunction(const double x, const double y)
 {
-  cout << "Checking Point (" << x << ", " << y << ")" << endl;
-  T solution = 0;
+  //cout << "Checking Point (" << x << ", " << y << ")" << endl;
 
   if(x == 1)
   {
@@ -132,13 +136,20 @@ AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool qrMethod)
   QRDecomposition<T> qrDecomp;
   AlgebraVector<T> bVector = laplaceBVector<topFunction, bottomFunction, leftFunction, rightFunction, gFunction, T>(n);
   GenericMatrix<T> aMatrix = LaplaceMatrix<T>(n).toGenMat();
+  print_formatter(cout);
   cout << bVector << endl;
   if(qrMethod)
   {
     //Do the QR method
     qrDecomp(aMatrix);
+    cout << endl;
     GenericMatrix<T> q = qrDecomp.getQ();
     TriangularMatrix<T> r = qrDecomp.getR();
+
+    print_formatter(cout);
+    cout << q << endl;
+    print_formatter(cout);
+    cout << r << endl;
 
     //Transpose q
     q.transpose();
@@ -150,6 +161,14 @@ AlgebraVector<T> laplaceMatrixSolver(const size_t n, bool qrMethod)
   }
   else
   {
+    print_formatter(cout);
+    cout << aMatrix << endl;
     return gaussElim(aMatrix, bVector);
   }
+}
+
+void print_formatter(std::ostream & os, const int precision,
+                     const int width)
+{
+  os << setw(width) << fixed << setprecision(precision) << right;
 }
