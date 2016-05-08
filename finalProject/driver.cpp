@@ -8,6 +8,7 @@
 
 
 #include <iostream>
+#include <chrono>
 #include "LaplaceBVector.h"
 #include "LaplaceMatrix.h"
 #include "QRDecomposition.h"
@@ -70,11 +71,21 @@ double realFunction(double x, double y);
 
 int main()
 {
-  const size_t n = 15;
+  std::chrono::time_point<std::chrono::system_clock> start, end;
+  std::chrono::duration<double> qrTime, gaussTime;
+  const size_t n = 25;
+
+  start = std::chrono::system_clock::now();
   AlgebraVector<double> laplace_result_QRDEC = laplaceMatrixSolver<topFunction,
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
+  end = std::chrono::system_clock::now();
+  qrTime = end - start;
+
+  start = std::chrono::system_clock::now();
   AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
       bottomFunction, leftFunction, rightFunction, gFunction, double>(n, false);
+  end = std::chrono::system_clock::now();
+  gaussTime = end - start;
 
   std::ios oldState(nullptr);
   oldState.copyfmt(std::cout);
@@ -82,6 +93,7 @@ int main()
   const double h = 1 / static_cast<double>(n);
   int i = 0;
   print_seperator(" Laplace comparison for Gaussian Elimination ");
+  cout << "Time Duration: " << gaussTime.count() << endl;
   for(size_t y = 1; y < n; y++)
   {
     for(size_t x = 1; x < n; x++)
@@ -98,9 +110,11 @@ int main()
       i++;
     }
   }
+
   i = 0;
   cout << endl;
   print_seperator(" Laplace comparison for QR Decomposition ");
+  cout << "Elapsed Time: " << qrTime.count() << endl;
   for(size_t y = 1; y < n; y++)
   {
     for(size_t x = 1; x < n; x++)
