@@ -20,6 +20,7 @@ using std::setfill;
 using std::left;
 using std::right;
 using std::abs;
+using std::pow;
 #define line_width 15
 #define number_max 20
 #define default_precision 20
@@ -68,68 +69,14 @@ double leftFunction(double x, double y);
 double rightFunction(double x, double y);
 double gFunction(double x, double y);
 double realFunction(double x, double y);
-
+void solveLaplaceEquation(const size_t n, bool verbose);
 int main()
 {
-  std::chrono::time_point<std::chrono::system_clock> start, end;
-  std::chrono::duration<double> qrTime, gaussTime;
-  const size_t n = 25;
-
-  start = std::chrono::system_clock::now();
-  AlgebraVector<double> laplace_result_QRDEC = laplaceMatrixSolver<topFunction,
-      bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
-  end = std::chrono::system_clock::now();
-  qrTime = end - start;
-
-  start = std::chrono::system_clock::now();
-  AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
-      bottomFunction, leftFunction, rightFunction, gFunction, double>(n, false);
-  end = std::chrono::system_clock::now();
-  gaussTime = end - start;
-
-  std::ios oldState(nullptr);
-  oldState.copyfmt(std::cout);
-
-  const double h = 1 / static_cast<double>(n);
-  int i = 0;
-  print_seperator(" Laplace comparison for Gaussian Elimination ");
-  cout << "Time Duration: " << gaussTime.count() << endl;
-  for(size_t y = 1; y < n; y++)
+  for(size_t i = 2; i <= 26; i++)
   {
-    for(size_t x = 1; x < n; x++)
-    {
-      double real_val = realFunction(x*h, y*h);
-      double laplace_val = laplace_result_GAUSS[i];
-      double a_err = relative_error(real_val, laplace_val);
-
-      std::cout.copyfmt(oldState);
-      print_formatter(cout, 4, 4);
-      cout << "Point (" << x*h << ", " << y*h << "): Real Value = ";
-      print_formatter(cout);
-      cout << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
-      i++;
-    }
+    solveLaplaceEquation(i, false);
   }
 
-  i = 0;
-  cout << endl;
-  print_seperator(" Laplace comparison for QR Decomposition ");
-  cout << "Elapsed Time: " << qrTime.count() << endl;
-  for(size_t y = 1; y < n; y++)
-  {
-    for(size_t x = 1; x < n; x++)
-    {
-      double real_val = realFunction(x*h, y*h);
-      double laplace_val = laplace_result_QRDEC[i];
-      double a_err = absolute_error(real_val, laplace_val);
-      std::cout.copyfmt(oldState);
-      print_formatter(cout, 4, 4);
-      cout <<  setw(4) << "Point (" << x*h << ", " << y*h << "): Real Value = ";
-      print_formatter(cout);
-      cout << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
-      i++;
-    }
-  }
   return 0;
 }
 
@@ -167,4 +114,79 @@ double gFunction(double x, double y)
 double realFunction(double x, double y)
 {
   return (1 - (x * x)) * (1 + (y * y));
+}
+
+void solveLaplaceEquation(const size_t n, bool verbose)
+{
+  cout << "Input Size: " << n;
+  std::chrono::time_point<std::chrono::system_clock> start, end;
+  std::chrono::duration<double> qrTime, gaussTime;
+
+  start = std::chrono::system_clock::now();
+  AlgebraVector<double> laplace_result_QRDEC = laplaceMatrixSolver<topFunction,
+          bottomFunction, leftFunction, rightFunction, gFunction, double>(n, true);
+  end = std::chrono::system_clock::now();
+  qrTime = end - start;
+
+  start = std::chrono::system_clock::now();
+  AlgebraVector<double> laplace_result_GAUSS = laplaceMatrixSolver<topFunction,
+          bottomFunction, leftFunction, rightFunction, gFunction, double>(n, false);
+  end = std::chrono::system_clock::now();
+  gaussTime = end - start;
+
+  std::ios oldState(nullptr);
+  oldState.copyfmt(std::cout);
+
+  const double h = 1 / static_cast<double>(n);
+  int i = 0;
+  print_seperator(" Laplace comparison for Gaussian Elimination ");
+  cout << "Time Duration: " << gaussTime.count() << " sec" << endl;
+  double totalError = 0;
+  for(size_t y = 1; y < n; y++)
+  {
+    for(size_t x = 1; x < n; x++)
+    {
+      double real_val = realFunction(x*h, y*h);
+      double laplace_val = laplace_result_GAUSS[i];
+      double a_err = relative_error(real_val, laplace_val);
+
+      if(verbose)
+      {
+        std::cout.copyfmt(oldState);
+        print_formatter(cout, 4, 4);
+        cout << "Point (" << x * h << ", " << y * h << "): Real Value = ";
+        print_formatter(cout);
+        cout << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
+      }
+      totalError += a_err;
+      i++;
+    }
+  }
+  cout << "Average Error: " << totalError / pow(n-1, 2);
+  totalError = 0;
+  i = 0;
+  cout << endl;
+  print_seperator(" Laplace comparison for QR Decomposition ");
+  cout << "Elapsed Time: " << qrTime.count() << " sec" << endl;
+  for(size_t y = 1; y < n; y++)
+  {
+    for(size_t x = 1; x < n; x++)
+    {
+      double real_val = realFunction(x*h, y*h);
+      double laplace_val = laplace_result_QRDEC[i];
+      double a_err = absolute_error(real_val, laplace_val);
+
+      if(verbose)
+      {
+        std::cout.copyfmt(oldState);
+        print_formatter(cout, 4, 4);
+        cout << setw(4) << "Point (" << x * h << ", " << y * h << "): Real Value = ";
+        print_formatter(cout);
+        cout << real_val << " Approximation = " << laplace_val << " Relative Error = " << a_err << endl;
+      }
+      totalError += a_err;
+      i++;
+    }
+  }
+  cout << "Average Error: " << totalError / pow(n-1, 2) << "\n" << endl;
 }
