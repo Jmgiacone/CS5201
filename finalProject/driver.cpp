@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
       n = static_cast<size_t>(atoi(argv[1]));
       break;
     default:
-      cout << "Error: Invalid parameters given. Usage: " << argv[0] << " n" << endl;
+      cout << "Error: Invalid parameters given. Usage: " << argv[0] << " numSubdivisions" << endl;
       exit(1);
   }
 
