@@ -90,6 +90,11 @@ int main(int argc, char* argv[])
       exit(1);
   }
 
+  if(n < 2)
+  {
+    cout << "Error: Input is less than 2. Please don't do that" << endl;
+    exit(1);
+  }
   solveLaplaceEquation(n, true);
 
   return 0;
