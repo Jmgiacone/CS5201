@@ -1,5 +1,5 @@
 /**
- *  @file QRDecomposition.hpp
+ *  @file qrdecomposition.hpp
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 22, 2016
  *  @brief Description: This is the header for the QRDecomposition class,

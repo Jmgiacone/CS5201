@@ -1,5 +1,5 @@
 /**
- *  @file LaplaceBVector.hpp
+ *  @file laplacebvector.hpp
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date May 6, 2016
  *  @brief Description: PDE laplace matrix estimation functions

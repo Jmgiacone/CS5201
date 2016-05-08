@@ -1,5 +1,5 @@
 /**
- *  @file QRDecomposition.h
+ *  @file qrdecomposition.h
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 22, 2016
  *  @brief Description: This is the header for the QRDecomposition class,
@@ -16,7 +16,7 @@
 #include "genericmatrix.h"
 #include "triangularmatrix.h"
 #include "genericmatrix.h"
-#include "TwoNorm.h"
+#include "twonorm.h"
 template <class T>
 class QRDecomposition
 {
@@ -61,5 +61,5 @@ class QRDecomposition
     GenericMatrix<T> q;
     TriangularMatrix<T> r;
 };
-#include "QRDecomposition.hpp"
+#include "qrdecomposition.hpp"
 #endif

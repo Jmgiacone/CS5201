@@ -1,5 +1,5 @@
 /**
- *  @file LaplaceBVector.hpp
+ *  @file laplacematrix.hpp
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date May 4, 2016
  *  @brief Description: PDE laplace matrix class for use

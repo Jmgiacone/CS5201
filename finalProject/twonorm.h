@@ -1,5 +1,5 @@
 /**
- *  @file TwoNorm.h
+ *  @file twonorm.h
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 22, 2016
  *  @brief Description: Header file for the TwoNorm functor
@@ -10,6 +10,11 @@
 
 #ifndef TWONORM_H
 #define TWONORM_H
+
+#include <iostream>
+#include <cmath>
+#include "algebravector.h"
+
 template <class T>
 class TwoNorm
 {
@@ -27,5 +32,5 @@ class TwoNorm
      */
     const T operator() (const AlgebraVector<T>& src);
 };
-#include "TwoNorm.hpp"
+#include "twonorm.hpp"
 #endif

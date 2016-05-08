@@ -1,5 +1,5 @@
 /**
- *  @file GaussianElimination.hpp
+ *  @file gaussianelimination.hpp
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 8, 2016
  *  @brief Description: Header File for Gaussian Elimination functor

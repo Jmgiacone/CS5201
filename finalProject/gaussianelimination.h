@@ -1,5 +1,5 @@
 /**
- *  @file GaussianElimination.h
+ *  @file gaussianelimination.h
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 8, 2016
  *  @brief Description: Header File for Gaussian Elimination functor
@@ -58,5 +58,5 @@ class GaussianElimination
      */
     GenericMatrix<T> operator() (GenericMatrix<T> a);
 };
-#include "GaussianElimination.hpp"
+#include "gaussianelimination.hpp"
 #endif

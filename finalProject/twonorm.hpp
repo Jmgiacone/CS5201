@@ -1,14 +1,12 @@
 /**
- *  @file TwoNorm.hpp
+ *  @file twonorm.hpp
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date Apr 22, 2016
  *  @brief Description: Template implementation file for the TwoNorm functor
  *  @details Details:
  */
 
-#include <iostream>
-#include <cmath>
-#include "algebravector.h"
+
 
 template <class T>
 const T TwoNorm<T>::operator() (const AlgebraVector<T>& src)

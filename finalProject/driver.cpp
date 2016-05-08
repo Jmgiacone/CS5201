@@ -8,9 +8,10 @@
 
 
 #include <iostream>
-#include "LaplaceBVector.h"
-#include "LaplaceMatrix.h"
-#include "QRDecomposition.h"
+
+#include "laplacebvector.h"
+#include "laplacematrix.h"
+#include "qrdecomposition.h"
 using std::cout;
 using std::cin;
 using std::endl;

@@ -1,5 +1,5 @@
 /**
- *  @file LaplaceBVector.h
+ *  @file laplacebvector.h
  *  @author Jordan Giacone, Shae Bolt, CS5201 Section A
  *  @date May 6, 2016
  *  @brief Description: PDE laplace matrix estimation functions
@@ -16,10 +16,11 @@
 #define LAPLACEBVECTOR_H
 #include "algebravector.h"
 #include "triangularmatrix.h"
-#include "GaussianElimination.h"
-#include "QRDecomposition.h"
 #include <iostream>
-#include "LaplaceMatrix.h"
+
+#include "gaussianelimination.h"
+#include "laplacematrix.h"
+#include "qrdecomposition.h"
 
 template <double topFunction(double x, double y),
           double bottomFunction(double x, double y),
@@ -43,5 +44,5 @@ template <double topFunction(double x, double y),
     double rightFunction(double x, double y),
     class T>
 T evaluateBorderFunction(const double x, const double y);
-#include "LaplaceBVector.hpp"
+#include "laplacebvector.hpp"
 #endif
