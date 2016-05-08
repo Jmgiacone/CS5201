@@ -14,11 +14,14 @@
 using std::cout;
 using std::cin;
 using std::endl;
-
+using std::string;
+using std::setfill;
+using std::left;
+using std::right;
+using std::abs;
 #define line_width 15
 #define number_max 20
 #define default_precision 20
-using namespace std;
 
 ///@brief sends a message out with cout with format so output appears centered
 ///and uses '=' for filling
