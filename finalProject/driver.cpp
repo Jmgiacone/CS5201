@@ -8,6 +8,7 @@
 
 
 #include <iostream>
+#include <cstdlib>
 #include <chrono>
 #include "laplacebvector.h"
 #include "laplacematrix.h"
@@ -22,6 +23,7 @@ using std::left;
 using std::right;
 using std::abs;
 using std::pow;
+using std::atoi;
 #define line_width 15
 #define number_max 20
 #define default_precision 20
@@ -71,12 +73,24 @@ double rightFunction(double x, double y);
 double gFunction(double x, double y);
 double realFunction(double x, double y);
 void solveLaplaceEquation(const size_t n, bool verbose);
-int main()
+int main(int argc, char* argv[])
 {
-  for(size_t i = 2; i <= 26; i++)
+  size_t n;
+
+  switch(argc - 1)
   {
-    solveLaplaceEquation(i, false);
+    case 0:
+      n = 4;
+      break;
+    case 1:
+      n = static_cast<size_t>(atoi(argv[1]));
+      break;
+    default:
+      cout << "Error: Invalid parameters given. Usage: " << argv[0] << " n" << endl;
+      exit(1);
   }
+
+  solveLaplaceEquation(n, true);
 
   return 0;
 }
